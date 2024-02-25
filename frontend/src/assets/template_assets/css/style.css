@@ -97,8 +97,9 @@ section{padding: 80px 0;}
 /* ------------------------
     Banner
 ------------------------*/
-.fullscreen-banner{position: relative; min-height: 800px;}
-[data-bg-img]{background-size: cover; background-position: center center; background-repeat: no-repeat;}
+.fullscreen-banner{position: relative; min-height: 800px;background-image: url("../../builtinimage/david-rodrigo-kZ1zThg6G40-unsplash.jpg");
+    background-size: cover; background-position: center center; background-repeat: no-repeat;}
+
 .align-center{position: absolute; top: 50%; width: 100%; z-index: 9;}
 .align-end{position: absolute; bottom: 0; width: 100%; z-index: 9;}
 .fullscreen-banner .btn{color: #ffffff;}

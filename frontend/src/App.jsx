@@ -5,6 +5,8 @@ import './App.css'
 import Banner from './assets/components/banner/Banner';
 import Header from './assets/components/header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Ensure you import the styles
+
 
 function App() {
  

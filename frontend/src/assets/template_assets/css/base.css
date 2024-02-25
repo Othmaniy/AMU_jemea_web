@@ -110,7 +110,7 @@ a, i, .btn, button, img, span, .navbar-nav .nav-link:before, .dropdown-item, .na
 .top-bar {padding: 15px 0 10px;}
 .topbar-link li a{color: #ffffff}
 .topbar-link li a i{margin-right: 5px;}
-.topbar-link li a:hover{color: #f9a305}
+.topbar-link li a:hovዝዝer{color: #f9a305}
 
 .search-box {display: inline-block; position: relative;}
 .search-box input[type="text"], .search-box input[type="search"] {
@@ -123,7 +123,7 @@ a, i, .btn, button, img, span, .navbar-nav .nav-link:before, .dropdown-item, .na
 
 #header-wrap{width: 100%; background: rgba(255,255,255,0.08);}
 #header-wrap.fixed-header {position: fixed; top:0; left:0; width: 100%; z-index: 999 !important; background: #121628 !important;}
-.logo img {height: 65px;}
+.logo img {height:  100px;}
 #header-wrap.fixed-header .logo img {height: 60px;
 width: 60px;}
 

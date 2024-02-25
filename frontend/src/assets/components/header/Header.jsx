@@ -1,8 +1,10 @@
 import React from 'react'
-import logoimg from "../../builtinimage/jemealogo-removebg-preview.png"
+import logoimg from "../../builtinimage/logoresized.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookF, faGooglePlusG, faTwitter, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 function Header() {
   return (
-    <div classNameName='reactheader'>
+    <div className='reactheader'>
 <header id="site-header" className="header header-4">
   <div className="top-bar d-md-block d-none">
     <div className="container">
@@ -10,27 +12,39 @@ function Header() {
         <div className="col-lg-6 col-md-8">
           <div className="topbar-link">
             <ul className="list-inline">
-              <li className="list-inline-item"><a href="mailto:themeht23@gmail.com"><i className="far fa-envelope-open"></i>themeht23@gmail.com</a>
+              <li className="list-inline-item"><a href="mailto:themeht23@gmail.com"><i className="far fa-envelope-open"></i>Amu muslim students jemea</a>
               </li>
               <li className="list-inline-item">
-                <a href="tel:+912345678900"> <i className="fas fa-mobile-alt"></i>+91-234-567-8900</a>
+                <a href="tel:+912345678900"> <i className="fas fa-mobile-alt"></i>0969043207</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="col-lg-6 col-md-4 text-end">
-          <div className="social-icons social-hover top-social-list">
-            <ul className="list-inline">
-              <li className="social-facebook"><a href="#"><i className="fab fa-facebook-f"></i></a>
-              </li>
-              <li className="social-gplus"><a href="#"><i className="fab fa-google-plus-g"></i></a>
-              </li>
-              <li className="social-twitter"><a href="#"><i className="fab fa-twitter"></i></a>
-              </li>
-              <li className="social-linkedin"><a href="#"><i className="fab fa-linkedin-in"></i></a>
-              </li>
-            </ul>
-          </div>
+        <div className="social-icons social-hover top-social-list">
+      <ul className="list-inline">
+        <li className="social-facebook">
+          <a href="#">
+            <FontAwesomeIcon icon={faFacebookF} />
+          </a>
+        </li>
+        <li className="social-gplus">
+          <a href="#">
+            <FontAwesomeIcon icon={faGooglePlusG} />
+          </a>
+        </li>
+        <li className="social-twitter">
+          <a href="#">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        </li>
+        <li className="social-linkedin">
+          <a href="#">
+            <FontAwesomeIcon icon={faLinkedinIn} />
+          </a>
+        </li>
+      </ul>
+    </div>
         </div>
       </div>
     </div>
@@ -63,7 +77,7 @@ function Header() {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Pages</a>
+                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">academi</a>
                   <ul className="dropdown-menu">
                     <li><a href="about-us.html">About Us</a>
                     </li>
@@ -77,7 +91,7 @@ function Header() {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Solutions</a>
+                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">supportive</a>
                   <ul className="dropdown-menu">
                     <li><a href="chemical-research.html">Chemical Research</a>
                     </li>
@@ -93,7 +107,7 @@ function Header() {
                     </li>
                   </ul>
                 </li>
-                <li className="nav-item dropdown position-static"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Element</a>
+                <li className="nav-item dropdown position-static"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">umumaebed</a>
                   <ul className="dropdown-menu w-100 p-3">
                     <li className="container">
                       <div className="row w-100">
@@ -146,7 +160,7 @@ function Header() {
                     {/* <!--  /.container  --> */}
                   </ul>
                 </li>
-                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Blog</a>
+                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">daewa and irshad</a>
                   <ul className="dropdown-menu">
                     <li className="dropdown dropdown-submenu"> <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown">
                       Blog classNameic
