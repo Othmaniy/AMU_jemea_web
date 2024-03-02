@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className='reactheader'>
 <header id="site-header" className="header header-4">
-  <div className="top-bar d-md-block d-none">
+  <div className="top-bar d-md-block ">
     <div className="container">
       <div className="row align-items-center">
         <div className="col-lg-6 col-md-8">
