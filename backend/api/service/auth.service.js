@@ -12,4 +12,14 @@ pool.query(sql,[data.name,data.lastname,data.id_number,hashedpassword,data.phone
 })
 }
 
-module.exports={createaccountservice}
+const getuserbyid=(id,callback)=>{
+    const sql =`SELECT * FROM usertable WHERE id_number=?`
+    pool.query(sql,[id],(err,results)=>{
+        if(err){
+            return callback(err)
+        }
+        return callback(null,results)
+    })
+   
+}
+module.exports={createaccountservice,getuserbyid}

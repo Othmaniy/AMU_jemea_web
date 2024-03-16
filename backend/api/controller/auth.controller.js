@@ -1,6 +1,8 @@
 const express =require("express");
 const pool = require("../../db.config");
 const { createaccountservice,getuserbyid } = require("../service/auth.service");
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
 const createaccount =(req,res)=>{
      const sql ="SELECT * FROM usertable WHERE id_number=?";
      const idnumber=req.body.id_number;
@@ -34,8 +36,28 @@ const login =(req,res)=>{
         if(results.length==0){
             return res.status(404).json({message:"no user found with this id"})
         }
-        console.log(results);    
+        console.log(results[0]);   
+        const result= results[0];
+        const checkpassword =bcrypt.compareSync(req.body.password,results[0].password);
+        if(!checkpassword){
+            return res.status(400).json({message:"invalid credentials"})
+        }
+   const payload={
+    id:result.id,
+    name:result.name,
+    lastname:result.lastname,
+    id_number:result.id_number
+   }
+
+   console.log(result);
+   console.log(process.env.SECRET_KEY);
+
+   const token = jwt.sign(payload,process.env.SECRET_KEY,{
+    expiresIn:"2hr",
+   })
+  res.status(200).json({message:"login successfully ",
+data:token})
     })
 
 }
-module.exports={createaccount}
+module.exports={createaccount,login}
