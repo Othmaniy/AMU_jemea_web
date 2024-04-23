@@ -4,7 +4,9 @@ import logoimg from "../../assets/builtinimage/logoresized.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGooglePlusG, faTwitter, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../Context/Authcontext';
 function Header() {
+  console.log(useAuth());
   return (
     <div className='reactheader'>
 <header id="site-header" className="header header-4">
@@ -88,7 +90,7 @@ function Header() {
                   </Link>
                 </li>
                 <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">supportive</a>
-                  <ul className="dropdown-menu">
+                  {/* <ul className="dropdown-menu">
                     <li><a href="chemical-research.html">Chemical Research</a>
                     </li>
                     <li><a href="energy-%26-power-engineering.html">Energy & Power Engineering</a>
@@ -101,7 +103,7 @@ function Header() {
                     </li>
                     <li><a href="civil-engineering.html">Civil Engineering</a>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
                 
                 <li className="nav-item  "> 
@@ -160,56 +162,66 @@ function Header() {
                   </ul> */}
                   </Link>
                 </li>
+                <li className='nav-item'>
+                  <Link to={"/login"} className='nav-link ' >
+                    <span >login</span>
+                  </Link>
+                </li>
+                <li className="nav-item  "> 
+                <Link to ={'/registeruser'} className="nav-link" >
+                <span>register</span>
+                  {/* <ul className="dropdown-menu w-100 p-3">
+                    <li className="container">
+                      <div className="row w-100">
+                        <div className="col-lg-4 col-12">
+                          <ul className="list-unstyled">
+                            <li> <a href="shortcode-accordions.html">Accordion</a>
+                            </li>
+                            <li> <a href="shortcode-button.html">Buttons</a>
+                            </li>
+                            <li> <a href="shortcode-clients.html">Clients</a>
+                            </li>
+                            <li> <a href="shortcode-counter.html">Counter</a>
+                            </li>
+                            <li> <a href="shortcode-call-to-action.html">Call to action</a>
+                            </li>
+                          </ul>
+                        </div>
+                        
+                        <div className="col-lg-4 col-12">
+                          <ul className="list-unstyled">
+                            <li> <a href="shortcode-featured-box.html">Featured Box</a>
+                            </li>
+                            <li> <a href="shortcode-tab.html">Tabs</a>
+                            </li>
+                            <li> <a href="shortcode-blog-post.html">Post Style</a>
+                            </li>
+                            <li> <a href="shortcode-pricing.html">Pricing tables</a>
+                            </li>
+                            <li> <a href="shortcode-progress-bar.html">Progress Bar</a>
+                            </li>
+                          </ul>
+                        </div>
+                     
+                        <div className="col-lg-4 col-12">
+                          <ul className="list-unstyled">
+                            <li> <a href="shortcode-social-icon.html">Social icon</a>
+                            </li>
+                            <li> <a href="shortcode-testimonials.html">Testimonials</a>
+                            </li>
+                            <li> <a href="shortcode-team.html">Team</a>
+                            </li>
+                            <li> <a href="shortcode-heading.html">Heading Style</a>
+                            </li>
+                            <li> <a href="shortcode-typography.html">Typography</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
                 
-                <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">daewa and irshad</a>
-                  <ul className="dropdown-menu">
-                    <li className="dropdown dropdown-submenu"> <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown">
-                      Blog classNameic
-                    </a>
-                      <ul className="dropdown-menu">
-                        <li><a href="blog-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li><a href="blog-right-sidebar.html">Right Sidebar</a>
-                        </li>
-                        <li><a href="blog-fullwidth.html">Fullwidth</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="dropdown dropdown-submenu"> <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown">
-                      Blog Grid
-                    </a>
-                      <ul className="dropdown-menu">
-                        <li><a href="blog-grid-2.html">Grid 2</a>
-                        </li>
-                        <li><a href="blog-grid-3.html">Grid 3</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="dropdown dropdown-submenu"> <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown">
-                      Blog Masonry
-                    </a>
-                      <ul className="dropdown-menu">
-                        <li><a href="blog-masonry-grid-2.html">Grid 2</a>
-                        </li>
-                        <li><a href="blog-masonry-grid-3.html">Grid 3</a>
-                        </li>
-                        <li><a href="blog-masonry-fullwidth.html">Fullwidth</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="dropdown dropdown-submenu"> <a href="#" className="dropdown-toggle" data-bs-toggle="dropdown">
-                      Blog Single
-                    </a>
-                      <ul className="dropdown-menu">
-                        <li><a href="blog-details-left-sidebar.html">Left Sidebar</a>
-                        </li>
-                        <li><a href="blog-details-right-sidebar.html">Right Sidebar</a>
-                        </li>
-                        <li><a href="blog-details-fullwidth.html">Fullwidth</a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
+                  </ul> */}
+                  </Link>
                 </li>
                 <li className="nav-item dropdown"> <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Project</a>
                   <ul className="dropdown-menu">

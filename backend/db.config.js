@@ -22,20 +22,22 @@ let usertable = `CREATE TABLE IF NOT EXISTS usertable(
     name varchar(255) not null,
     lastname varchar(255) not null,
     id_number varchar(255),
+    role varchar(255),
     password varchar(255) not null,
     phone varchar(255) not null,
     emergency_phone varchar(255) ,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 
 )`
 
-
-
 pool.query(usertable,(err,results)=>{
     if(err){
-        console.log(err);
+       console.log(err);
     }
     console.log("user table created sucessfully");
 })
+
+
 
 module.exports =pool;

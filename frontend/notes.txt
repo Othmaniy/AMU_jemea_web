@@ -1,0 +1,23 @@
+things i have to Add on the backend
+1.in users table 
+user added date time stamp 
+
+2.role of the user
+
+
+function that decode s payload data
+ const decodepayload =(token)=>{
+    const base64url =token.split(.)[1];
+    const base64 = base64url.replace(/-/g,'+').replace(/-/g,'/');
+    const jsonpaylaod = decodeURICompnent(
+        atob(base64)
+        .split('')
+        .map((C)=>`%${`00${c,charcodeAt(0).toString(16)}`.slice(-2)}`).join('')
+    )
+return json.parse(jsonpaylaod)
+ }
+
+
+ i have to create role and set usestates on the context provider for each admin types\
+ 
+

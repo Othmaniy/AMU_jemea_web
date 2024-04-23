@@ -4,7 +4,7 @@ function Banner() {
   return (
     <div className='bannerrr'>
     
-    <section id="particles" className="fullscreen-banner p-0 overflow-hidden text-center align-center"  data-overlay="7">
+    <section id="particles" className="fullscreen-banner p-0 overflow-hidden text-center align-center"  data-overlay="7" >
   <div className="align-center">
     <div className="container">
       <div className="row text-center">

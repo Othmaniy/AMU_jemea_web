@@ -8,16 +8,20 @@ const cors= require("cors");
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Credentials",true);
     console.log("hello")
-  
+
     next();
 })
-// app.use(cors(
-//     {origin:"http://localhost:5173"}
-// ));
+app.use(cors(
+    {origin:"http://localhost:5173"}
+));
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use("/api/auth",authrouter)
 app.listen(process.env.port,()=>{
-    console.log(`listening to port${process.env.port}`);
+console.log(`listening to port${process.env.port}`);
+
 })
+
+
+

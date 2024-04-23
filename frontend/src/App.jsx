@@ -7,12 +7,13 @@ import Home from './pages/Home';
 import UmumaebedHome from './pages/umumaebed/UmumaebedHome';
 import { useContext, useEffect } from 'react';
 import Login1 from './pages/login/Login1';
+import Registeruser from './pages/adminpages/register/Registeruser';
 
 // import { AuthContext } from './components/auth/auth.context';
 
 function App() {
   // const { User } = useContext(AuthContext);
-  ; 
+  
 const User = false;
   const ProtectedPages = ({ children }) => {
     const navigate = useNavigate()
@@ -36,6 +37,7 @@ const User = false;
           <Route path='/' element={<Home />} />
            <Route path='/umumaebed' element={<ProtectedPages><UmumaebedHome /></ProtectedPages>} />
            <Route path='/login' element={<Login1 />} />
+           <Route path='/registeruser' element={<Registeruser />} />
         </Routes>
       </>
     </Router>
@@ -43,3 +45,6 @@ const User = false;
 }
 
 export default App;
+
+
+//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im91c21hbiIsImxhc3RuYW1lIjoibXVoYW1tZWQiLCJpZF9udW1iZXIiOiJuc3IvODg5LzEzIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzEzODQ5OTA4LCJleHAiOjE3MTM4NTcxMDh9.f048eH5Y3UOzdBxhxflV1lAUJC1jA6t1aFP6FRT0l34"

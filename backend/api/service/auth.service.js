@@ -3,8 +3,8 @@ const bcrypt=require("bcrypt")
 const createaccountservice=(data,callback)=>{
     const salt =bcrypt.genSaltSync();
     const hashedpassword = bcrypt.hashSync(data.password,salt)
-    const sql ="INSERT INTO usertable (name,lastname,id_number,password,phone,emergency_phone) VALUES (?,?,?,?,?,?)"
-pool.query(sql,[data.name,data.lastname,data.id_number,hashedpassword,data.phone,data.emergency_phone],(err,results)=>{
+    const sql ="INSERT INTO usertable (name,lastname,id_number,role,password,phone,emergency_phone) VALUES (?,?,?,?,?,?,?)"
+pool.query(sql,[data.name,data.lastname,data.id_number,data.role,hashedpassword,data.phone,data.emergency_phone],(err,results)=>{
     if(err){
         return callback(err)
     }

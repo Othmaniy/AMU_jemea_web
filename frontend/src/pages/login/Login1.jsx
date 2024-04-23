@@ -1,33 +1,64 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import basepath from '../../components/url/url';
+import {useNavigate} from "react-router-dom"
 function Login1() {
+
+  const [loginform,setLoginForm]=useState({});
+  const [LoginResponse,setLoginResponse]=useState('');
+  const navigate =useNavigate();
+  const handleChange=(e)=>{
+    setLoginForm({...loginform,[e.target.name]:e.target.value})
+  }
+ 
+  console.log(loginform);
+const handleSubmit=async(e)=>{
+  console.log("handlesubmit is working");
+  e.preventDefault();
+  //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmViZSIsImxhc3RuYW1lIjoia2ViZWRlIiwiaWRfbnVtYmVyIjoiMTIzNCIsImlhdCI6MTcxMzY2Nzc2MSwiZXhwIjoxNzEzNjc0OTYxfQ.PZxpkcvP-JJHHTFBrbZ7J6JcvuGry2ErIqtLhJW8hVE"
+
+  try{
+    const response =await basepath.post("/auth/login",loginform);
+    console.log(response);
+   console.log(response.data);
+   console.log(response.data.message);
+ setLoginResponse(response.data.message)
+  if(response.status===200){
+     if(response.data.token){
+      localStorage.setItem("user",JSON.stringify(response.data.token))
+     }
+     navigate("/")
+  }
+  }
+  catch(error){
+    console.log(error);
+    setLoginResponse(error.response.data.message)
+  }
+
+}
+
   return (
     <><section className="contact pb-lg-0 z-index-1">
     <div className="container">
+      
       <div className="row">
         <div className="col-lg-6 col-md-12">
           <div className="contact-main white-bg p-5">
-            <h2 className="title mb-4">Contact Us For <span>Help</span></h2> 
-            <form id="contact-form" method="post" action="https://themeht.com/template/misto/html/ltr/php/contact.php">
+            <h2 className="title mb-4"> <span>login</span></h2> 
+            <form  onSubmit={handleSubmit} >
               <div className="messages"></div>
               <div className="form-group">
-                <input id="form_name" type="text" name="name" className="form-control" placeholder="User Name" required="required" data-error="Username is required."/>
+                <input  
+                type='text' name="id_number" className="form-control" placeholder="id_number" required="required" onChange={handleChange} />
                 <div className="help-block with-errors"></div>
               </div>
               <div className="form-group">
-                <input id="form_email" type="email" name="email" className="form-control" placeholder="Email" required="required" data-error="Valid email is required."/>
+                <input 
+                type='password' name="password" className="form-control" placeholder="password" required="required" onChange={handleChange} />
                 <div className="help-block with-errors"></div>
               </div>
-              <div className="form-group">
-                <input id="form_phone" type="tel" name="phone" className="form-control" placeholder="Phone" required="required" data-error="Phone is required" />
-                <div className="help-block with-errors"></div>
-              </div>
-              <div className="form-group">
-                <textarea id="form_message" name="message" className="form-control" placeholder="Message" rows="4" required="required" data-error="Please,leave us a message."></textarea>
-                <div className="help-block with-errors"></div>
-              </div>
-              <button className="btn btn-border btn-radius"><span>Submit Now</span>
-              </button>
+              
+              <button type='submit' className="btn btn-border btn-radius" ><span>Login</span>
+              </button><p style={{color:"red"}}>{LoginResponse}</p>
             </form>
           </div>
         </div>

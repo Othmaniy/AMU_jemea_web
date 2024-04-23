@@ -46,7 +46,8 @@ const login =(req,res)=>{
     id:result.id,
     name:result.name,
     lastname:result.lastname,
-    id_number:result.id_number
+    id_number:result.id_number,
+    role:result.role
    }
 
    console.log(result);
@@ -56,7 +57,7 @@ const login =(req,res)=>{
     expiresIn:"2hr",
    })
   res.status(200).json({message:"login successfully ",
-data:token})
+token:token})
     })
 
 }
