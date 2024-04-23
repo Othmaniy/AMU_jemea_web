@@ -8,26 +8,27 @@ import UmumaebedHome from './pages/umumaebed/UmumaebedHome';
 import { useContext, useEffect } from 'react';
 import Login1 from './pages/login/Login1';
 import Registeruser from './pages/adminpages/register/Registeruser';
+import Unautherized from './pages/Unautherized';
 
 // import { AuthContext } from './components/auth/auth.context';
 
 function App() {
   // const { User } = useContext(AuthContext);
   
-const User = false;
-  const ProtectedPages = ({ children }) => {
-    const navigate = useNavigate()
-    useEffect(() => {
-      if (!User) {
-        navigate("/login");
-      }
-    }, [User, navigate]);
+// const User = false;
+//   const ProtectedPages = ({ children }) => {
+//     const navigate = useNavigate()
+//     useEffect(() => {
+//       if (!User) {
+//         navigate("/login");
+//       }
+//     }, [User, navigate]);
 
-    if (!User) {
-      return null;
-    }
-    return children;
-  };
+//     if (!User) {
+//       return null;
+//     }
+//     return children;
+//   };
 
   return (
     <Router>
@@ -35,9 +36,10 @@ const User = false;
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-           <Route path='/umumaebed' element={<ProtectedPages><UmumaebedHome /></ProtectedPages>} />
+           <Route path='/umumaebed' element={<UmumaebedHome />}/>
            <Route path='/login' element={<Login1 />} />
            <Route path='/registeruser' element={<Registeruser />} />
+           <Route path='/unautherized' element={<Unautherized />} />
         </Routes>
       </>
     </Router>

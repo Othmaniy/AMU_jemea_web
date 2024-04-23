@@ -21,3 +21,16 @@ return json.parse(jsonpaylaod)
  i have to create role and set usestates on the context provider for each admin types\
  
 
+
+
+we can add like login component by cheking the condition on the component after checking the condition 
+
+if(islogged){
+
+}
+
+else{
+    return 
+
+    <div>loginform</div >
+}

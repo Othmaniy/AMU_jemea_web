@@ -9,7 +9,7 @@ const AuthcontextProvider =({children})=>{
     const [islogged,setIslogged]=useState(false);
     const [role,setRole] =useState(null);
     const [currentuser,setCurrentser]=useState(null)
-    
+    //no need to setrole state because the role is on the current user ie it returned as a response
    const value = {islogged,role,setIslogged,currentuser}
    useEffect(() => {
     const fetchUser = async () => {

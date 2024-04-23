@@ -5,8 +5,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGooglePlusG, faTwitter, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
 import { useAuth } from '../Context/Authcontext';
+import getuser from '../Utility/decode';
 function Header() {
   console.log(useAuth());
+  const check =useAuth();
+  // if(check&&check.currentuser){
+  //   console.log(check.currentuser.token);
+  // }
+  // else{
+  //   console.log("waiting for current user");
+  // }
+  // console.log(check.currentuser.token);
+  // console.log(check.currentuser.token);
+// const logger=async()=>{
+//   const user = await getuser();
+ 
+//   console.log(user);
+
+// }
+
+// logger();
+  // console.log(user);
+  const x= ["abee","htry","hfuty","kitoe"]
+  console.log(x.length);
   return (
     <div className='reactheader'>
 <header id="site-header" className="header header-4">
