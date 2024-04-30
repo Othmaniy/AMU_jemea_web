@@ -3,9 +3,17 @@ const pool = require("../../db.config");
 const { createaccountservice,getuserbyid } = require("../service/auth.service");
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
-const createaccount =(req,res)=>{
+const createaccount =(req,res,next)=>{
+    
+ 
+    console.log("controller");
+    // console.log(req.body["x-acess-token"]);
+    // console.log(req);
+    console.log(req.body.headers);
+    console.log("token?");
+    console.log(req.body.headers['x-access-token']);
      const sql ="SELECT * FROM usertable WHERE id_number=?";
-     const idnumber=req.body.id_number;
+     const idnumber=req.body.body.id_number;
    pool.query(sql,[idnumber],(err,results)=>{
     if(err){
         console.log(err);
@@ -15,7 +23,7 @@ const createaccount =(req,res)=>{
     if(results.length>0){
         return res.status(409).json({message:"user already exists"})
     }
-    createaccountservice(req.body,(err,results)=>{
+    createaccountservice(req.body.body,(err,results)=>{
         if(err){
             console.log(err);
             return res.status(500).json({message:"database connecton error"})

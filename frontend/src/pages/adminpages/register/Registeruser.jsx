@@ -1,29 +1,42 @@
 import React, { useState } from "react";
 import basepath from "../../../components/url/url";
 import "./register.css";
+import { useAuth } from "../../../components/Context/Authcontext";
 
 function Registeruser() {
   const [form, setForm] = useState({});
   const [reponsemessage, setResponsemessage] = useState("");
-
+  const user =useAuth();
+  console.log(user.currentuser.token);
+  const token =user.currentuser.token;
+  // console.log("user from register component"+user);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   console.log(form);
+  const requestoptions ={
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "x-access-token":token
+    },
+    body:(form)
+  }
 
+  
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await basepath.post("/auth/createaccount", form);
+      const response = await basepath.post("/auth/createaccount", requestoptions);
       console.log(response);
       console.log(response.data.message);
       setResponsemessage(response.data.message);
       //  setResponsemessage(response.data.)
       // alert(reponsemessage)
 
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 3000);
     } catch (err) {
       console.log(err);
       console.log(err.response.data.message);

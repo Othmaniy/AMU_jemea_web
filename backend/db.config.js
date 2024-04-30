@@ -30,7 +30,17 @@ let usertable = `CREATE TABLE IF NOT EXISTS usertable(
     PRIMARY KEY (id)
 
 )`
+let bookstable =`CREATE TABLE IF NOT EXISTS books(
+    id int auto_increment,
+    book_id  int,
+    book_name varchar(255) not null,
+    category varchar(255),
+    situation varchar(255) not null,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESATMP,
+    PRIMARY KEY (id)
+    
 
+)`
 pool.query(usertable,(err,results)=>{
     if(err){
        console.log(err);
@@ -38,6 +48,11 @@ pool.query(usertable,(err,results)=>{
     console.log("user table created sucessfully");
 })
 
-
+// pool.query(bookstable,(err,results)=>{
+//     if(err){
+//         console.log(err);
+//     }
+//     console.log("the rter yhr tyh  ddfdc thr");
+// })
 
 module.exports =pool;

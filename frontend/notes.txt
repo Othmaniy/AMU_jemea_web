@@ -34,3 +34,5 @@ else{
 
     <div>loginform</div >
 }
+
+i have to send data using request options sincer it is the practical and common way of sending data
