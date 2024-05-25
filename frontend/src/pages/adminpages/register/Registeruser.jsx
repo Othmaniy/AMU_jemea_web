@@ -17,13 +17,14 @@ function Registeruser() {
   const requestoptions ={
     method:"POST",
     headers:{
-      "Content-Type":"application/json",
-      "x-access-token":token
+      'Content-Type':'application/json',
+      'x-access-token':token
     },
     body:(form)
   }
-
-  
+console.log(requestoptions);
+  console.log(requestoptions.headers);
+  console.log(requestoptions.headers["x-access-token"]);
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {

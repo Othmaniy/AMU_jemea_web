@@ -7,8 +7,16 @@ const createaccount =(req,res,next)=>{
     
  
     console.log("controller");
-    // console.log(req.body["x-acess-token"]);
+    console.log("req");
+    console.log(req);
+    console.log("req.body");
+    console.log(req.body);
+    console.log(req.body["x-access-token"]);
+    console.log(req.headers["x-access-token"]);
     // console.log(req);
+    console.log("req headers");
+    console.log(req.headers);
+    console.log("reqbodyheaders");
     console.log(req.body.headers);
     console.log("token?");
     console.log(req.body.headers['x-access-token']);
@@ -22,7 +30,7 @@ const createaccount =(req,res,next)=>{
     }
     if(results.length>0){
         return res.status(409).json({message:"user already exists"})
-    }
+    } 
     createaccountservice(req.body.body,(err,results)=>{
         if(err){
             console.log(err);
@@ -62,8 +70,10 @@ const login =(req,res)=>{
    console.log(process.env.SECRET_KEY);
 
    const token = jwt.sign(payload,process.env.SECRET_KEY,{
-    expiresIn:"2hr",
+    expiresIn:"4hr",
    })
+   const decodedToken = jwt.decode(token);
+        console.log("Token Expiration Time: ", new Date(decodedToken.exp * 1000));
   res.status(200).json({message:"login successfully ",
 token:token})
     })

@@ -28,4 +28,16 @@ const getuserbyid=(id,callback)=>{
     })
    
 }
-module.exports={createaccountservice,getuserbyid}
+
+const getbyid = (id) => {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM usertable where id_number =? ";
+        pool.query(sql, [id], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+};
+module.exports={createaccountservice,getuserbyid,getbyid}
