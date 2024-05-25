@@ -33,8 +33,9 @@ let usertable = `CREATE TABLE IF NOT EXISTS usertable(
 let bookstable =`CREATE TABLE IF NOT EXISTS books(
     id int auto_increment,
     book_name varchar(255) not null,
+    Author varchar(255) not null,
     category varchar(255),
-    available ENUM('taken', 'available') NOT NULL DEFAULT 'available',
+    available VARCHAR(255) DEFAULT 'available',
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedat TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)

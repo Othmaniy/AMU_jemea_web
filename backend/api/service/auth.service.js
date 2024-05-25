@@ -40,4 +40,5 @@ const getbyid = (id) => {
         });
     });
 };
+
 module.exports={createaccountservice,getuserbyid,getbyid}
