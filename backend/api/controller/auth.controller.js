@@ -70,7 +70,7 @@ const login =(req,res)=>{
    console.log(process.env.SECRET_KEY);
 
    const token = jwt.sign(payload,process.env.SECRET_KEY,{
-    expiresIn:"4hr",
+    expiresIn:"24hr",
    })
    const decodedToken = jwt.decode(token);
         console.log("Token Expiration Time: ", new Date(decodedToken.exp * 1000));

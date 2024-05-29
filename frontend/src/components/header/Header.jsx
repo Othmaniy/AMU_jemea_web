@@ -9,6 +9,8 @@ import getuser from '../Utility/decode';
 function Header() {
   console.log(useAuth());
   const check =useAuth();
+  console.log(check);
+  console.log(check.islogged);
   // if(check&&check.currentuser){
   //   console.log(check.currentuser.token);
   // }
@@ -26,8 +28,7 @@ function Header() {
 
 // logger();
   // console.log(user);
-  const x= ["abee","htry","hfuty","kitoe"]
-  console.log(x.length);
+
   return (
     <div className='reactheader'>
 <header id="site-header" className="header header-4">

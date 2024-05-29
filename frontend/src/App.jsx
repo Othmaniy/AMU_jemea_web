@@ -10,6 +10,7 @@ import Login1 from './pages/login/Login1';
 import Registeruser from './pages/adminpages/register/Registeruser';
 import Unautherized from './pages/Unautherized';
 import ProtectedRoute from './components/Protected/ProtectedRoute';
+import AddBooks from './pages/LibraryPages/AddBooks';
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -40,14 +41,14 @@ function App() {
          } />
            <Route path='/umumaebed' element={<UmumaebedHome />}/>
            <Route path='/login' element={<Login1 />} />
+           <Route path='/addbook' element={<AddBooks />} />
            <Route path='/registeruser' element={
            <ProtectedRoute role={["Admin"]}>
               <Registeruser />
            </ProtectedRoute>
-         
-           
            } />
            <Route path='/unautherized' element={<Unautherized />} />
+
         </Routes>
       </>
     </Router>

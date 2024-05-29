@@ -15,7 +15,7 @@ const verifytoken =async(req,res,next)=>{
         if(err){
             console.log("inside verify tooken");
             console.log(err);
-            return res.status(401).json({message:"unautherized"})
+            return res.status(401).json({message:"unautherized or please login again"})
         }
         req.id_number = decode.id_number
         next();
