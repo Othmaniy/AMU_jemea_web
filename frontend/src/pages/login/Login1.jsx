@@ -64,14 +64,14 @@ const handleSubmit=async(e)=>{
         </div>
         <div className="col-lg-6 col-md-12 form-info mt-4">
           <h2 className="title">Get In <span>Touch!</span></h2>
-          <p>Contact for any help dolor sit amet, consectetur adipiscing elit. Nulla nec massa enim. Aliquam viverra at est ullamcorper sollicitudin. Proin a leo sit amet nunc malesuada imperdiet pharetra ut eros.</p>
+          <p>Contact for any help if there is problem while logging</p>
           <ul className="contact-info list-unstyled mt-4">
             <li className="mb-4"><i className="flaticon-paper-plane"></i><span>Address:</span>
-              <p>423B, Road Wordwide Country, USA</p>
+              <p>Arbaminch, Ethiopia</p>
             </li>
-            <li className="mb-4"><i className="flaticon-phone-call"></i><span>Phone:</span><a href="tel:+912345678900">+91-234-567-8900</a>
+            <li className="mb-4"><i className="flaticon-phone-call"></i><span>Phone:</span><a href="tel:+912345678900">+2519 69 043207</a>
             </li>
-            <li><i className="flaticon-message"></i><span>Email</span><a href="mailto:themeht23@gmail.com"> themeht23@gmail.com</a>
+            <li><i className="flaticon-message"></i><span>Email</span><a href="mailto:themeht23@gmail.com"> amumj@gmail.com</a>
             </li>
           </ul>
         </div>

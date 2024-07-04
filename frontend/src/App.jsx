@@ -10,7 +10,9 @@ import Login1 from './pages/login/Login1';
 import Registeruser from './pages/adminpages/register/Registeruser';
 import Unautherized from './pages/Unautherized';
 import ProtectedRoute from './components/Protected/ProtectedRoute';
-import AddBooks from './pages/LibraryPages/AddBooks';
+import AddBooks from './pages/LibraryPages/admin/AddBooks';
+import Books from './pages/LibraryPages/user/Books';
+import Controlbooks from './pages/LibraryPages/admin/Controlbooks';
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -42,6 +44,8 @@ function App() {
            <Route path='/umumaebed' element={<UmumaebedHome />}/>
            <Route path='/login' element={<Login1 />} />
            <Route path='/addbook' element={<AddBooks />} />
+           <Route path='/books' element={<Books />} />
+           <Route path='/managebooks' element={<Controlbooks />} />
            <Route path='/registeruser' element={
            <ProtectedRoute role={["Admin"]}>
               <Registeruser />
