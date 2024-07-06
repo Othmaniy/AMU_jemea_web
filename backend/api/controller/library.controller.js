@@ -16,7 +16,7 @@ const addNewBook = (req, res) => {
       });
     }
     else{
-        return res.status(200).json({message:"book added sucessfuly"})
+        return res.status(200).json({message:"book sucessfuly added "})
     }
 
 
@@ -41,10 +41,33 @@ const getAllBooks =(req,res)=>{
 }
 const updateBook=(req,res)=>{
     const bookId = req.params.id;
-    const available =req.body.available?req.body.available:"available"
-    const{bookname,author,category} = req.body
-    const sql ="Update books SET book_name=?,Author=?,category=?,available=? WHERE id =?";
-    pool.query(sql,[bookname,author,category,available,bookId],(err,results)=>{
+    const fieldsToUpdate=[]
+    const values =[]
+    if(req.body.bookname){
+        fieldsToUpdate.push("book_name")
+        values.push(req.body.bookname)
+    }
+    if(req.body.author){
+        fieldsToUpdate.push("Author")
+        values.push(req.body.author)
+    }
+    if(req.body.category){
+        fieldsToUpdate.push("category")
+        values.push(req.body.category)
+    }
+  if(req.body.available!==undefined){
+    fieldsToUpdate.push("avaialable")
+    values.push(req.body.available)
+  }
+    // const available =req.body.available?req.body.available:"available"
+    // const{bookname,author,category} = req.body
+    if (fieldsToUpdate.length === 0) {
+        return res.status(400).json({ message: "No fields provided to update" });
+    }
+    const sql = `UPDATE books SET ${fieldsToUpdate.join(', ')} WHERE id = ?`;
+    values.push(bookId); 
+    // const sql ="Update books SET book_name=?,A  uthor=?,category=?,available=? WHERE id =?";
+    pool.query(sql,values,(err,results)=>{
         if(err){
             console.log(err);
             return res.status(500).json({message:"database connection error"})

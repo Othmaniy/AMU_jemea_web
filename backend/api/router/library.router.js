@@ -5,7 +5,7 @@ const { addNewBook, getAllBooks, updateBook, deleteBook } = require("../controll
 const router = express.Router()
 router.post("/addnewbook",addNewBook),
 router.get("/getallbooks",getAllBooks),
-router.put("/updatebook/:id",updateBook),
+router.patch("/updatebook/:id",updateBook),
 router.delete("/deletebook/:id",deleteBook)
 
 
