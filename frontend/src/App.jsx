@@ -13,26 +13,12 @@ import ProtectedRoute from './components/Protected/ProtectedRoute';
 import AddBooks from './pages/LibraryPages/admin/AddBooks';
 import Books from './pages/LibraryPages/user/Books';
 import Controlbooks from './pages/LibraryPages/admin/Controlbooks';
+import UpdateBook from './components/updateBook/UpdateBook';
 
 // import { AuthContext } from './components/auth/auth.context';
 
-function App() {
-  // const { User } = useContext(AuthContext);
+function App() { 
   
-// const User = false;
-//   const ProtectedPages = ({ children }) => {
-//     const navigate = useNavigate()
-//     useEffect(() => {
-//       if (!User) {
-//         navigate("/login");
-//       }
-//     }, [User, navigate]);
-
-//     if (!User) {
-//       return null;
-//     }
-//     return children;
-//   };
 
   return (
     <Router>
@@ -52,6 +38,7 @@ function App() {
            </ProtectedRoute>
            } />
            <Route path='/unautherized' element={<Unautherized />} />
+           <Route path='/updatebook' element={<UpdateBook />} />
 
         </Routes>
       </>
@@ -62,5 +49,4 @@ function App() {
 export default App;
 
 
-//"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Im91c21hbiIsImxhc3RuYW1lIjoibXVoYW1tZWQiLCJpZF9udW1iZXIiOiJuc3IvODg5LzEzIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNzEzODQ5OTA4LCJleHAiOjE3MTM4NTcxMDh9.f048eH5Y3UOzdBxhxflV1lAUJC1jA6t1aFP6FRT0l34"
 

@@ -2,8 +2,8 @@ const pool = require("../../db.config")
 
 const InsertNEwBook=(req,callback)=>{
     const sql = "INSERT INTO books (book_name,Author,category,available) VALUES (?,?,?,?)";
-    const avilable =req.isavailable?req.isavailable:"available"
-    pool.query(sql,[req.bookname,req.Author,req.category,avilable],(err,results)=>{
+    const available =req.isavailable?req.isavailable:"available"
+    pool.query(sql,[req.bookname,req.Author,req.category,available],(err,results)=>{
         if (err){
             return callback(err)
         }
