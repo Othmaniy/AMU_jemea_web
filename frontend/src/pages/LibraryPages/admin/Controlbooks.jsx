@@ -64,8 +64,8 @@ function Controlbooks() {
         {/* todo published year */}
         <th scope="row">{b.book_name}</th>
         <td>{b.Author}</td>
-        <td>{b.category}</td>
-        <td className={b.available=="available"?"text-green":"text-red"}>{b.available}</td>
+        <td>{b.category}</td> 
+        <td className={b.available=="available"?"text-success":"text-danger"}>{b.available}</td>
         <td>
         <button onClick={()=> handleClick(b)} className={b.available=="available"?"btn btn-outline-danger":"btn btn-outline-primary"}>{b.available=="available"?"reserve":"return"}</button>
       </td>
