@@ -42,13 +42,31 @@ let bookstable =`CREATE TABLE IF NOT EXISTS books(
     
 
 )`
+
+let umumaebedMembers =`CREATE TABLE IF NOT EXISTS umumaebed(
+ id int auto_increment,
+ name varchar(256) not null,
+ lastname varchar(256) not null,
+ id_number varchar(255) not null,
+ phone varchar(256) not null,
+ batch int,
+ monthlypayment int not null,
+ status varchar(256),
+ PRIMARY KEY(id)
+
+)`
 pool.query(usertable,(err,results)=>{
     if(err){
        console.log(err);
     }
     console.log("user table created sucessfully");
 })
-
+pool.query(umumaebedMembers,(err,results)=>{
+    if(err){
+        console.log(err);
+    }
+    console.log("umumaebed table sucessfully created");
+})
 pool.query(bookstable,(err,results)=>{
     if(err){
         console.log(err);
