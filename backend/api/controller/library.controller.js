@@ -81,7 +81,7 @@ const updateBook = (req, res) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: "database connection error" });
-        }
+        } 
         console.log("results");
         console.log(results.affectedRows);
         if (results.affectedRows > 0) {

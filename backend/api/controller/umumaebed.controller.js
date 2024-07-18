@@ -1,9 +1,9 @@
-import pool from "../../db.config"
-import { registerMemberService } from "../service/umumaebed.service"
+const pool =require("../../db.config")
+const {registerMemberService} = require("../service/umumaebed.service")
 
-const registerMember=(re,res)=>{
-    const {name,lastname,idnumber,phone,monthlyPayment}=req.body
-     if(!name||lastname||idnumber||phone||monthlyPayment){
+const registerMember=(req,res)=>{
+    const {name,lastname,idnumber,phone,batch,monthlyPayment}=req.body
+     if(!name||!lastname||!idnumber||!phone||!monthlyPayment||!batch){
         return res.status(401).json({
             message:"please provide full information"
         })
@@ -25,7 +25,7 @@ const registerMember=(re,res)=>{
      })
 }
  const getMembers=(req,res)=>{
-    const sql ='SELECT ALL FROM umumaebed'
+    const sql ='SELECT * FROM umumaebed'
     pool.query(sql,(err,results)=>{
         if(err){
             return res
@@ -64,14 +64,15 @@ const registerMember=(re,res)=>{
         fieldsToUpdate.push("monthlypayment")
         values.push(req.body.monthlyPayment)
     }
-    const sql = `UPDATE books SET ${fieldsToUpdate.join(', ')} WHERE id = ?`;
+    const sql = `UPDATE umumaebed SET ${fieldsToUpdate.join(', ')} WHERE id = ?`;
     values.push(memberId)
     pool.query(sql,values,(err,results)=>{
         if(err){
             return res
             .status(500)
             .json({
-                message:"database connection error"
+                error:err,
+                message:"db connection error"
             })
         }
         return res
@@ -82,4 +83,4 @@ const registerMember=(re,res)=>{
         })
     })
  }
-module.exports={registerMember,getMembers,updateMember}
+module.exports= { registerMember,getMembers,updateMember }

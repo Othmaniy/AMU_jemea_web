@@ -51,7 +51,7 @@ let umumaebedMembers =`CREATE TABLE IF NOT EXISTS umumaebed(
  phone varchar(256) not null,
  batch int,
  monthlypayment int not null,
- status varchar(256),
+ status varchar(256) DEFAULT 'active',
  PRIMARY KEY(id)
 
 )`
