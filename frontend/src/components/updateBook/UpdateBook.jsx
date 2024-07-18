@@ -75,7 +75,8 @@ function UpdateBook({Setopenupdate,book}) {
                      {message}
                     </p>
                   </form>
-
+                  
+ 
                 </div>
                 
               </div>

@@ -159,10 +159,8 @@ console.log(form);
                   <li>
                     <i className="flaticon-message"></i>
                     <span>Email</span>
-                    <a href="mailto:themeht23@gmail.com">
-                      {" "}
-                      themeht23@gmail.com
-                    </a>
+
+
                   </li>
                 </ul>
               </div>
