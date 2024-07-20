@@ -55,6 +55,22 @@ let umumaebedMembers =`CREATE TABLE IF NOT EXISTS umumaebed(
  PRIMARY KEY(id)
 
 )`
+
+let acadamiFiles =`CREATE TABLE IF NOT EXISTS acadamifiles(
+id int auto_increment,
+file_url varchar(256) not null,
+file_description varchar(256) not null, 
+createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY(id)
+)`
+
+
+pool.query(acadamiFiles,(err,results)=>{
+    if(err){
+        console.log(err);
+    }
+    console.log("acadami table created successfully");
+})
 pool.query(usertable,(err,results)=>{
     if(err){
        console.log(err);
