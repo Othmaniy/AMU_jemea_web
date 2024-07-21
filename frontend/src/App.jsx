@@ -14,6 +14,7 @@ import AddBooks from './pages/LibraryPages/admin/AddBooks';
 import Books from './pages/LibraryPages/user/Books';
 import Controlbooks from './pages/LibraryPages/admin/Controlbooks';
 import UpdateBook from './components/updateBook/UpdateBook';
+import AddFiles from './pages/Acadamy/admin/AddFiles';
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -32,6 +33,7 @@ function App() {
            <Route path='/addbook' element={<AddBooks />} />
            <Route path='/books' element={<Books />} />
            <Route path='/managebooks' element={<Controlbooks />} />
+           <Route path='/addfiles' element={<AddFiles />} />
            <Route path='/registeruser' element={
            <ProtectedRoute role={["Admin"]}>
               <Registeruser />
@@ -42,7 +44,7 @@ function App() {
 
         </Routes>
       </>
-    </Router>
+    </Router> 
   );
 }
 

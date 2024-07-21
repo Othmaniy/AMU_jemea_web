@@ -1,0 +1,16 @@
+.adcontainer{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.adcontainer input{
+    width: 20%;
+    height: 40px;
+    padding: 10px;
+    margin: 10px;
+}
+.adcontainer button{
+    width: 100px;
+    height: 30px;
+    padding: 3px;
+}
