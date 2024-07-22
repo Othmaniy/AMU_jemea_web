@@ -1,13 +1,15 @@
-const express = require("express")
-const { addNewBook, getAllBooks, updateBook, deleteBook } = require("../controller/library.controller")
+const express = require("express");
+const {
+	addNewBook,
+	getAllBooks,
+	updateBook,
+	deleteBook,
+} = require("../controller/library.controller");
 
+const router = express.Router();
+router.post("/addnewbook", addNewBook),
+	router.get("/getallbooks", getAllBooks),
+	router.patch("/updatebook/:id", updateBook),
+	router.delete("/deletebook/:id", deleteBook);
 
-const router = express.Router()
-router.post("/addnewbook",addNewBook),
-router.get("/getallbooks",getAllBooks),
-router.patch("/updatebook/:id",updateBook),
-router.delete("/deletebook/:id",deleteBook)
-
-
-
-module.exports =router
+module.exports = router;
