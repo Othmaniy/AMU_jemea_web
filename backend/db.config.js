@@ -60,6 +60,8 @@ let acadamiFiles =`CREATE TABLE IF NOT EXISTS acadamifiles(
 id int auto_increment,
 file_url varchar(256) not null,
 file_description varchar(256) not null, 
+department varchar(256) not null,
+Teacher_name varchar(256),
 createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY(id)
 )`

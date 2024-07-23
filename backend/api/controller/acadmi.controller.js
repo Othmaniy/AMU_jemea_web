@@ -15,7 +15,7 @@ const addFile = (req, res) => {
 				message: "error adding file",
 			});
 		}
-		return res.status(200).json({ message: "file sucessfully added" });
+		return res.status(200).json({ message: "file sucessfully uploaded" });
 	});
 };
 
