@@ -1,5 +1,5 @@
 const express = require("express");
-const { uploadFile, addFile } = require("../controller/acadmi.controller");
+const { uploadFile, addFile, getFiles } = require("../controller/acadmi.controller");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
@@ -23,5 +23,6 @@ const upload = multer({ storage: storage });
 
 router.post("/uploadfile", upload.single("file"), uploadFile);
 router.post("/addfile", addFile);
+router.get("/getfiles",getFiles)
 
 module.exports = router;

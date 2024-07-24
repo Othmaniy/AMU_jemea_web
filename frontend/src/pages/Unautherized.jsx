@@ -1,13 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function Unautherized() {
-  return (
-    <div>
-        <h1> Unautherized</h1>
-       
-        
-        </div>
-  )
+	return (
+		<div>
+			<h1> Unautherized</h1>
+		</div>
+	);
 }
 
-export default Unautherized
+export default Unautherized;

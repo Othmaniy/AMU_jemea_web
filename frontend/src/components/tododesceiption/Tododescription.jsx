@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Tododescription() {
-  return (
-    <div>Tododescription</div>
-  )
+	return <div>Tododescription</div>;
 }
 
-export default Tododescription
+export default Tododescription;
