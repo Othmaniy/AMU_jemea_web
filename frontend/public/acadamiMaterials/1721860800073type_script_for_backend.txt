@@ -1,0 +1,47 @@
+type script backend
+
+first install type script 
+
+create index.ts file
+
+then install type decorations  by writing
+
+npm i @types/express @types/node
+
+
+then create new tsconfig file by using npx tsc --init
+
+then change the  outdir to 
+
+"outDir":"./dist"
+
+then run npx tsc again to install globally and dist folder appears 
+and inside dist folder indx.js folder appears
+then run nodemon  dist/index.js  file to run the file
+
+1.then write this on package.json file of scripts section
+"build":"npx tsc"
+"start":"node dist/index.js"
+
+then npm run build 
+then npm run start
+after installing nodemon
+
+add 
+"dev":"tsc -w & nodemon dist/index.js"
+
+then npm run dev to execute 
+t
+
+then  install rimraf to automatically delete on dist folder 
+for me if only watch mode works properly
+add this in adition to above on scripts
+"build" "rimraf dist && npx tsc"
+
+or we can create "prestart":"npm run build" in order to run before npm start with out writing npm run build and when we write npm start command prestart executes automatically
+npx tsc for ompiling typescript to java script
+also change dev to serve and wwrite "preserve":"npm run build" such that when we type npm run serve npm run build runs before it .
+
+
+//concurrently on the night
+ 

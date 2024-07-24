@@ -82,7 +82,7 @@ function AddFiles() {
 														cursor: "pointer",
 													}}
 												>
-													add file
+                                                  Choose file
 												</span>
 											</div>
 										</label>
