@@ -21,6 +21,8 @@ import Controlbooks from "./pages/LibraryPages/admin/Controlbooks";
 import UpdateBook from "./components/updateBook/UpdateBook";
 import AddFiles from "./pages/Acadamy/admin/AddFiles";
 import AcademiFiles from "./components/academifiles/AcademiFiles";
+import FileDashboard from "./pages/Acadamy/user/FileDashboard";
+import ExamsAndFiles from "./pages/Acadamy/user/ExamsAndFiles";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -47,7 +49,11 @@ function App() {
 					/>
 					<Route path="/unautherized" element={<Unautherized />} />
 					<Route path="/updatebook" element={<UpdateBook />} />
-					<Route path="/academi/files" element={<AcademiFiles />} />
+					{/* <Route path="/academi/files" element={<AcademiFiles />} /> */}
+					<Route path="/academi/filedashboard" element={<FileDashboard />} />
+					
+					<Route path="/files/choosefiles/:department" element={<ExamsAndFiles />} />
+					<Route path="/files/:department" element={<AcademiFiles />} />
 				</Routes>
 			</>
 		</Router>

@@ -21,13 +21,14 @@ const addFile = (req, res) => {
 };
 
 const getFiles=(req,res)=>{
-	const sql =`SELECT * from acadamifiles`
+	const sql =`SELECT * from acadamifiles WHERE department=?`
 
-	pool.query(sql,(err,results)=>{
+	pool.query(sql,[req.params.department],(err,results)=>{
 		if(err){
 			return res
 			.status(500)
 			.json({
+				error:err,
 				message:"databse connection error"
 			})
 		}
