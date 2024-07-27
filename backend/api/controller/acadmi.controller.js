@@ -37,5 +37,83 @@ const getFiles=(req,res)=>{
 		.json({data:results})
 	})
 }
+const getFileTables=(req,res)=>{
+	const sql='SELECT * FROM acadamifiles'
+	pool.query(sql,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"database connection error"
+			})
+		}
+		return res
+		.status(200)
+		.json({
+			data:results
+		})
+	})
+}
+const updateFile=(req,res)=>{
+	const fileid =parseInt(req.params.id);
+	const fieldsToUpdate=[];
+	const values =[];
+	if(req.body.fileUrl){
+		fieldsToUpdate.push("file_url=?")
+		values.push(req.body.fileUrl)
+	}
+	if(req.body.filedescription){
+		fieldsToUpdate.push('file_description=?');
+		values.push(req.body.filedescription)
+	}
+	if(req.body.department){
+		fieldsToUpdate.push('department=?');
+		values.push(req.body.department)
+	}
+	if(req.body.teacher){
+		fieldsToUpdate.push('Teacher_name=?');
+		values.push(req.body.teacher)
+	}
+	if (fieldsToUpdate.length === 0) {
+		return res.status(400).json({ message: "No fields provided to update" });
+	}
+	const sql= `UPDATE acadamifiles SET ${fieldsToUpdate.join(", ")} WHERE id = ?`
+    values.push(fileid)
+	pool.query(sql,values,(err,results)=>{
+		if(err){
+			console.log(err);
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"database connection error"
+			})
+		}
+		if (results.affectedRows > 0) {
+			return res.status(200).json({ message: "updated successfully" });
+		}
+		return res.status(200).json({ message: "no rows updated" });
+	})
+}
+const deleteFile=(req,res)=>{
+	const fileid = parseInt(req.params.id);
+	const sql = 'DELETE FROM acadamifiles WHERE id=?'
+	pool.query(sql,fileid,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error deleting file"
+			})
+		}
+		return res
+		.status(200)
+		.json({
+			message:"deleted sucessfully"
+		})
+	})
 
-module.exports = { uploadFile, addFile,getFiles };
+}
+module.exports = { uploadFile, addFile,getFiles,getFileTables,updateFile,deleteFile };

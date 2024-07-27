@@ -1,5 +1,5 @@
 const express = require("express");
-const { uploadFile, addFile, getFiles } = require("../controller/acadmi.controller");
+const { uploadFile, addFile, getFiles, getFileTables, updateFile, deleteFile } = require("../controller/acadmi.controller");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
@@ -24,5 +24,7 @@ const upload = multer({ storage: storage });
 router.post("/uploadfile", upload.single("file"), uploadFile);
 router.post("/addfile", addFile);
 router.get("/getfiles/:department",getFiles)
-
+router.get("/getfiletables",getFileTables)
+router.put("/updatefile:id",updateFile)
+router.delete("/deletefile:id",deleteFile)
 module.exports = router;
