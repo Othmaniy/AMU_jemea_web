@@ -20,9 +20,12 @@ import Books from "./pages/LibraryPages/user/Books";
 import Controlbooks from "./pages/LibraryPages/admin/Controlbooks";
 import UpdateBook from "./components/updateBook/UpdateBook";
 import AddFiles from "./pages/Acadamy/admin/AddFiles";
-import AcademiFiles from "./components/academifiles/AcademiFiles";
+;
 import FileDashboard from "./pages/Acadamy/user/FileDashboard";
 import ExamsAndFiles from "./pages/Acadamy/user/ExamsAndFiles";
+import Managefiles from "./pages/Acadamy/admin/Managefiles";
+import AcademiFiles from "./pages/Acadamy/user/AcademiFiles";
+import Admindashboard from "./pages/Acadamy/admin/Admindashboard";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -38,7 +41,7 @@ function App() {
 					<Route path="/addbook" element={<AddBooks />} />
 					<Route path="/books" element={<Books />} />
 					<Route path="/managebooks" element={<Controlbooks />} />
-					<Route path="/addfiles" element={<AddFiles />} />
+					<Route path="/academi/admin/addfile" element={<AddFiles />} />
 					<Route
 						path="/registeruser"
 						element={
@@ -50,7 +53,9 @@ function App() {
 					<Route path="/unautherized" element={<Unautherized />} />
 					<Route path="/updatebook" element={<UpdateBook />} />
 					{/* <Route path="/academi/files" element={<AcademiFiles />} /> */}
-					<Route path="/academi/filedashboard" element={<FileDashboard />} />
+					<Route path="/academi/files" element={<FileDashboard />} />
+					<Route path="/academi/admin/managefiles" element={<Managefiles />} />
+					<Route path="/academi/admin/" element={<Admindashboard />} />
 					
 					<Route path="/files/choosefiles/:department" element={<ExamsAndFiles />} />
 					<Route path="/files/:department" element={<AcademiFiles />} />

@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import basepath from "../../../components/url/url";
 import "./addfile.css";
 import { FaFileArrowUp } from "react-icons/fa6";
+// import { useAuth } from "../../../components/Context/Authcontext";
 function AddFiles() {
+	
 	const [file, setFile] = useState(null);
 	const [filedescription, setFiledescription] = useState("");
 	const [department, setDepartment] = useState("");
