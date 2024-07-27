@@ -1,7 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import Login1 from '../../login/Login1';
+import { useAuth } from '../../../components/Context/Authcontext';
 
 function FileDashboard() {
+  const user =useAuth()
+	console.log(user);
+  console.log(user.islogged);
+  const navigate = useNavigate();
+  if(!user.islogged){
+    navigate("/login")
+  }
   return (
     <>
     <section className="feuture-main">
