@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import basepath from "../url/url";
+import basepath from "../../../components/url/url";
 import { FaFileDownload } from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocation } from "react-router-dom";
