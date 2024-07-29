@@ -20,7 +20,6 @@ import Books from "./pages/LibraryPages/user/Books";
 import Controlbooks from "./pages/LibraryPages/admin/Controlbooks";
 import UpdateBook from "./components/updateBook/UpdateBook";
 import AddFiles from "./pages/Acadamy/admin/AddFiles";
-;
 import FileDashboard from "./pages/Acadamy/user/FileDashboard";
 import ExamsAndFiles from "./pages/Acadamy/user/ExamsAndFiles";
 import Managefiles from "./pages/Acadamy/admin/Managefiles";
@@ -56,8 +55,11 @@ function App() {
 					<Route path="/academi/files" element={<FileDashboard />} />
 					<Route path="/academi/admin/managefiles" element={<Managefiles />} />
 					<Route path="/academi/admin/" element={<Admindashboard />} />
-					
-					<Route path="/files/choosefiles/:department" element={<ExamsAndFiles />} />
+
+					<Route
+						path="/files/choosefiles/:department"
+						element={<ExamsAndFiles />}
+					/>
 					<Route path="/files/:department" element={<AcademiFiles />} />
 				</Routes>
 			</>

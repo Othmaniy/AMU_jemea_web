@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Addexams() {
-  return (
-    <>
-
-    </>
-  )
+	return <></>;
 }
 
-export default Addexams
+export default Addexams;
