@@ -22,7 +22,7 @@ let usertable = `CREATE TABLE IF NOT EXISTS usertable (
     name VARCHAR(255)  NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     id_number VARCHAR(255)  NOT NULL,
-    role VARCHAR(255) ,
+    role VARCHAR(255) DEFAULT 'user' ,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(255) NOT NULL,
     emergency_phone VARCHAR(255) ,
@@ -65,30 +65,32 @@ let acadamiFiles = `CREATE TABLE IF NOT EXISTS acadamifiles(
 )`;
 
 let courses = `CREATE TABLE IF NOT EXISTS courses (
-    id INT AUTO_INCREMENT,
+    course_id INT AUTO_INCREMENT,
     course_name VARCHAR(256) NOT NULL,
     course_description VARCHAR(256) NOT NULL,
     course_writter VARCHAR(256) NOT NULL,
-    course_id VARCHAR(256) NOT NULL,
-    open_for_registration INT DEFAULT 0,
-    PRIMARY KEY(id)
+    course_unique_id VARCHAR(256) NOT NULL,
+    ustaz VARCHAR(255) NOT NULL,
+    open_for_registration varchar(256) DEFAULT false ,
+    PRIMARY KEY(course_id)
 )`;
 
 let course_enrollment = `CREATE TABLE IF NOT EXISTS course_enrollment(
     id INT AUTO_INCREMENT,
     user_id INT NOT NULL,
-    course_name VARCHAR(255) NOT NULL,
-    ustaz VARCHAR(255) NOT NULL,
-    currently_enrolling VARCHAR(256) DEFAULT 'false',
+    course_id INT NOT NULL,
+    currently_enrolling VARCHAR(256) DEFAULT false,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON UPDATE CASCADE ON DELETE CASCADE
+
 )`;
 
 let daewandIrshadFiles = `CREATE TABLE IF NOT EXISTS daewa_and_irshad_files(
     id INT AUTO_INCREMENT,
     file_url VARCHAR(255) NOT NULL,
     file_description VARCHAR(256) NOT NULL,
-    auhtor VARCHAR(256) NOT NULL,
+    author VARCHAR(256) NOT NULL,
     PRIMARY KEY(id)
 )`;
 
