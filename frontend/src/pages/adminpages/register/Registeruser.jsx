@@ -14,13 +14,14 @@ function Registeruser() {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
 	console.log(form);
+	
 	const requestoptions = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			"x-access-token": token,
 		},
-		body: form,
+		body: JSON.stringify(form),
 	};
 	console.log(requestoptions);
 	console.log(requestoptions.headers);
@@ -28,13 +29,20 @@ function Registeruser() {
 	const handlesubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await basepath.post(
-				"/auth/createaccount",
-				requestoptions,
-			);
-			console.log(response);
-			console.log(response.data.message);
-			setResponsemessage(response.data.message);
+			const response = await fetch (
+				`http://localhost:5000/api/auth/createaccount`,
+				requestoptions)
+			;
+			const data = await response.json();
+
+            if (response.ok) {
+                setResponsemessage(data.message);
+            } else {
+                setResponsemessage(data.message);
+            }
+			// console.log(response);
+			// console.log(response.status);
+			// setResponsemessage(response.data.message);
 			//  setResponsemessage(response.data.)
 			// alert(reponsemessage)
 
