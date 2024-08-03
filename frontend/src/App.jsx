@@ -25,6 +25,9 @@ import ExamsAndFiles from "./pages/Acadamy/user/ExamsAndFiles";
 import Managefiles from "./pages/Acadamy/admin/Managefiles";
 import AcademiFiles from "./pages/Acadamy/user/AcademiFiles";
 import Admindashboard from "./pages/Acadamy/admin/Admindashboard";
+import DeawaAndIrshadDashboard from "./pages/daewaandirshad/admin/DeawaAndIrshadDashboard";
+import Addcourses from "./pages/daewaandirshad/admin/Addcourses";
+import Managecourses from "./pages/daewaandirshad/admin/Managecourses";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -44,7 +47,7 @@ function App() {
 					<Route
 						path="/registeruser"
 						element={
-							<ProtectedRoute role={["Admin"]}>
+							<ProtectedRoute role={["admin"]}>
 								<Registeruser />
 							</ProtectedRoute>
 						}
@@ -54,13 +57,16 @@ function App() {
 					{/* <Route path="/academi/files" element={<AcademiFiles />} /> */}
 					<Route path="/academi/files" element={<FileDashboard />} />
 					<Route path="/academi/admin/managefiles" element={<Managefiles />} />
-					<Route path="/academi/admin/" element={<Admindashboard />} />
+					<Route path="/academi/admin" element={<Admindashboard />} />
 
 					<Route
 						path="/files/choosefiles/:department"
 						element={<ExamsAndFiles />}
 					/>
 					<Route path="/files/:department" element={<AcademiFiles />} />
+					<Route path="/daewaandirshad/admin" element={<DeawaAndIrshadDashboard />} />
+					<Route path="/daewaandirshad/admin/addcourse" element={<Addcourses />} />
+					<Route path="/daewaandirshad/admin/managecourse" element={<Managecourses />} />
 				</Routes>
 			</>
 		</Router>
