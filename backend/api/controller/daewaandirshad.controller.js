@@ -1,5 +1,5 @@
 const pool = require("../../db.config");
-const { addCourseService } = require("../service/daewaandirshaad.service");
+const { addCourseService, registerForNewCourseServie } = require("../service/daewaandirshaad.service");
 
 const addCourse=(req,res)=>{
     const {courseName,courseDescription,courseAuthor,courseUniqueId,ustaz}=req.body;
@@ -67,6 +67,10 @@ const updateCourse = (req, res) => {
 		fieldsToUpdate.push("course_unique_id= ?");
 		values.push(req.body.courseId);
 	}
+    if (req.body.ustaz) {
+		fieldsToUpdate.push("ustaz= ?");
+		values.push(req.body.ustaz);
+	}
     // if (req.body.reistrationStatus !== undefined) {
 	// 	fieldsToUpdate.push("registration_status = ?");
 	// 	values.push(req.body.status);
@@ -86,7 +90,7 @@ const updateCourse = (req, res) => {
 	pool.query(sql, values, (err, results) => {
 		if (err) {
 			console.log(err);
-			return res.status(500).json({ message: "database connection error" });
+			return res.status(500).json({error:err, message: "database connection error" });
 		}
 		console.log("results");
 		console.log(results.affectedRows);
@@ -98,7 +102,7 @@ const updateCourse = (req, res) => {
 };
 const deleteCourse=(req,res)=>{
     const id =parseInt(req.params.id)
-    const sql =`DELETE FROM courses WHERE id =?`
+    const sql =`DELETE FROM courses WHERE course_id =?`
     pool.query(sql,[id],(err,results)=>{
         if(err){
             return res
@@ -116,13 +120,17 @@ const deleteCourse=(req,res)=>{
 }
 const openCourse=(req,res)=>{
     const courseId =parseInt(req.params.id);
-    newStatus=req.body
-    const sql =`update courses SET open_for_registration=? WHERE id=?`
+    const newStatus=req.body.status
+    const sql =`update courses SET open_for_registration=? WHERE course_id=?`
+    console.log(req.body);
+    console.log(newStatus);
+    // console.log(req);
     pool.query(sql,[newStatus,courseId],(err,results)=>{
         if(err){
             return res
             .status(500)
             .json({
+                error:err,
                 message:"db error"
             })
         }
@@ -134,11 +142,27 @@ const openCourse=(req,res)=>{
     })
 
 }
+const getOpenCourse=(req,res)=>{
+    const sql =`SELECT * FROM courses WHERE open_for_registration=1`
+    pool.query(sql,(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({error:err,
+                message:"db connection error"
+            })
+        }
+        return res
+        .status(200)
+        .json({data:results})
+    })
+}
 const registerForNewCourse =(req,res)=>{
     console.log(req);
     console.log(req.id_number);
-    const {courseID}=req.body
-    registerForNewCourseServie(req.body,req.id_number,(err,results)=>{
+    // const {courseID}=req.body
+    const cid = parseInt(req.params.id)
+    registerForNewCourseServie(cid,req.id_number,(err,results)=>{
         if(err){
             return res
             .status(500)
@@ -205,5 +229,5 @@ const changeEnrollmentStatus=async(req,res)=>{
 
 }
 module.exports={
-    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus
+    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse
 }

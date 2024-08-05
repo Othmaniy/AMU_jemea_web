@@ -9,9 +9,9 @@ const addCourseService=(data,callback)=>{
         return callback(null,results)
     })
 }
-const registerForNewCourseServie =(data,userid,callback)=>{
+const registerForNewCourseServie =(cid,userid,callback)=>{
     const sql =`INSERT INTO enrollment (user_id,course_id) VALUES(?,?)`
-    pool.query(sql,[userid,data.courseId],(err,results)=>{
+    pool.query(sql,[userid,cid],(err,results)=>{
         if(err){
             return callback(err)
         }
