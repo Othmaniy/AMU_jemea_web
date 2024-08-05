@@ -10,7 +10,7 @@ router.delete('/deletecourse/:id',deleteCourse)
 router.put('/opencourse/:id',openCourse)
 router.post("/registerfornewcourse",verifytoken,registerForNewCourse)
 router.get("/getenrolleduser",getEnrolledUsers);
-router.put("/changeenrollmentstatus/:id",changeEnrollmentStatus)
+router.put("/changeenrollment/:id",changeEnrollmentStatus)
 //to be done for file management
 // router.post("/daewandirshad/file", uploadFile);
 // router.delete("/daewandirshad/deletefile/:id", DeleteFile);

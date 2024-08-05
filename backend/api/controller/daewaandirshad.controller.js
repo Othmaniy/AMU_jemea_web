@@ -2,8 +2,8 @@ const pool = require("../../db.config");
 const { addCourseService } = require("../service/daewaandirshaad.service");
 
 const addCourse=(req,res)=>{
-    const {courseName,courseDescription,courseAuthor,courseId}=req.body;
-    if(!courseName||!courseDescription||!courseAuthor||!courseId){
+    const {courseName,courseDescription,courseAuthor,courseUniqueId,ustaz}=req.body;
+    if(!courseName||!courseDescription||!courseAuthor||!courseUniqueId||!ustaz){
         return res
         .status(401)
         .json({
@@ -64,20 +64,20 @@ const updateCourse = (req, res) => {
 		values.push(req.body.courseAuthor);
 	}
     if (req.body.courseId) {
-		fieldsToUpdate.push("course_id = ?");
+		fieldsToUpdate.push("course_unique_id= ?");
 		values.push(req.body.courseId);
 	}
-    if (req.body.reistrationStatus !== undefined) {
-		fieldsToUpdate.push("registration_status = ?");
-		values.push(req.body.status);
-	}
+    // if (req.body.reistrationStatus !== undefined) {
+	// 	fieldsToUpdate.push("registration_status = ?");
+	// 	values.push(req.body.status);
+	// }
 
 
 	if (fieldsToUpdate.length === 0) {
 		return res.status(400).json({ message: "No fields provided to update" });
 	}
 
-	const sql = `UPDATE courses SET ${fieldsToUpdate.join(", ")} WHERE id = ?`;
+	const sql = `UPDATE courses SET ${fieldsToUpdate.join(", ")} WHERE course_id = ?`;
 	values.push(id);
 
 	console.log(sql);
@@ -116,7 +116,7 @@ const deleteCourse=(req,res)=>{
 }
 const openCourse=(req,res)=>{
     const courseId =parseInt(req.params.id);
-    const newStatus =req.body.status==1?0:1
+    newStatus=req.body
     const sql =`update courses SET open_for_registration=? WHERE id=?`
     pool.query(sql,[newStatus,courseId],(err,results)=>{
         if(err){
@@ -134,6 +134,76 @@ const openCourse=(req,res)=>{
     })
 
 }
+const registerForNewCourse =(req,res)=>{
+    console.log(req);
+    console.log(req.id_number);
+    const {courseID}=req.body
+    registerForNewCourseServie(req.body,req.id_number,(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({
+                error:err,
+                message:"db error"
+            })
+        }
+        if(results.affectedRows>0){
+            return res
+            .status(200)
+            .json({
+                message:"sucessfully registered"
+            })
+        }
+    })
+
+}
+const getEnrolledUsers=(req,res)=>{
+    const sql =`SELECT c.*,b.course_name FROM course_enrollment as c join course as b on(c.course_id==b.course_id) join usertable on (c.user_id==usertable.id)`;
+    pool.query(sql,(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({
+                error:err,
+                message:"db error"
+            })
+        }
+        return res
+        .status(200)
+        .json({
+            data:results
+        })
+    })
+}
+const changeEnrollmentStatus=async(req,res)=>{
+    const newstatus = req.body.status
+    const user_id =parseInt(req.params.useID)
+    const sql =`UPDATE course_enrollment SET currently_enrolling=? WHERE user_id=?`
+    pool.query(sql,[newstatus.user_id],(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({
+                error:err,
+                message:"databse error"
+            })
+        }
+        if(results.affectedRows<1){
+            return res
+            .status(500)
+            .json({
+                message:"no rows affected"
+            })
+        }
+        return res
+        .status(200)
+        .json({
+            message:"user sucessfully affected",
+            data:results
+        })
+    })
+
+}
 module.exports={
-    addCourse,deleteCourse,getCourses,updateCourse,openCourse
+    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus
 }

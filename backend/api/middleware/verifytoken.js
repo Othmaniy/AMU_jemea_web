@@ -4,7 +4,8 @@ const { getuserbyid, getbyid } = require("../service/auth.service");
 const pool = require("../../db.config");
 
 const verifytoken = async (req, res, next) => {
-	const token = req.body.headers["x-access-token"];
+	console.log(req.headers["x-access-token"]);
+	const token = req.headers["x-access-token"];
 	console.log("verify token");
 	console.log(token);
 	if (!token) {

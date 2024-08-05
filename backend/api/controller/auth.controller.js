@@ -8,21 +8,20 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const createaccount = (req, res, next) => {
 	console.log("controller");
-	console.log("req");
-	console.log(req);
-	console.log("req.body");
-	console.log(req.body);
-	console.log(req.body["x-access-token"]);
+	// console.log("req");
+	// console.log(req);
+	// console.log("req.body");
+	// console.log(req.body);
+
+	console.log("correct one");
 	console.log(req.headers["x-access-token"]);
 	// console.log(req);
-	console.log("req headers");
-	console.log(req.headers);
-	console.log("reqbodyheaders");
-	console.log(req.body.headers);
-	console.log("token?");
-	console.log(req.body.headers["x-access-token"]);
+	console.log("req body");
+	console.log(req.body);
+;
+
 	const sql = "SELECT * FROM usertable WHERE id_number=?";
-	const idnumber = req.body.body.id_number;
+	const idnumber = req.body.id_number;
 	pool.query(sql, [idnumber], (err, results) => {
 		if (err) {
 			console.log(err);
@@ -31,7 +30,7 @@ const createaccount = (req, res, next) => {
 		if (results.length > 0) {
 			return res.status(409).json({ message: "user already exists" });
 		}
-		createaccountservice(req.body.body, (err, results) => {
+		createaccountservice(req.body, (err, results) => {
 			if (err) {
 				console.log(err);
 				return res.status(500).json({ message: "database connecton error" });

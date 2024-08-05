@@ -79,7 +79,7 @@ let course_enrollment = `CREATE TABLE IF NOT EXISTS course_enrollment(
     id INT AUTO_INCREMENT,
     user_id INT NOT NULL,
     course_id INT NOT NULL,
-    currently_enrolling VARCHAR(256) DEFAULT false,
+    currently_enrolling VARCHAR(256) DEFAULT true,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON UPDATE CASCADE ON DELETE CASCADE
