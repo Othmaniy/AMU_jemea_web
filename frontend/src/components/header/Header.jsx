@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Context/Authcontext";
-import getuser from "../Utility/decode";
+// import getuser from "../Utility/decode";
 function Header() {
 	console.log(useAuth());
 	const check = useAuth();
@@ -150,7 +150,7 @@ function Header() {
 												{" "}
 												<a
 													className="nav-link dropdown-toggle"
-													href="#"
+													href="/daewaandirshad/user/enroll"
 													data-bs-toggle="dropdown"
 												>
 													supportive
@@ -233,7 +233,7 @@ function Header() {
 												</Link>
 											</li>
 											<li className="nav-item  ">
-												<Link to={"/registeruser"} className="nav-link">
+												<Link to={"/daewaandirshad/user/enroll"} className="nav-link">
 													<span>register</span>
 													{/* <ul className="dropdown-menu w-100 p-3">
                     <li className="container">
