@@ -28,6 +28,7 @@ import Admindashboard from "./pages/Acadamy/admin/Admindashboard";
 import DeawaAndIrshadDashboard from "./pages/daewaandirshad/admin/DeawaAndIrshadDashboard";
 import Addcourses from "./pages/daewaandirshad/admin/Addcourses";
 import Managecourses from "./pages/daewaandirshad/admin/Managecourses";
+import EnrollCourse from "./pages/daewaandirshad/user/EnrollCourse";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -67,6 +68,7 @@ function App() {
 					<Route path="/daewaandirshad/admin" element={<DeawaAndIrshadDashboard />} />
 					<Route path="/daewaandirshad/admin/addcourse" element={<Addcourses />} />
 					<Route path="/daewaandirshad/admin/managecourse" element={<Managecourses />} />
+					<Route path="/daewaandirshad/user/enroll" element={<EnrollCourse />} />
 				</Routes>
 			</>
 		</Router>
