@@ -158,11 +158,13 @@ const getOpenCourse=(req,res)=>{
     })
 }
 const registerForNewCourse =(req,res)=>{
-    console.log(req);
-    console.log(req.id_number);
+    // console.log(req); 
+    console.log("from enroll controller id_number"+req.id_number);
+    console.log("from enroll controller userid "+req.userId);
+    console.log(typeof(req.userId));
     // const {courseID}=req.body
     const cid = parseInt(req.params.id)
-    registerForNewCourseServie(cid,req.id_number,(err,results)=>{
+    registerForNewCourseServie(cid,req.userId,(err,results)=>{
         if(err){
             return res
             .status(500)

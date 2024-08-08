@@ -19,7 +19,13 @@ const verifytoken = async (req, res, next) => {
 				.status(401)
 				.json({ message: "unautherized or please login again" });
 		}
+		console.log("decode");
+		console.log(decode);
 		req.id_number = decode.id_number;
+		req.userId=decode.id
+		console.log("inside verify");
+		// console.log(object);
+		// req.user_id=decode.
 		next();
 	});
 };
