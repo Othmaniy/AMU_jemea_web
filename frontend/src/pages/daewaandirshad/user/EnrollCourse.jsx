@@ -5,13 +5,14 @@ import { Navigate } from 'react-router-dom';
 
 function EnrollCourse() {
   const [openCourses,setOpenCourses]=useState([])
-  const user = useAuth();
+  const [enrollResponseMessage,setEnrollResponseMessage]=useState("")
+  const { currentuser, loading } = useAuth();
 	// console.log(user.currentuser.token);
-	const token = user.currentuser.token;
-
-  
-
+	// const token = user.currentuser.token;
+  console.log("enroll");
+  console.log(currentuser);
   useEffect(()=>{
+    if (loading) return;
     const fetchOpenCourses=async()=>{
       try{
         const response = await basepath.get("/daewaandirshad/getopencourses")
@@ -23,18 +24,49 @@ function EnrollCourse() {
       }
     }
     fetchOpenCourses()
-  },[])
-  const requestOptions={
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "x-access-token": token
-    }
-  }
+  },[loading])
+
+ 
   const handleEnroll=async(course)=>{
+    if (!currentuser || !currentuser.token) {
+      console.error("Token not found");
+      return;
+    }
+    const requestOptions={
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "x-access-token":currentuser.token
+      }
+    }
     const cId = course.course_id;
-    const response = await basepath.post(`/daewaandirshad/registerfornewcourse/${cId}`,requestOptions)
-    console.log(response);
+    try{
+      const response = await fetch (
+        `http://localhost:5000/api/daewaandirshad/registerfornewcourse/${cId}`,
+        requestOptions)
+      ;
+      console.log(response);
+      const data = await response.json();
+  
+      console.log(data);
+      console.log(data.message);
+  
+            if (response.ok) {
+                setEnrollResponseMessage(data.message);
+            } else {
+                setEnrollResponseMessage(data.message);
+            }
+    }
+    catch(error){
+      console.log(error);
+    }
+  
+          // console.log(enrollResponseMessage);
+    // const response = await basepath.post(`/daewaandirshad/registerfornewcourse/${cId}`,requestOptions)
+    // console.log(response);
+  }
+  if (loading) {
+    return <div>Loading...</div>; // Show loading indicator while user data is being fetched
   }
 
   
@@ -42,6 +74,7 @@ function EnrollCourse() {
     <>
     <section className="grey-bg pattern position-relative">
   <div className="container">
+    <h2>{enrollResponseMessage}</h2>
     <div className="row g-4 ">
       {openCourses.map((oc)=>(
          <div key={oc.id} className="col-lg-4 col-md-6 ">
