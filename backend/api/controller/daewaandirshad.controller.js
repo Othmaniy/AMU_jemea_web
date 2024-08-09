@@ -184,7 +184,7 @@ const registerForNewCourse =(req,res)=>{
 
 }
 const getEnrolledUsers=(req,res)=>{
-    const sql =`SELECT c.*,b.course_name FROM course_enrollment as c join course as b on(c.course_id==b.course_id) join usertable on (c.user_id==usertable.id)`;
+    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,u.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join usertable as u on (c.user_id=u.id)`;
     pool.query(sql,(err,results)=>{
         if(err){
             return res
