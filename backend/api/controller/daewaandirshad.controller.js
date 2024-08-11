@@ -230,6 +230,24 @@ const changeEnrollmentStatus=async(req,res)=>{
     })
 
 }
+const deleteEnrolledUser=(req,res)=>{
+    const id =parseInt(req.params.id)
+    const sql=`DELETE from course_enrollment where id=?`
+    pool.query(sql,[id],(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({
+                error:err,
+                message:"db connection error"})
+        }
+        return res
+        .status(200)
+        .json({
+            message:"user sucessfully deleted"
+        })
+    })
+}
 module.exports={
-    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse
+    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse,deleteEnrolledUser
 }
