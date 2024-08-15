@@ -42,18 +42,22 @@ let bookstable = `CREATE TABLE IF NOT EXISTS books(
     PRIMARY KEY (id)
 )`;
 
-let umumaebedMembers = `CREATE TABLE IF NOT EXISTS umumaebed(
+let umumaebedMembers = `CREATE TABLE IF NOT EXISTS umumaebedmembers(
     id INT AUTO_INCREMENT,
-    name VARCHAR(256) NOT NULL,
-    lastname VARCHAR(256) NOT NULL,
-    id_number VARCHAR(255) NOT NULL,
-    phone VARCHAR(256) NOT NULL,
-    batch INT,
-    monthlypayment INT NOT NULL,
-    status VARCHAR(256) DEFAULT 'active',
-    PRIMARY KEY(id)
+    user_id int not null,
+    amount int not null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES usertable(id) ON DELETE CASCADE
 )`;
-
+// name VARCHAR(256) NOT NULL,
+//     lastname VARCHAR(256) NOT NULL,
+//     id_number VARCHAR(255) NOT NULL,
+//     phone VARCHAR(256) NOT NULL,
+//     batch INT,
+//     monthlypayment INT NOT NULL,
+//     status VARCHAR(256) DEFAULT 'active',
+//     PRIMARY KEY(id)
 let acadamiFiles = `CREATE TABLE IF NOT EXISTS acadamifiles(
     id INT AUTO_INCREMENT,
     file_url VARCHAR(256) NOT NULL,
