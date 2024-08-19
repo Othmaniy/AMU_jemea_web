@@ -38,7 +38,7 @@ function DeawaAndIrshadDashboard() {
         
       </div>
       <div className="col-lg-4 col-md-6 p-3">
-        <a href="admin/manageenrollment" style={{textDecoration:"none",color:"inherit"}}>
+        <a href="admin/manageusers" style={{textDecoration:"none",color:"inherit"}}>
         <div className="featured-item bottom-icon">
           <div className="featured-title text-uppercase">
             <h5>Manage Course And User enrollment</h5>

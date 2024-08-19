@@ -73,7 +73,7 @@ function AddBooks() {
 									<h2 className="title mb-4">
 										add <span>new book</span>
 									</h2>
-									<form id="contact-form" onSubmit={handlesubmit}>
+									<form id="contact-form">
 										<div className="form-group">
 											<input
 												id="form_name"
@@ -128,7 +128,7 @@ function AddBooks() {
                       <div className="help-block with-errors"></div>
                     </div> */}
 
-										<button type="submit" className="btn btn-border btn-radius">
+										<button type="submit" className="btn btn-border btn-radius" onClick={handlesubmit}>
 											<span>Register</span>
 										</button>
 										<p className="mt-3" style={{ color: "red" }}>

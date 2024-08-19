@@ -72,7 +72,7 @@ function EnrollCourse() {
   
   return (
     <>
-    <section className="grey-bg pattern position-relative">
+    <section className="grey-bg pattern position-relative ">
   <div className="container">
     <h2>{enrollResponseMessage}</h2>
     <div className="row g-4 ">

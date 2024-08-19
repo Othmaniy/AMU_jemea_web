@@ -37,7 +37,7 @@ function Addcourses() {
 									<h2 className="title mb-4">
 										add <span>new course</span>
 									</h2>
-									<form id="contact-form" onSubmit={handleSubmit}>
+									<form id="contact-form">
 										<div className="form-group">
 											<input
 												id="form_name"
@@ -105,7 +105,7 @@ function Addcourses() {
 												{catagoryError}
 											</div> */}
 										</div>
-										<button type="submit" className="btn btn-border btn-radius">
+										<button type="submit" className="btn btn-border btn-radius" onClick={handleSubmit}>
 											<span>submit</span>
 										</button>
 										<p className="mt-3" style={{ color: "red" }}>
