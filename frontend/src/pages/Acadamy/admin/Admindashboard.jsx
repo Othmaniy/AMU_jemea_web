@@ -8,7 +8,7 @@ function Admindashboard() {
 					<div className="row">
 						<div className="col-md-4">
 							<a
-								href="addfile"
+								href="admin/addfile"
 								style={{ textDecoration: "none", color: "inherit" }}
 							>
 								{" "}
@@ -31,7 +31,7 @@ function Admindashboard() {
 						</div>
 						<div className="col-md-4 mt-3 mt-md-0">
 							<a
-								href="managefiles"
+								href="admin/managefiles"
 								style={{ textDecoration: "none", color: "inherit" }}
 							>
 								<div className="featured-item left-icon">
@@ -53,7 +53,7 @@ function Admindashboard() {
 						</div>
 						<div className="col-md-4 mt-3 mt-md-0">
 							<a
-								href="addexams"
+								href="admin/addexams"
 								style={{ textDecoration: "none", color: "inherit" }}
 							>
 								<div className="featured-item left-icon">

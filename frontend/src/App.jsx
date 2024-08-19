@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/Home";
-import UmumaebedHome from "./pages/umumaebed/UmumaebedHome";
 import { useContext, useEffect } from "react";
 import Login1 from "./pages/login/Login1";
 import Registeruser from "./pages/adminpages/register/Registeruser";
@@ -29,6 +28,8 @@ import DeawaAndIrshadDashboard from "./pages/daewaandirshad/admin/DeawaAndIrshad
 import Addcourses from "./pages/daewaandirshad/admin/Addcourses";
 import Managecourses from "./pages/daewaandirshad/admin/Managecourses";
 import EnrollCourse from "./pages/daewaandirshad/user/EnrollCourse";
+import GetEnrolledUsers from "./pages/daewaandirshad/admin/GetEnrolledUsers";
+import MembershipRegister from "./pages/umumaebed/user/MembershipRegister";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -39,7 +40,6 @@ function App() {
 				<Header />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/umumaebed" element={<UmumaebedHome />} />
 					<Route path="/login" element={<Login1 />} />
 					<Route path="/addbook" element={<AddBooks />} />
 					<Route path="/books" element={<Books />} />
@@ -48,7 +48,7 @@ function App() {
 					<Route
 						path="/registeruser"
 						element={
-							<ProtectedRoute role={["admin"]}>
+							<ProtectedRoute role={["Admin"]}>
 								<Registeruser />
 							</ProtectedRoute>
 						}
@@ -68,7 +68,9 @@ function App() {
 					<Route path="/daewaandirshad/admin" element={<DeawaAndIrshadDashboard />} />
 					<Route path="/daewaandirshad/admin/addcourse" element={<Addcourses />} />
 					<Route path="/daewaandirshad/admin/managecourse" element={<Managecourses />} />
+					<Route path="/daewaandirshad/admin/manageusers" element={<GetEnrolledUsers />} />
 					<Route path="/daewaandirshad/user/enroll" element={<EnrollCourse />} />
+					<Route path="/umumaebed/user/register" element={<MembershipRegister />} />
 				</Routes>
 			</>
 		</Router>
