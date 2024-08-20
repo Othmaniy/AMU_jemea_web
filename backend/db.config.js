@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
 const pool = mysql.createPool({
     host: process.env.HOST,
@@ -17,19 +18,32 @@ pool.getConnection((err) => {
     console.log("connected successfully");
 });
 
-let usertable = `CREATE TABLE IF NOT EXISTS usertable (
+let user = `CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT,
     name VARCHAR(255)  NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     id_number VARCHAR(255)  NOT NULL,
     role VARCHAR(255) DEFAULT 'user' ,
     password VARCHAR(255) NOT NULL,
-    phone VARCHAR(255) NOT NULL,
-    emergency_phone VARCHAR(255) ,
+    is_active VARCHAR(256) DEFAULT true,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
     UNIQUE KEY (id_number)
 )`;
+
+let userInfO=`CREATE TABLE IF NOT EXISTS userinfo(
+user_info_id int auto_increment,
+userid int not null,
+batch int not null,
+department varchar(256) not null,
+block_number varchar(256) not null,
+dorm_number int not null,
+phone VARCHAR(255) NOT NULL,
+emergency_phone VARCHAR(255),
+PRIMARY KEY(user_info_id),
+FOREIGN KEY(userid) REFERENCES user(id)
+
+) `
 
 let bookstable = `CREATE TABLE IF NOT EXISTS books(
     id INT AUTO_INCREMENT,
@@ -47,8 +61,8 @@ let umumaebedMembers = `CREATE TABLE IF NOT EXISTS umumaebedmembers(
     user_id int not null,
     amount int not null,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES usertable(id) ON DELETE CASCADE
+    FOREIGN KEY (user_id) REFERENCES user(id) ON UPDATE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 )`;
 // name VARCHAR(256) NOT NULL,
 //     lastname VARCHAR(256) NOT NULL,
@@ -85,7 +99,7 @@ let course_enrollment = `CREATE TABLE IF NOT EXISTS course_enrollment(
     course_id INT NOT NULL,
     currently_enrolling VARCHAR(256) DEFAULT true,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES usertable(id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 )`;
@@ -98,8 +112,11 @@ let daewandIrshadFiles = `CREATE TABLE IF NOT EXISTS daewa_and_irshad_files(
     PRIMARY KEY(id)
 )`;
 
+
+
+
 // Execute table creation queries in order
-pool.query(usertable, (err, results) => {
+pool.query(user, (err, results) => {
     if (err) {
         console.log(err);
         return;
@@ -107,6 +124,13 @@ pool.query(usertable, (err, results) => {
     console.log("user table created successfully");
    
 });
+pool.query(userInfO,(err,results)=>{
+    if(err){
+        console.log(err);
+        return
+    }
+    console.log("user info table successfuly created");
+})
 pool.query(course_enrollment, (err, results) => {
     if (err) {
         console.log(err);
@@ -148,5 +172,44 @@ pool.query(daewandIrshadFiles, (err, results) => {
     }
     console.log("daewa and irshad table successfully created");
 });
+// insert admin ?
+const adminname="mensur";
+const adminLastName="Seid"
+const adminIdNumber="admin123";
+const adminRole ="Admin";
+const adminPassword="123456";
+
+const seedAdmin = async () => {
+    try {
+        // Check if admin user already exists
+        pool.query(`SELECT * FROM user WHERE id_number = ?`, [adminIdNumber], async (err, results) => {
+            if (err) {
+                console.error('Error checking for admin user:', err);
+                return;
+            }
+
+            if (results.length === 0) {
+                // Admin user does not exist, insert admin
+                const hashedPassword = await bcrypt.hash(adminPassword, 10);
+
+                pool.query(`INSERT INTO user (name, lastname, id_number, role, password) VALUES (?, ?, ?, ?, ?)`, 
+                    [adminname, adminLastName, adminIdNumber, adminRole, hashedPassword], (err, results) => {
+                    if (err) {
+                        console.error('Error inserting admin user:', err);
+                        return;
+                    }
+                    console.log('Admin user created successfully.');
+                });
+            } else {
+                console.log('Admin user already exists.');
+            }
+        });
+    } catch (error) {
+        console.error('Error seeding admin user:', error);
+    }
+};
+
+
+seedAdmin();
 
 module.exports = pool;
