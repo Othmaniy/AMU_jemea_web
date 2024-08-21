@@ -1,14 +1,28 @@
 const pool = require("../../db.config");
 const bcrypt = require("bcrypt");
+
+
+const createTempAccountService=(data,callback)=>{
+	const saltRounds= 10;
+	const salt = bcrypt.genSaltSync(saltRounds);
+	const hashedPassword=bcrypt.hashSync(data.password,salt);
+	const sql =`INSERT INTO tempaccounts (name,lastname,id_number,password,password_init,batch,department,block_number,dorm_number,phone,emergency_phone) VALUES (?,?,?,?,?,?,?,?,?,?,?)`
+	pool.query(sql,[data.name,data.lastname,data.id_number,hashedPassword,data.password,data.batch,data.department,data.blockNumber,data.dormNumber,data.phone,data.emergencyPhone],(err,results)=>{
+		if(err){
+			return callback(err)
+		}
+		return callback(null,results)
+	})
+}
 const createaccountservice = (data, callback) => {
 	// console.log("services");
 	// console.log(data);
 	// console.log(data.body.password);
-	const saltRounds = 10;
+	// const saltRounds = 10;
 
-	const salt = bcrypt.genSaltSync(saltRounds);
+	// const salt = bcrypt.genSaltSync(saltRounds);
 
-	const hashedpassword = bcrypt.hashSync(data.password, salt);
+	// const hashedpassword = bcrypt.hashSync(data.password, salt);
 	const sql1 =
 		"INSERT INTO user (name,lastname,id_number,password) VALUES (?,?,?,?)";
 	pool.query(
@@ -17,7 +31,7 @@ const createaccountservice = (data, callback) => {
 			data.name,
 			data.lastname,
 			data.id_number,
-			hashedpassword,
+	        data.password,
 		],
 		(err,results)=>{
            if(err){
@@ -64,7 +78,7 @@ const getbyid = (id) => {
 	});
 };
 
-module.exports = { createaccountservice, getuserbyid, getbyid };
+module.exports = { createaccountservice, getuserbyid, getbyid ,createTempAccountService};
 
 
 

@@ -3,16 +3,66 @@ const pool = require("../../db.config");
 const {
 	createaccountservice,
 	getuserbyid,
+	createTempAccountService,
 } = require("../service/auth.service");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+const createTempAccount=(req,res)=>{
+	const id_number = req.body.id_number;
+	const sql =`SELECT * FROM tempaccounts WHERE id_number = ?`
+	pool.query(sql,[id_number],(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"database errror"
+			})
+		}
+		if(results.length>0){
+			return res
+			.status(409)
+			.json({
+				message:"user with this id number already exists"
+			})
+		}
+		createTempAccountService(req.body,(err,results)=>{
+			if(err){
+				return res
+				.status(500)
+				.json({
+					error:err,
+					message:"error in the database"
+				})
+			}
+			return res
+			.status(200)
+			.json({
+				message:"you have sucessfully registered as temporary user"
+			})
+		})
+	})
+}
+
+const getTempAccounts=(req,res)=>{
+	const sql =`SELECT * FROM tempaccounts`
+	pool.query(sql,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error in fetching temporary users"
+			})
+		}
+		return res
+		.status(200)
+		.json({data:results})
+	})
+}
 const createaccount = (req, res, next) => {
 	console.log("controller");
-	// console.log("req");
-	// console.log(req);
-	// console.log("req.body");
-	// console.log(req.body);
-
 	console.log("correct one");
 	console.log(req.headers["x-access-token"]);
 	// console.log(req);
@@ -20,15 +70,14 @@ const createaccount = (req, res, next) => {
 	console.log(req.body);
 ;
 
-	const sql = "SELECT * FROM usertable WHERE id_number=?";
+	const sql = "SELECT * FROM user WHERE id_number=?";
 	const idnumber = req.body.id_number;
 	pool.query(sql, [idnumber], (err, results) => {
 		if (err) {
-			console.log(err);
-			return res.status(500).json({ message: "database connection error" });
+			return res.status(500).json({ message: "error in the database" });
 		}
 		if (results.length > 0) {
-			return res.status(409).json({ message: "user already exists" });
+			return res.status(409).json({ message: "accounts with this id_number already exists" });
 		}
 		createaccountservice(req.body, (err, results) => {
 			if (err) {
@@ -37,12 +86,31 @@ const createaccount = (req, res, next) => {
 			}
 			const response = {
 				status: "success",
-				message: "user created successfully",
+				message: "user sucessfully registered",
 			};
 			return res.status(200).json(response);
 		});
 	});
 };
+
+const getUsers=(req,res)=>{
+	const sql = `SELECT u.*,i.* FROM user AS u join userinfo as i on (u.id=i.userid)`
+	pool.query(sql,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"errror in the database in delecting user"
+			})
+		}
+		return res
+		.status(200)
+		.json({
+			data:results
+		})
+	})
+}
 const login = (req, res) => {
 	getuserbyid(req.body.id_number, (err, results) => {
 		if (err) {
@@ -79,4 +147,4 @@ const login = (req, res) => {
 		res.status(200).json({ message: "login successfully ", token: token });
 	});
 };
-module.exports = { createaccount, login };
+module.exports = { createaccount, login ,createTempAccount,getTempAccounts,getUsers};
