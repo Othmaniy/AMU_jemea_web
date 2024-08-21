@@ -18,6 +18,25 @@ pool.getConnection((err) => {
     console.log("connected successfully");
 });
 
+
+let tempAccount=`CREATE TABLE IF NOT EXISTS tempaccounts(
+temp_account_id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL,
+lastname VARCHAR(255) NOT NULL,
+id_number VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+password_init VARCHAR(255)NOT NULL,
+batch int not null,
+department VARCHAR(256) NOT NULL,
+block_number VARCHAR(256) NOT NULL,
+dorm_number int not null,
+phone VARCHAR(255) NOT NULL,
+emergency_phone VARCHAR(255),
+createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (temp_account_id),
+UNIQUE KEY (id_number)
+)`
+
 let user = `CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT,
     name VARCHAR(255)  NOT NULL,
@@ -116,6 +135,13 @@ let daewandIrshadFiles = `CREATE TABLE IF NOT EXISTS daewa_and_irshad_files(
 
 
 // Execute table creation queries in order
+pool.query(tempAccount,(err,results)=>{
+    if(err){
+        console.log(err);
+        return
+    }
+    console.log("temp accounts table sucessfully created");
+})
 pool.query(user, (err, results) => {
     if (err) {
         console.log(err);
