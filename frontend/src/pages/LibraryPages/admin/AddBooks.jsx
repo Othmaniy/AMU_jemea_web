@@ -128,7 +128,11 @@ function AddBooks() {
                       <div className="help-block with-errors"></div>
                     </div> */}
 
-										<button type="submit" className="btn btn-border btn-radius" onClick={handlesubmit}>
+										<button
+											type="submit"
+											className="btn btn-border btn-radius"
+											onClick={handlesubmit}
+										>
 											<span>Register</span>
 										</button>
 										<p className="mt-3" style={{ color: "red" }}>

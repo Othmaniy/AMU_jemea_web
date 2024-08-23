@@ -1,0 +1,14 @@
+.roleselector{
+    height: 40px;
+    font-size: 26px;
+    font-weight: bold;
+}
+.form-wrapper{
+    width: 100%;
+}
+.form-wrapper .form-group{
+    width: 50%;
+}
+.form-wrapper .form-group input{
+    width: 100%;
+}
