@@ -11,7 +11,7 @@ import Header from "./components/header/Header";
 import Home from "./pages/Home";
 import { useContext, useEffect } from "react";
 import Login1 from "./pages/login/Login1";
-import Registeruser from "./pages/adminpages/register/Registeruser";
+
 import Unautherized from "./pages/Unautherized";
 import ProtectedRoute from "./components/Protected/ProtectedRoute";
 import AddBooks from "./pages/LibraryPages/admin/AddBooks";
@@ -30,6 +30,9 @@ import Managecourses from "./pages/daewaandirshad/admin/Managecourses";
 import EnrollCourse from "./pages/daewaandirshad/user/EnrollCourse";
 import GetEnrolledUsers from "./pages/daewaandirshad/admin/GetEnrolledUsers";
 import MembershipRegister from "./pages/umumaebed/user/MembershipRegister";
+import ManageTempAccounts from "./pages/SuperAdmin/ManageTempAccounts";
+import Registeruser from "./pages/SuperAdmin/user/register/Registeruser";
+import Getusers from "./pages/SuperAdmin/Getusers";
 
 // import { AuthContext } from './components/auth/auth.context';
 
@@ -41,6 +44,9 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login1 />} />
+					<Route path="/admin/tempaccounts" element={<ManageTempAccounts />} />
+					<Route path="/admin/users" element={<Getusers />} />
+					
 					<Route path="/addbook" element={<AddBooks />} />
 					<Route path="/books" element={<Books />} />
 					<Route path="/managebooks" element={<Controlbooks />} />

@@ -14,29 +14,37 @@ const ProtectedRoute = ({ role, children }) => {
 		const fetchuser = async () => {
 			try {
 				const loggeduser = await getuser();
-				console.log("user from porotected component" + loggeduser);
-				if (loggeduser.token) {
+				console.log("user from porotected component");
+				console.log(loggeduser);
+				if (loggeduser && loggeduser.token) {
 					setIslogged(true);
 					if (role && role.length > 0 && role.includes(loggeduser.role)) {
 						setAutherized(true);
 					}
+				} else {
+					setIslogged(false);
 				}
 				setIspassed(true);
 			} catch (error) {
 				console.log("errrr in the protected route" + error);
+				setIspassed(true);
 			}
 		};
 
 		fetchuser();
 	}, [role]);
 
-	if (ispassed) {
-		if (!islogged) {
-			return <Navigate to="/login" />;
-		}
-		if (!autherized) {
-			return <Navigate to="/unautherized" />;
-		}
+	if (!ispassed) {
+		// Optionally, you can return a loading indicator while checking the user's status
+		return <div>Loading...</div>;
+	}
+
+	if (!islogged) {
+		return <Navigate to="/login" />;
+	}
+
+	if (!autherized) {
+		return <Navigate to="/unautherized" />;
 	}
 
 	return children;
