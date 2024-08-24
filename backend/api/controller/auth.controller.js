@@ -60,7 +60,7 @@ const getTempAccounts=(req,res)=>{
 		.status(200)
 		.json({data:results})
 	})
-}
+} 
 const createaccount = (req, res, next) => {
 	console.log("controller");
 	console.log("correct one");
@@ -94,7 +94,21 @@ const createaccount = (req, res, next) => {
 };
 
 const getUsers=(req,res)=>{
-	const sql = `SELECT u.*,i.* FROM user AS u join userinfo as i on (u.id=i.userid)`
+	const { page = 1, limit = 10, batch, department, id_number } = req.query;
+	const sql = `SELECT u.*,i.* FROM user AS u join userinfo as i on (u.id=i.userid)`;
+	if(batch){
+		sql+=`AND i.batch=${pool.escape(batch)}`
+	}
+	if(department){
+		sql+=`AND i.department=${pool.escape(department)}`
+	}
+	if(id_number){
+		sql+=`AND u.id_number=${pool.escape(id_number)}`
+	}
+	//(page - 1) * limit} it is an offse i.e hoe many records to pass
+	// ${limit} maximum nuber of records to return
+
+    sql += ` LIMIT ${(page - 1) * limit}, ${limit}`;
 	pool.query(sql,(err,results)=>{
 		if(err){
 			return res
@@ -108,6 +122,29 @@ const getUsers=(req,res)=>{
 		.status(200)
 		.json({
 			data:results
+		})
+	})
+}
+
+const assignRole=(req,res)=>{
+	console.log("assign role request");
+	console.log(req.body);
+	const userid = parseInt(req.params.id);
+	const sql ='UPDATE user SET role = ? WHERE id=? '
+	const role =req.body.role
+	pool.query(sql,[role,userid],(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error in the database  in assigning role"
+			})
+		}
+		return res
+		.status(200)
+		.json({
+			message:"role sucessfully assigned"
 		})
 	})
 }
@@ -147,4 +184,4 @@ const login = (req, res) => {
 		res.status(200).json({ message: "login successfully ", token: token });
 	});
 };
-module.exports = { createaccount, login ,createTempAccount,getTempAccounts,getUsers};
+module.exports = { createaccount, login ,createTempAccount,getTempAccounts,getUsers,assignRole};
