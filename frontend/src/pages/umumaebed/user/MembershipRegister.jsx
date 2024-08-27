@@ -6,6 +6,37 @@ function MembershipRegister() {
 
 	// console.log(amount);
 	const { currentuser, loading } = useAuth();
+	const [formAmount,setFormAmount]=useState('')
+	console.log(formAmount);
+	const handleFormregistration=async(e)=>{
+		e.preventDefault();
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"x-access-token": currentuser.token,
+			},
+			body:JSON.stringify({amount:formAmount})
+		};
+		try {
+			const response = await fetch(
+				`http://localhost:5000/api/umumaebed/ownmemberregister`,
+				requestOptions,
+			);
+			const data = await response.json();
+
+			console.log(data);
+			console.log(data.message);
+
+			// if (response.ok) {
+			//     setEnrollResponseMessage(data.message);
+			// } else {
+			//     setEnrollResponseMessage(data.message);
+			// }
+		} catch (error) {
+			console.log(error);
+		}
+	}
 	const handleClick = async (amount) => {
 		if (!currentuser || !currentuser.token) {
 			console.error("Token not found");
@@ -17,7 +48,7 @@ function MembershipRegister() {
 				"Content-Type": "application/json",
 				"x-access-token": currentuser.token,
 			},
-			body: amount,
+			body: JSON.stringify({amount:amount}),
 		};
 		console.log(requestOptions);
 		try {
@@ -152,7 +183,7 @@ function MembershipRegister() {
 			</section>
 			<section className="form_wrapper mt-0 pt-0">
 				<h3 className="text-center">ሌላ የገንዘብ መጠን እዚህ ያስገቡ</h3>
-				<form action="" className="umumaebedform">
+				<form className="umumaebedform" onSubmit={handleFormregistration}>
 					<div className="form-group um">
 						<input
 							id=""
@@ -160,6 +191,7 @@ function MembershipRegister() {
 							name=""
 							className="form-control "
 							placeholder=" የገንዘብ መጠን እዚህ ያስገቡ"
+							onChange={(e)=>setFormAmount(e.target.value)}
 						/>
 						<div className="help-block with-errors"></div>
 					</div>
