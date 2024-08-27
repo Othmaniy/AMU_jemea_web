@@ -128,10 +128,19 @@ let daewandIrshadFiles = `CREATE TABLE IF NOT EXISTS daewa_and_irshad_files(
     file_url VARCHAR(255) NOT NULL,
     file_description VARCHAR(256) NOT NULL,
     author VARCHAR(256) NOT NULL,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 )`;
 
-
+let libraryfiles =`CREATE TABLE IF NOT EXISTS library_files(
+id INT AUTO_INCREMENT,
+file_url VARCHAR(255) NOT NULL,
+file_description VARCHAR(255),
+author VARCHAR(255),
+published_year VARCHAR(255),
+createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY(id)
+)`
 
 
 // Execute table creation queries in order
@@ -198,6 +207,14 @@ pool.query(daewandIrshadFiles, (err, results) => {
     }
     console.log("daewa and irshad table successfully created");
 });
+pool.query(libraryfiles, (err, results) => {
+    if (err) {
+        console.log(err);
+        return
+    }
+    console.log("library fies table successfully created");
+});
+
 // insert admin ?
 const adminname="mensur";
 const adminLastName="Seid"
