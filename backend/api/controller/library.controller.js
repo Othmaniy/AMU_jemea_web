@@ -2,8 +2,30 @@ const pool = require("../../db.config");
 const {
 	InsertNEwBook,
 	getAllBooksService,
+	LibrarFilesService,
 } = require("../service/library.service");
-
+//file management
+const uploadLibraryFile=(req,res)=>{
+	const file =req.file;
+	return res
+	.status(200).json(file.filename)
+}
+const addLibraryFile=(req,res)=>{
+	const fileUrl =req.body.fileUrl;
+	if (!fileUrl) {
+		return res.status(401).json({ message: "no file provided" });
+	}
+  LibrarFilesService(req.body,(err,results)=>{
+	if(err){
+		return res.status(500).json({
+			error:err,
+			message:"error uploading file "
+		})
+	}
+	return res.status(200)
+	.json({message:"file sucessfully uploaded"})
+  })
+}
 const addNewBook = (req, res) => {
 	const { bookname, Author, category, isavailable } = req.body;
 	if (!bookname || !category || !Author) {
@@ -101,4 +123,4 @@ const deleteBook = (req, res) => {
 		}
 	});
 };
-module.exports = { addNewBook, getAllBooks, updateBook, deleteBook };
+module.exports = { addNewBook, getAllBooks, updateBook, deleteBook,uploadLibraryFile ,addLibraryFile};
