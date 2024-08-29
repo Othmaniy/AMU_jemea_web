@@ -93,38 +93,67 @@ const createaccount = (req, res, next) => {
 	});
 };
 
-const getUsers=(req,res)=>{
-	const { page = 1, limit = 10, batch, department, id_number } = req.query;
-	const sql = `SELECT u.*,i.* FROM user AS u join userinfo as i on (u.id=i.userid)`;
-	if(batch){
-		sql+=`AND i.batch=${pool.escape(batch)}`
-	}
-	if(department){
-		sql+=`AND i.department=${pool.escape(department)}`
-	}
-	if(id_number){
-		sql+=`AND u.id_number=${pool.escape(id_number)}`
-	}
-	//(page - 1) * limit} it is an offse i.e hoe many records to pass
-	// ${limit} maximum nuber of records to return
+const getUsers = (req, res) => {
+    // Query to count total users
+    const countQuery = "SELECT COUNT(*) AS total FROM user";
+    let totalCount = 0;
 
-    sql += ` LIMIT ${(page - 1) * limit}, ${limit}`;
-	pool.query(sql,(err,results)=>{
-		if(err){
-			return res
-			.status(500)
-			.json({
-				error:err,
-				message:"errror in the database in delecting user"
-			})
-		}
-		return res
-		.status(200)
-		.json({
-			data:results
-		})
-	})
-}
+    // Execute the count query
+    pool.query(countQuery, (err, countResults) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: "Error in counting users" });
+        }
+        
+        totalCount = countResults[0].total;
+
+        const { page = 1, limit = 10, batch, department, id_number } = req.query;
+
+        // SQL query to select users with pagination and optional filters
+        let sql = `
+            SELECT u.*, i.* 
+            FROM user AS u 
+            LEFT JOIN userinfo AS i ON (u.id = i.userid)
+        `;
+
+        let conditions = [];
+
+        if (batch) {
+            conditions.push(`i.batch = ${pool.escape(batch)}`);
+        }
+        if (department) {
+            conditions.push(`i.department = ${pool.escape(department)}`);
+        }
+        if (id_number) {
+            conditions.push(`u.id_number = ${pool.escape(id_number)}`);
+        }
+
+        if (conditions.length > 0) {
+            sql += ` WHERE ` + conditions.join(' AND ');
+        }
+
+        sql += ` LIMIT ${(page - 1) * limit}, ${limit}`;
+
+        // Execute the main query
+        pool.query(sql, (err, results) => {
+            if (err) {
+                return res.status(500).json({
+                    error: err,
+                    message: "Error in the database in selecting users"
+                });
+            }
+
+            return res.status(200).json({
+                data: results,
+                totalCount: totalCount,
+				slength:results.length
+				
+            });
+        });
+    });
+};
+
+
 
 const assignRole=(req,res)=>{
 	console.log("assign role request");
