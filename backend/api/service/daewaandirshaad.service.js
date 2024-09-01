@@ -18,4 +18,15 @@ const registerForNewCourseServie =(cid,userId,callback)=>{
         return callback(null,results)
     })
 }
-module.exports={addCourseService,registerForNewCourseServie}
+
+//file management
+const addDerseFilService=(data,callback)=>{
+    const sql = `INSERT INTO daewa_and_irshad_files (file_url,file_description,author) VALUES (?,?,?)`
+    pool.query(sql,[data.fileUrl,data.description,data.derseAuthor],(err,results)=>{
+        if(err){
+            return callback(err)
+        }
+        return callback(null,results)
+    })
+}
+module.exports={addCourseService,registerForNewCourseServie,addDerseFilService}
