@@ -3,9 +3,10 @@ const { registerMemberService, OwnMemberregisterService } = require("../service/
 
 
 const OwnMemberregister = (req,res)=>{
-	console.log("umaebed");
-	console.log(typeof(amount));
+	console.log("umuaebed");
 	const amount=req.body.amount;
+	console.log(typeof(amount));
+	console.log(req.userId);
 	OwnMemberregisterService(amount,req.userId,(err,results)=>{
 		if(err){
 			return res
@@ -46,7 +47,7 @@ const registerMember = (req, res) => {
 	});
 };
 const getMembers = (req, res) => {
-	const sql = "SELECT m.*,u.name,lastname,phone,id_number FROM umumaebedmembers as m join usertable as u on (m.user_id=u.id) ";
+	const sql = "SELECT m.*,u.name,lastname,id_number,i.phone,department,batch FROM umumaebedmembers as m join user as u on (m.user_id=u.id) left join userinfo as i on(u.id=i.userid) ";
 	pool.query(sql, (err, results) => {
 		if (err) {
 			return res.status(500).json({ 

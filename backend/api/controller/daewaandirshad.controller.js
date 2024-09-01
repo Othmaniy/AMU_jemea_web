@@ -1,6 +1,28 @@
 const pool = require("../../db.config");
-const { addCourseService, registerForNewCourseServie } = require("../service/daewaandirshaad.service");
-
+const { addCourseService, registerForNewCourseServie, addDerseFilService } = require("../service/daewaandirshaad.service");
+//file management starts
+const uploadDerseFile=(req,res)=>{
+    const file = req.file;
+    res.status(200).json(file.filename)
+}
+const addDerseFile=(req,res)=>{
+    const fileUrl=req.body.fileUrl;
+    if(!fileUrl){
+        return res.status(401).json({message:"no file provided"})
+    }
+    addDerseFilService(req.body,(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({error:err,
+                message:"error in adding file"
+            })
+        }
+        return res
+        .status(200)
+        .json({message:"file sucessfully uploadded"})
+    })
+}
 const addCourse=(req,res)=>{
     const {courseName,courseDescription,courseAuthor,courseUniqueId,ustaz}=req.body;
     if(!courseName||!courseDescription||!courseAuthor||!courseUniqueId||!ustaz){
@@ -184,7 +206,7 @@ const registerForNewCourse =(req,res)=>{
 
 }
 const getEnrolledUsers=(req,res)=>{
-    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,u.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join usertable as u on (c.user_id=u.id)`;
+    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)`;
     pool.query(sql,(err,results)=>{
         if(err){
             return res
@@ -249,5 +271,5 @@ const deleteEnrolledUser=(req,res)=>{
     })
 }
 module.exports={
-    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse,deleteEnrolledUser
+    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse,deleteEnrolledUser,uploadDerseFile,addDerseFile
 }
