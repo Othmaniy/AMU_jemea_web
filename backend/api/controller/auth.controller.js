@@ -44,23 +44,79 @@ const createTempAccount=(req,res)=>{
 		})
 	})
 }
-
+const changeApproveStatus=(req,res)=>{
+const sql =`UPDATE tempaccounts set is_approved=true where temp_account_id=?`
+const id = parseInt(req.params.id)
+pool.query(sql,[id],(err,results)=>{
+	if(err){
+		return res
+		.status(500)
+		.json({
+			error:err,
+			message:"error in the dataase"
+		})
+	}
+	return res
+	.status(200)
+	.json({
+		message:"status sucessfully changed"
+	})
+})
+}
 const getTempAccounts=(req,res)=>{
-	const sql =`SELECT * FROM tempaccounts`
-	pool.query(sql,(err,results)=>{
+	const countTempAccounts=`SELECT COUNT(*) AS total FROM tempaccounts`
+	let count=0
+	pool.query(countTempAccounts,(err,countResults)=>{
 		if(err){
+			console.log(err);
 			return res
 			.status(500)
-			.json({
-				error:err,
-				message:"error in fetching temporary users"
-			})
+			.json({message:"error in counting total temp accounts"})
 		}
-		return res
-		.status(200)
-		.json({data:results})
+		count=countResults[0].total;
+		const {page=1,limit=10,name,batch,department,id_number}=req.query
+
+		//searching from the tempaccunts table
+		let  sql =`SELECT * FROM tempaccounts WHERE is_approved=false`
+		let conditions=[];
+		if(name){
+			conditions.push(`name=${pool.escape(name)}`)
+		}
+		if(department){
+			conditions.push(`department=${pool.escape(department)}`)
+		}
+		if(batch){
+			conditions.push(`batch=${pool.escape(batch)}`)
+		}
+		if(id_number){
+			conditions.push(`id_number=${pool.escape(id_number)}`)
+		}
+		if(conditions.length>0){
+			sql+=" AND "+conditions.join(' AND ')
+		}
+		sql+=` LIMIT ${(page-1)*limit},${limit}`
+		pool.query(sql,(err,results)=>{
+			if(err){
+				return res
+				.status(500)
+				.json({
+					error:err,
+					message:"error in fetching temporary users"
+				})
+			}
+			return res
+			.status(200)
+			.json({
+				data:results,
+				totalCount:count
+
+			})
+		})
 	})
+	
 } 
+
+//creating permanent users
 const createaccount = (req, res, next) => {
 	console.log("controller");
 	console.log("correct one");
@@ -92,9 +148,13 @@ const createaccount = (req, res, next) => {
 		});
 	});
 };
-
+//with pagination
 const getUsers = (req, res) => {
     // Query to count total users
+// 	SELECT COUNT(*): This part of the query counts all the rows in the table. The COUNT(*) function counts every row, including those with NULL values.
+
+// AS total: This gives a name (alias) to the result of the COUNT(*) function. In this case, the count will be returned as a column named total.
+
     const countQuery = "SELECT COUNT(*) AS total FROM user";
     let totalCount = 0;
 
@@ -153,7 +213,24 @@ const getUsers = (req, res) => {
     });
 };
 
+//get all users with out pagination
+const getAllUsers=(req,res)=>{
+	const sql = `SELECT * FROM user`
+	pool.query(sql,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error in the database"})
 
+		}
+		return res
+		.status(200)
+		.json({data:results})
+
+	})
+}
 
 const assignRole=(req,res)=>{
 	console.log("assign role request");
@@ -213,4 +290,4 @@ const login = (req, res) => {
 		res.status(200).json({ message: "login successfully ", token: token });
 	});
 };
-module.exports = { createaccount, login ,createTempAccount,getTempAccounts,getUsers,assignRole};
+module.exports = { createaccount, login ,createTempAccount,getTempAccounts,getUsers,assignRole,getAllUsers,changeApproveStatus};
