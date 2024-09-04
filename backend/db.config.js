@@ -97,6 +97,7 @@ let acadamiFiles = `CREATE TABLE IF NOT EXISTS acadamifiles(
     file_description VARCHAR(256) NOT NULL,
     department VARCHAR(256) NOT NULL,
     Teacher_name VARCHAR(256),
+    file_type varchar(255) not null,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 )`;
