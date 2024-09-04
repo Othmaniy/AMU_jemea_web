@@ -32,6 +32,7 @@ block_number VARCHAR(256) NOT NULL,
 dorm_number int not null,
 phone VARCHAR(255) NOT NULL,
 emergency_phone VARCHAR(255),
+is_approved VARCHAR(255) DEFAULT false,
 createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (temp_account_id),
 UNIQUE KEY (id_number)
@@ -98,6 +99,7 @@ let acadamiFiles = `CREATE TABLE IF NOT EXISTS acadamifiles(
     department VARCHAR(256) NOT NULL,
     Teacher_name VARCHAR(256),
     file_type varchar(255) not null,
+    year int,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 )`;
