@@ -23,7 +23,9 @@ const upload = multer({ storage: storage });
 
 router.post("/uploadfile", upload.single("file"), uploadFile);
 router.post("/addfile", addFile);
-router.get("/getfiles/:department",getFiles)
+router.get("/getfiles/",getFiles)
+// router.get("/getexams/:department",getExams)
+// router.get("/getassignments/:department",getAssignments)
 router.get("/getfiletables",getFileTables)
 router.put("/updatefile:id",updateFile)
 router.delete("/deletefile:id",deleteFile)

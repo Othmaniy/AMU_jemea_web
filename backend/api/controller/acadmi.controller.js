@@ -21,9 +21,9 @@ const addFile = (req, res) => {
 };
 
 const getFiles=(req,res)=>{
-	const sql =`SELECT * from acadamifiles WHERE department=?`
+	const sql =`SELECT * from acadamifiles WHERE department=? AND file_type=?`
 
-	pool.query(sql,[req.params.department],(err,results)=>{
+	pool.query(sql,[req.query.department,req.query.fileType],(err,results)=>{
 		if(err){
 			return res
 			.status(500)
