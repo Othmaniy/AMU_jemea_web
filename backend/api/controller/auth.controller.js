@@ -155,7 +155,7 @@ const getUsers = (req, res) => {
 
 // AS total: This gives a name (alias) to the result of the COUNT(*) function. In this case, the count will be returned as a column named total.
 
-    const countQuery = "SELECT COUNT(*) AS total FROM user";
+    const countQuery = "SELECT COUNT(*) AS total FROM user WHERE is_active=1";
     let totalCount = 0;
 
     // Execute the count query
@@ -173,7 +173,7 @@ const getUsers = (req, res) => {
         let sql = `
             SELECT u.*, i.* 
             FROM user AS u 
-            LEFT JOIN userinfo AS i ON (u.id = i.userid)
+            LEFT JOIN userinfo AS i ON (u.id = i.userid) WHERE u.is_active=1
         `;
 
         let conditions = [];

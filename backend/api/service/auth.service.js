@@ -6,8 +6,9 @@ const createTempAccountService=(data,callback)=>{
 	const saltRounds= 10;
 	const salt = bcrypt.genSaltSync(saltRounds);
 	const hashedPassword=bcrypt.hashSync(data.password,salt);
-	const sql =`INSERT INTO tempaccounts (name,lastname,id_number,password,password_init,batch,department,block_number,dorm_number,phone,emergency_phone) VALUES (?,?,?,?,?,?,?,?,?,?,?)`
-	pool.query(sql,[data.name,data.lastname,data.id_number,hashedPassword,data.password,data.batch,data.department,data.blockNumber,data.dormNumber,data.phone,data.emergencyPhone],(err,results)=>{
+	const isActive =data.alumni==true?false:true
+	const sql =`INSERT INTO tempaccounts (name,lastname,id_number,password,password_init,batch,department,block_number,dorm_number,phone,emergency_phone,is_active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
+	pool.query(sql,[data.name,data.lastname,data.id_number,hashedPassword,data.password,data.batch,data.department,data.blockNumber,data.dormNumber,data.phone,data.emergencyPhone,isActive],(err,results)=>{
 		if(err){
 			return callback(err)
 		}
@@ -24,7 +25,7 @@ const createaccountservice = (data, callback) => {
 
 	// const hashedpassword = bcrypt.hashSync(data.password, salt);
 	const sql1 =
-		"INSERT INTO user (name,lastname,id_number,password) VALUES (?,?,?,?)";
+		"INSERT INTO user (name,lastname,id_number,password,is_active) VALUES (?,?,?,?,?)";
 	pool.query(
 		sql1,
 		[
@@ -32,6 +33,7 @@ const createaccountservice = (data, callback) => {
 			data.lastname,
 			data.id_number,
 	        data.password,
+			data.isActive
 		],
 		(err,results)=>{
            if(err){
