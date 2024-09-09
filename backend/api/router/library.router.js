@@ -6,6 +6,7 @@ const {
 	deleteBook,
 	uploadLibraryFile,
 	addLibraryFile,
+	getLibraryFiles,
 } = require("../controller/library.controller");
 const multer = require("multer");
 const router = express.Router();
@@ -29,6 +30,7 @@ const storage=multer.diskStorage({
 
 
 const libraryFileUpload=multer({storage:storage})
+router.use('/libaryfiles', express.static(path.join(__dirname, '../../../backend/libaryfiles')));
 router.post("/addnewbook", addNewBook),
 	router.get("/getallbooks", getAllBooks),
 	router.patch("/updatebook/:id", updateBook),
@@ -38,5 +40,7 @@ router.post("/addnewbook", addNewBook),
 	//uploading in storage and returning filename
 	router.post("/uploadlibraryfile",libraryFileUpload.single("file"),uploadLibraryFile)
 	//inserting url and other description in to the database
-	router.post('/addlibraryfile',addLibraryFile)
+	router.post('/addlibraryfile',addLibraryFile);
+	router.get("/getlibraryfiles",getLibraryFiles)
+	
 module.exports = router;

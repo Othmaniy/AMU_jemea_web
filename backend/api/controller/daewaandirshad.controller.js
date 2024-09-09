@@ -51,6 +51,23 @@ const addCourse=(req,res)=>{
         }
     })
 }
+const getFiles=(req,res)=>{
+    const sql=`SELECT * FROM daewa_and_irshad_files`
+    pool.query(sql,(err,results)=>{
+        if(err){
+            return res
+            .status(500)
+            .json({
+                error:err,
+                message:"error in fetching user"
+            })
+           
+        }
+        return res
+        .status(200)
+        .json({data:results})
+    })
+}
 const getCourses =(req,res)=>{
     const sql =`SELECT * FROM courses`
     pool.query(sql,(err,results)=>{
@@ -271,5 +288,5 @@ const deleteEnrolledUser=(req,res)=>{
     })
 }
 module.exports={
-    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse,deleteEnrolledUser,uploadDerseFile,addDerseFile
+    addCourse,deleteCourse,getCourses,updateCourse,openCourse,registerForNewCourse,getEnrolledUsers,changeEnrollmentStatus,getOpenCourse,deleteEnrolledUser,uploadDerseFile,addDerseFile,getFiles
 }

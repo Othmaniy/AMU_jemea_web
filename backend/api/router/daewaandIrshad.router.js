@@ -1,5 +1,5 @@
 const express = require("express");
-const { addCourse, getCourses, updateCourse, deleteCourse, openCourse, registerForNewCourse, getEnrolledUsers, changeEnrollmentStatus, getOpenCourse, deleteEnrolledUser, uploadDerseFile, addDerseFile } = require("../controller/daewaandirshad.controller");
+const { addCourse, getCourses, updateCourse, deleteCourse, openCourse, registerForNewCourse, getEnrolledUsers, changeEnrollmentStatus, getOpenCourse, deleteEnrolledUser, uploadDerseFile, addDerseFile, getFiles } = require("../controller/daewaandirshad.controller");
 const { verifytoken } = require("../middleware/verifytoken");
 const multer = require("multer");
 const router = express.Router();
@@ -33,6 +33,7 @@ router.delete("/deleteenrolleduser/:id",deleteEnrolledUser)
 // file management
 router.post("/uploaddersefile",derseFileUpload.single("file"), uploadDerseFile);
 router.post("/adddersefile",addDerseFile)
+router.get("/getfiles",getFiles)
 // router.delete("/daewandirshad/deletefile/:id", DeleteFile);
 
 module.exports=router

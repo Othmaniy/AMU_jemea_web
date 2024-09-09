@@ -26,6 +26,22 @@ const addLibraryFile=(req,res)=>{
 	.json({message:"file sucessfully uploaded"})
   })
 }
+const getLibraryFiles=(req,res)=>{
+	const sql =`SELECT * from library_files`
+	pool.query(sql,(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error in selecting library files"
+			})
+		}
+		return res
+		.status(200)
+		.json({data:results})
+	})
+}
 const addNewBook = (req, res) => {
 	const { bookname, Author, category, isavailable } = req.body;
 	if (!bookname || !category || !Author) {
@@ -123,4 +139,4 @@ const deleteBook = (req, res) => {
 		}
 	});
 };
-module.exports = { addNewBook, getAllBooks, updateBook, deleteBook,uploadLibraryFile ,addLibraryFile};
+module.exports = { addNewBook, getAllBooks, updateBook, deleteBook,uploadLibraryFile ,addLibraryFile,getLibraryFiles};
