@@ -1,8 +1,9 @@
 const pool = require("../../db.config");
 
 const OwnMemberregisterService=(amount,userId,callback)=>{
-	const sql=`INSERT INTO umumaebedmembers user_id=? amount=?`
+	const sql=`INSERT INTO umumaebedmembers(user_id,amount) values(?,?)`
 	pool.query(sql,[userId,amount],(err,results)=>{
+		
 		if(err){
 			return callback(err)
 		}
