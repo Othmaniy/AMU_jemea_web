@@ -1,0 +1,29 @@
+
+.lft-side{
+    background-color: #030a14e5;
+    height: 100%; 
+    width: 100%;
+}
+.right-side{
+    height: 100%;
+    width: 100%;
+}
+.right-side .container {
+    height: 100%;
+    width: 100%;
+}
+.right-side .container .row {
+    height: 100%;
+    width: 100%;
+}
+.links-wrapper {
+    display: flex;
+    flex-direction: column; 
+}
+.links-wrapper hr{
+    color: white;
+}
+.links-wrapper a{
+  color: azure;
+  padding-left: 10px;
+}

@@ -7,3 +7,13 @@
     width: 100%;
     white-space: nowrap;
 }
+.search-container input{
+width: 200px;
+height: 40px;
+}
+
+.table-page-wrapper {
+    flex-grow: 1;
+    overflow-y: auto; /* Allows the table content to scroll if it exceeds the view height */
+    padding: 10px;
+}

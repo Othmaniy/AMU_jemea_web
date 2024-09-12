@@ -1,0 +1,26 @@
+.search-input{
+    border-radius: 4px ;
+    /* outline: auto; */
+    width: 20%;
+    height: 60px;
+    border: 2px solid rgb(192, 27, 27);
+    padding: 10px;
+    color: black;
+    
+}
+input:focus{
+    border: 2px solid #ff6a00;
+}
+.pagination-controls button{
+    z-index: 1;
+}
+.table-page-wrapper {
+    flex-grow: 1; /* Allows the wrapper to grow based on content */
+    padding: 10px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.pagination-controls {
+    /* padding: 10px; */
+}
