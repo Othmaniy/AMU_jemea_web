@@ -16,6 +16,7 @@ router.get('/gettempaccounts',getTempAccounts)
 router.patch("/changeapprovestatus/:id",changeApproveStatus)
 //get users with paination
 router.get("/getusers",getUsers)
+// router.get("/getalumnis",getUsers)
 //get users without pagination
 router.get("/getallusers",getAllUsers)
 router.patch("/assignrole/:id",assignRole)

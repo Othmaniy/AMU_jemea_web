@@ -150,52 +150,48 @@ const createaccount = (req, res, next) => {
 };
 //with pagination
 const getUsers = (req, res) => {
-    // Query to count total users
-// 	SELECT COUNT(*): This part of the query counts all the rows in the table. The COUNT(*) function counts every row, including those with NULL values.
+    const { page = 1, limit = 10, batch, department, id_number } = req.query;
+   const userType=req.query.userType;
+   const isActive = userType=="users"?1:0;
+    // SQL query to count total users with optional filters
+    let countQuery = "SELECT COUNT(*) AS total FROM user AS u LEFT JOIN userinfo AS i ON (u.id = i.userid) WHERE u.is_active=?";
+    let sql = `
+        SELECT u.*, i.* 
+        FROM user AS u 
+        LEFT JOIN userinfo AS i ON (u.id = i.userid) WHERE u.is_active=?
+    `;
 
-// AS total: This gives a name (alias) to the result of the COUNT(*) function. In this case, the count will be returned as a column named total.
+    let conditions = [];
 
-    const countQuery = "SELECT COUNT(*) AS total FROM user WHERE is_active=1";
-    let totalCount = 0;
+    if (batch) {
+        conditions.push(`i.batch = ${pool.escape(batch)}`);
+    }
+    if (department) {
+        conditions.push(`i.department = ${pool.escape(department)}`);
+    }
+    if (id_number) {
+        conditions.push(`u.id_number = ${pool.escape(id_number)}`);
+    }
+
+    if (conditions.length > 0) {
+        const conditionStr = conditions.join(' AND ');
+        countQuery += ` AND ${conditionStr}`;
+        sql += ` AND ${conditionStr}`;
+    }
+
+    sql += ` LIMIT ${(page - 1) * limit}, ${parseInt(limit)}`;
 
     // Execute the count query
-    pool.query(countQuery, (err, countResults) => {
+    pool.query(countQuery,[isActive], (err, countResults) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: "Error in counting users" });
         }
         
-        totalCount = countResults[0].total;
-
-        const { page = 1, limit = 10, batch, department, id_number } = req.query;
-
-        // SQL query to select users with pagination and optional filters
-        let sql = `
-            SELECT u.*, i.* 
-            FROM user AS u 
-            LEFT JOIN userinfo AS i ON (u.id = i.userid) WHERE u.is_active=1
-        `;
-
-        let conditions = [];
-
-        if (batch) {
-            conditions.push(`i.batch = ${pool.escape(batch)}`);
-        }
-        if (department) {
-            conditions.push(`i.department = ${pool.escape(department)}`);
-        }
-        if (id_number) {
-            conditions.push(`u.id_number = ${pool.escape(id_number)}`);
-        }
-
-        if (conditions.length > 0) {
-            sql += ` WHERE ` + conditions.join(' AND ');
-        }
-
-        sql += ` LIMIT ${(page - 1) * limit}, ${limit}`;
+        const totalCount = countResults[0].total;
 
         // Execute the main query
-        pool.query(sql, (err, results) => {
+        pool.query(sql,[isActive], (err, results) => {
             if (err) {
                 return res.status(500).json({
                     error: err,
@@ -206,12 +202,13 @@ const getUsers = (req, res) => {
             return res.status(200).json({
                 data: results,
                 totalCount: totalCount,
-				slength:results.length
-				
+				slength: results.length
             });
         });
     });
 };
+
+//get alumnis
 
 //get all users with out pagination
 const getAllUsers=(req,res)=>{
@@ -254,6 +251,7 @@ const assignRole=(req,res)=>{
 		})
 	})
 }
+
 const login = (req, res) => {
 	getuserbyid(req.body.id_number, (err, results) => {
 		if (err) {
