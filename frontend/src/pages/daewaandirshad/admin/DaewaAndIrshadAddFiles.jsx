@@ -1,34 +1,36 @@
-import React, { useState } from 'react'
-import { FaFileArrowUp } from 'react-icons/fa6'
-import basepath from '../../../components/url/url'
+import React, { useState } from "react";
+import { FaFileArrowUp } from "react-icons/fa6";
+import basepath from "../../../components/url/url";
 
 function DaewaAndIrshadAddFiles() {
-
-    const [derseFile,setDerseFile]=useState(null)
-    const[description,setDescription]=useState('')
-    const [derseAuthor,setDerseAuthor]=useState("")
-    const [derseFileName,setDerseFileName]=useState("")
-    const [responsemessage,setResponsemessage]=useState("")
-    const handleChange = (e) => {
+	const [derseFile, setDerseFile] = useState(null);
+	const [description, setDescription] = useState("");
+	const [derseAuthor, setDerseAuthor] = useState("");
+	const [derseFileName, setDerseFileName] = useState("");
+	const [responsemessage, setResponsemessage] = useState("");
+	const handleChange = (e) => {
 		const selectedFile = e.target.files[0];
 		if (selectedFile) {
 			setDerseFile(selectedFile);
 			setDerseFileName(selectedFile.name);
 		}
 	};
-    const upload = async () => {
+	const upload = async () => {
 		try {
 			const formdata = new FormData();
 			formdata.append("file", derseFile);
-			const response = await basepath.post("/daewaandirshad/uploaddersefile", formdata);
-            console.log("upload derse file response ");
-            console.log(response.data);
+			const response = await basepath.post(
+				"/daewaandirshad/uploaddersefile",
+				formdata,
+			);
+			console.log("upload derse file response ");
+			console.log(response.data);
 			return response.data;
 		} catch (err) {
 			console.log(err);
 		}
 	};
-    
+
 	const handleClick = async (e) => {
 		e.preventDefault();
 		let fileUrl = "";
@@ -38,7 +40,10 @@ function DaewaAndIrshadAddFiles() {
 				fileUrl = await upload();
 				const form = { fileUrl, description, derseAuthor };
 				console.log("file uploaded ", fileUrl);
-				const response = await basepath.post("/daewaandirshad/adddersefile", form);
+				const response = await basepath.post(
+					"/daewaandirshad/adddersefile",
+					form,
+				);
 
 				console.log(response);
 				console.log(response.data);
@@ -50,14 +55,14 @@ function DaewaAndIrshadAddFiles() {
 			} catch (err) {
 				console.log(err);
 				console.log("error uploading file");
-                setResponsemessage(err.response.data.message)
+				setResponsemessage(err.response.data.message);
 			}
 		}
 	};
 
-  return (
-    <>
-        <section className="contact pb-lg-0 z-index-1">
+	return (
+		<>
+			<section className="contact pb-lg-0 z-index-1">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-6 col-md-12">
@@ -100,7 +105,7 @@ function DaewaAndIrshadAddFiles() {
 											onChange={(e) => setDescription(e.target.value)}
 										/>
 									</div>
-									
+
 									<div className="form-group">
 										<input
 											type="text"
@@ -152,8 +157,8 @@ function DaewaAndIrshadAddFiles() {
 					</div>
 				</div>
 			</section>
-    </>
-  )
+		</>
+	);
 }
 
-export default DaewaAndIrshadAddFiles
+export default DaewaAndIrshadAddFiles;

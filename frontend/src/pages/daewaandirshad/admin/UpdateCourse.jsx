@@ -1,29 +1,37 @@
-import React, { useState } from 'react'
-import basepath from '../../../components/url/url'
+import React, { useState } from "react";
+import basepath from "../../../components/url/url";
 // import "./UpdateCOurse.css"
-import './update.css'
-function UpdateCourse({setOpenUpdateCourse,course}) {
-    const [courseName,setcourseName]=useState("")
-    const [courseDescription,setcourseDescription]=useState("")
-    const [courseUniqueId,setcourseUniqueId]=useState("")
-    const[courseAuthor,setcourseAuthor]=useState('')
-    const [ustaz,setUstaz]=useState("")
-	const [responseMessage,setResponseMessage]=useState("")
-const formdata={courseName,courseDescription,courseUniqueId,courseAuthor,ustaz}
-	const handleSubmit=async(e)=>{
+import "./update.css";
+function UpdateCourse({ setOpenUpdateCourse, course }) {
+	const [courseName, setcourseName] = useState("");
+	const [courseDescription, setcourseDescription] = useState("");
+	const [courseUniqueId, setcourseUniqueId] = useState("");
+	const [courseAuthor, setcourseAuthor] = useState("");
+	const [ustaz, setUstaz] = useState("");
+	const [responseMessage, setResponseMessage] = useState("");
+	const formdata = {
+		courseName,
+		courseDescription,
+		courseUniqueId,
+		courseAuthor,
+		ustaz,
+	};
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try{
-			const response = await basepath.put(`/daewaandirshad/updatecourse/${course.course_id}`,formdata);
+		try {
+			const response = await basepath.put(
+				`/daewaandirshad/updatecourse/${course.course_id}`,
+				formdata,
+			);
 			console.log(response);
-			setResponseMessage(response.data.message)
-		}
-		catch(err){
+			setResponseMessage(response.data.message);
+		} catch (err) {
 			console.log(err);
 		}
-	}
-  return (
-    <>
-  <div className="updatecourse col-lg-6 col-md-12 flex align-items-center mx-auto">
+	};
+	return (
+		<>
+			<div className="updatecourse col-lg-6 col-md-12 flex align-items-center mx-auto">
 				<div className="contact-main white-bg p-5  ">
 					<div className="d-flex justify-content-between">
 						<h2 className="title mb-4">
@@ -104,8 +112,8 @@ const formdata={courseName,courseDescription,courseUniqueId,courseAuthor,ustaz}
 					</form>
 				</div>
 			</div>
-    </>
-  )
+		</>
+	);
 }
 
-export default UpdateCourse
+export default UpdateCourse;
