@@ -6,9 +6,9 @@ function MembershipRegister() {
 
 	// console.log(amount);
 	const { currentuser, loading } = useAuth();
-	const [formAmount,setFormAmount]=useState('')
+	const [formAmount, setFormAmount] = useState("");
 	console.log(formAmount);
-	const handleFormregistration=async(e)=>{
+	const handleFormregistration = async (e) => {
 		e.preventDefault();
 		const requestOptions = {
 			method: "POST",
@@ -16,7 +16,7 @@ function MembershipRegister() {
 				"Content-Type": "application/json",
 				"x-access-token": currentuser.token,
 			},
-			body:JSON.stringify({amount:formAmount})
+			body: JSON.stringify({ amount: formAmount }),
 		};
 		try {
 			const response = await fetch(
@@ -36,7 +36,7 @@ function MembershipRegister() {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 	const handleClick = async (amount) => {
 		if (!currentuser || !currentuser.token) {
 			console.error("Token not found");
@@ -48,7 +48,7 @@ function MembershipRegister() {
 				"Content-Type": "application/json",
 				"x-access-token": currentuser.token,
 			},
-			body: JSON.stringify({amount:amount}),
+			body: JSON.stringify({ amount: amount }),
 		};
 		console.log(requestOptions);
 		try {
@@ -191,7 +191,7 @@ function MembershipRegister() {
 							name=""
 							className="form-control "
 							placeholder=" የገንዘብ መጠን እዚህ ያስገቡ"
-							onChange={(e)=>setFormAmount(e.target.value)}
+							onChange={(e) => setFormAmount(e.target.value)}
 						/>
 						<div className="help-block with-errors"></div>
 					</div>
