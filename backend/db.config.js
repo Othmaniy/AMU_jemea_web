@@ -69,9 +69,10 @@ FOREIGN KEY(userid) REFERENCES user(id)
 let bookstable = `CREATE TABLE IF NOT EXISTS books(
     id INT AUTO_INCREMENT,
     book_name VARCHAR(255) NOT NULL,
-    Author VARCHAR(255) NOT NULL,
+    Author VARCHAR(255),
     category VARCHAR(255),
     available VARCHAR(255) DEFAULT 'available',
+    published_year INT,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedat TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
