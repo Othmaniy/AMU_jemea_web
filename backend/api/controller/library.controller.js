@@ -42,13 +42,63 @@ const getLibraryFiles=(req,res)=>{
 		.json({data:results})
 	})
 }
+const AdminGetLibraryFiles=(req,res)=>{
+	
+	let countFiles=0;
+	const countQuery =`SELECT COUNT(*) AS total FROM library_files`
+	pool.query(countQuery,(err,countresult)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({message:"error in count query"})
+		}
+		countFiles=countresult[0].total
+		const {page,limit}=req.query
+		let selectQuery=`select * from library_files`
+		selectQuery+=` LIMIT ${(page-1)*limit},${limit}`
+		pool.query(selectQuery,(err,results)=>{
+			if(err){
+				return res
+				.status(500)
+				.json({
+					errror:err,
+					message:"error in selecting files"
+				})
+			}
+			return res
+			.status(200)
+			.json({
+				data:results,
+				totalCount:countFiles
+			})
+		})
+	})
+
+
+}
+const deleteFile=(req,res)=>{
+	const fileId =parseInt(req.params.id)
+	const sql=`DELETE FROM library_files WHERE id =?`
+	pool.query(sql,[fileId],(err,results)=>{
+		if(err){
+			return res
+			.status(500)
+			.json({message:"error in deleting file"})
+		}
+		return res
+		.status(200)
+		.json({
+			message:"file sucessfully delted"
+		})
+	})
+}
 const addNewBook = (req, res) => {
 	const { bookname, Author, category, isavailable } = req.body;
-	if (!bookname || !category || !Author) {
-		return res.status(401).json({
-			message: "please provide full infromation",
-		});
-	}
+	// if (!bookname || !category || !Author) {
+	// 	return res.status(401).json({
+	// 		message: "please provide full infromation",
+	// 	});
+	// }
 	InsertNEwBook(req.body, (err, results) => {
 		if (err) {
 			console.log(err);
@@ -65,15 +115,38 @@ const addNewBook = (req, res) => {
 };
 
 const getAllBooks = (req, res) => {
-	getAllBooksService(req, (err, results) => {
-		if (err) {
-			return res.status(500).json({ message: "db conection error" });
+	const CountAllBooks=`SELECT COUNT(*) AS total FROM books`
+	let countBooks=0;
+	pool.query(CountAllBooks,(err,countresults)=>{
+		if(err){
+			console.log(err);
+			return res
+			.status(500)
+			.json({message:"error in counting total temp accounts"})
 		}
-		console.log("results");
-		return res.status(200).json({
-			data: results,
-		});
+		countBooks=countresults[0].total;
+		const {page=1,limit=10}=req.query
+		let sql = "SELECT * FROM books";
+		sql+=` LIMIT ${(page-1)*limit},${limit}`
+	pool.query(sql, (err, results) => {
+		if (err) {
+			return res
+			.status(500)
+				.json({
+					error:err,
+					message:"error in fetching books"
+				})
+		}
+		return res
+			.status(200)
+			.json({
+				data:results,
+				totalCount:countBooks
+
+			})
 	});
+	})
+	
 };
 const updateBook = (req, res) => {
 	const bookId = parseInt(req.params.id);
@@ -139,4 +212,4 @@ const deleteBook = (req, res) => {
 		}
 	});
 };
-module.exports = { addNewBook, getAllBooks, updateBook, deleteBook,uploadLibraryFile ,addLibraryFile,getLibraryFiles};
+module.exports = { addNewBook, getAllBooks, updateBook, deleteBook,uploadLibraryFile ,addLibraryFile,getLibraryFiles,AdminGetLibraryFiles,deleteFile};

@@ -10,11 +10,11 @@ const LibrarFilesService=(data,callback)=>{
 }
 const InsertNEwBook = (req, callback) => {
 	const sql =
-		"INSERT INTO books (book_name,Author,category,available) VALUES (?,?,?,?)";
+		"INSERT INTO books (book_name,Author,category,available,published_year) VALUES (?,?,?,?,?)";
 	const available = req.isavailable ? req.isavailable : "available";
 	pool.query(
 		sql,
-		[req.bookname, req.Author, req.category, available],
+		[req.bookname, req.Author, req.category, available,req.publishedYear],
 		(err, results) => {
 			if (err) {
 				return callback(err);
@@ -25,13 +25,7 @@ const InsertNEwBook = (req, callback) => {
 };
 
 const getAllBooksService = (req, callback) => {
-	const sql = "SELECT * FROM books";
-	pool.query(sql, (err, results) => {
-		if (err) {
-			return callback(err);
-		}
-		return callback(null, results);
-	});
+	
 };
 
 module.exports = { InsertNEwBook, getAllBooksService,LibrarFilesService };

@@ -7,6 +7,8 @@ const {
 	uploadLibraryFile,
 	addLibraryFile,
 	getLibraryFiles,
+	AdminGetLibraryFiles,
+	deleteFile,
 } = require("../controller/library.controller");
 const multer = require("multer");
 const router = express.Router();
@@ -42,5 +44,7 @@ router.post("/addnewbook", addNewBook),
 	//inserting url and other description in to the database
 	router.post('/addlibraryfile',addLibraryFile);
 	router.get("/getlibraryfiles",getLibraryFiles)
+	router.get("/admin/getlibraryfiles",AdminGetLibraryFiles)
+	router.delete("/deletefile/:id",deleteFile)
 	
 module.exports = router;
