@@ -223,24 +223,38 @@ const registerForNewCourse =(req,res)=>{
 
 }
 const getEnrolledUsers=(req,res)=>{
-    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)WHERE b.course_name=?`;
-    const courseName=req.query.courseName
-    console.log(courseName);
-    pool.query(sql,[courseName],(err,results)=>{
+    const countQUery = `SELECT COUNT(*) AS total FROM course_enrollment`
+    let count =0
+    pool.query(countQUery,(err,countresults)=>{
         if(err){
             return res
             .status(500)
-            .json({
-                error:err,
-                message:"db error"
-            })
+            .json({message:"error in count query"})
         }
-        return res
-        .status(200)
-        .json({
-            data:results
+        count = countresults[0].total
+        let  sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)WHERE b.course_name=?`;
+        const {courseName,page,limit}=req.query
+        // console.log(courseName);
+        sql+=` LIMIT ${(page-1)*limit},${limit}`
+        pool.query(sql,[courseName],(err,results)=>{
+            if(err){
+                return res
+                .status(500)
+                .json({
+                    error:err,
+                    message:"db error"
+                })
+            }
+            return res
+            .status(200)
+            .json({
+                data:results,
+                totalCount:count
+            })
         })
+
     })
+   
 }
 const changeEnrollmentStatus=async(req,res)=>{
     const newstatus = req.body.status
