@@ -223,8 +223,10 @@ const registerForNewCourse =(req,res)=>{
 
 }
 const getEnrolledUsers=(req,res)=>{
-    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)`;
-    pool.query(sql,(err,results)=>{
+    const sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)WHERE b.course_name=?`;
+    const courseName=req.query.courseName
+    console.log(courseName);
+    pool.query(sql,[courseName],(err,results)=>{
         if(err){
             return res
             .status(500)
