@@ -81,7 +81,7 @@ function DaewaAndIrshadAddFiles() {
 										<label htmlFor="file">
 											<div className="items">
 												<FaFileArrowUp
-													style={{ fontSize: "100px", color: "orangered" }}
+													style={{ fontSize: "100px", color: "black" }}
 												/>
 												<span
 													style={{
@@ -127,30 +127,19 @@ function DaewaAndIrshadAddFiles() {
 								</form>
 							</div>
 						</div>
-						<div className="col-lg-6 col-md-12 form-info mt-4">
+						<div className="col-lg-6 col-md-12 white-bg contact-main d-flex justify-content-center align-items-center" style={{flexDirection:"column"}}>
 							<h2 className="title">
-								Get In <span>Touch!</span>
+								important  <span>reminder</span>
 							</h2>
-							<p>
-								Contact for any help dolor sit amet, consectetur adipiscing
-								elit. Nulla nec massa enim. Aliquam viverra at est ullamcorper
-								sollicitudin. Proin a leo sit amet nunc malesuada imperdiet
-								pharetra ut eros.
-							</p>
 							<ul className="contact-info list-unstyled mt-4">
 								<li className="mb-4">
-									<i className="flaticon-paper-plane"></i>
-									<span>Address:</span>
-									<p>423B, Road Wordwide Country, USA</p>
+								upload softcopy  files that helps students to follow-up derses
 								</li>
 								<li className="mb-4">
-									<i className="flaticon-phone-call"></i>
-									<span>Phone:</span>
-									<a href="tel:+912345678900">+91-234-567-8900</a>
+								pdf files are recommended
 								</li>
 								<li>
-									<i className="flaticon-message"></i>
-									<span>Email</span>
+								for performance issues donot ulpoad same file twice
 								</li>
 							</ul>
 						</div>

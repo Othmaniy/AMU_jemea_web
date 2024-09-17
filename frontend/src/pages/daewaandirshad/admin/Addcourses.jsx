@@ -110,7 +110,7 @@ function Addcourses() {
 										className="btn btn-border btn-radius"
 										onClick={handleSubmit}
 									>
-										<span>submit</span>
+										<span>Add</span>
 									</button>
 									<p className="mt-3" style={{ color: "red" }}>
 										{responsemessage}
@@ -118,32 +118,16 @@ function Addcourses() {
 								</form>
 							</div>
 						</div>
-						<div className="col-lg-6 col-md-12 form-info mt-4">
+						<div className="col-lg-6 col-md-12 white-bg contact-main d-flex justify-content-center align-items-center" style={{flexDirection:"column"}}>
 							<h2 className="title">
-								Get In <span>Touch!</span>
+								Important  <span>Reminder!</span>
 							</h2>
 							<p>
-								Contact for any help dolor sit amet, consectetur adipiscing
-								elit. Nulla nec massa enim. Aliquam viverra at est ullamcorper
-								sollicitudin. Proin a leo sit amet nunc malesuada imperdiet
-								pharetra ut eros.
+								
+								please provide full information for the derse that is suppposed to be given in order for users to attain enough information 
+								you can open and close corses in manage courses section
 							</p>
-							<ul className="contact-info list-unstyled mt-4">
-								<li className="mb-4">
-									<i className="flaticon-paper-plane"></i>
-									<span>Address:</span>
-									<p>423B, Road Wordwide Country, USA</p>
-								</li>
-								<li className="mb-4">
-									<i className="flaticon-phone-call"></i>
-									<span>Phone:</span>
-									<a href="tel:+912345678900">+91-234-567-8900</a>
-								</li>
-								<li>
-									<i className="flaticon-message"></i>
-									<span>Email</span>
-								</li>
-							</ul>
+							
 						</div>
 					</div>
 				</div>
