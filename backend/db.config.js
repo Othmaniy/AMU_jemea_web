@@ -131,8 +131,8 @@ let course_enrollment = `CREATE TABLE IF NOT EXISTS course_enrollment(
 let daewandIrshadFiles = `CREATE TABLE IF NOT EXISTS daewa_and_irshad_files(
     id INT AUTO_INCREMENT,
     file_url VARCHAR(255) NOT NULL,
-    file_description VARCHAR(256) NOT NULL,
-    author VARCHAR(256) NOT NULL,
+    file_description VARCHAR(256),
+    author VARCHAR(256),
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(id)
 )`;
@@ -146,6 +146,14 @@ published_year VARCHAR(255),
 createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
  PRIMARY KEY(id)
 )`
+let Leaders =`CREATE TABLE IF NOT EXISTS leaders(
+id INT AUTO_INCREMENT,
+first_name varchar(255) not null,
+last_name varchar(255) not null,
+phone_number varchar(255) not null,
+role varchar(255) not null,
+createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY(id) )`
 
 
 // Execute table creation queries in order
@@ -218,6 +226,13 @@ pool.query(libraryfiles, (err, results) => {
         return
     }
     console.log("library fies table successfully created");
+});
+pool.query(Leaders, (err, results) => {
+    if (err) {
+        console.log(err);
+        return
+    }
+    console.log("leaders  table successfully created");
 });
 
 // insert admin ?
