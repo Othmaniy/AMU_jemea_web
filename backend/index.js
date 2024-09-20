@@ -7,6 +7,7 @@ const libraryRouter = require("./api/router/library.router")
 const umumaebedrouter =require("./api/router/umumaebed.router")
 const acadamiRouter = require("./api/router/academi.router")
 const daewaAndIrshadRouter =require("./api/router/daewaandIrshad.router")
+const leadersRouter =require("./api/router/leaders.router")
 const app = express();
 const cors= require("cors");
 app.use((req,res,next)=>{
@@ -26,7 +27,7 @@ app.use("/api/library",libraryRouter)
 app.use("/api/umumaebed",umumaebedrouter)
 app.use("/api/academi",acadamiRouter)
 app.use("/api/daewaandirshad",daewaAndIrshadRouter)
-
+app.use('/api/leaders',leadersRouter)
 app.listen(process.env.port,()=>{
 console.log(`listening to port${process.env.port}`);
 
