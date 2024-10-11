@@ -23,7 +23,7 @@ let tempAccount=`CREATE TABLE IF NOT EXISTS tempaccounts(
 temp_account_id INT NOT NULL AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
 lastname VARCHAR(255) NOT NULL,
-id_number VARCHAR(255) NOT NULL,
+phone_number VARCHAR(255) NOT NULL,
 password VARCHAR(255) NOT NULL,
 password_init VARCHAR(255)NOT NULL,
 batch int,
@@ -36,20 +36,20 @@ is_active VARCHAR(256) DEFAULT true,
 is_approved VARCHAR(255) DEFAULT false,
 createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 PRIMARY KEY (temp_account_id),
-UNIQUE KEY (id_number)
+UNIQUE KEY (phone_number)
 )`
 
 let user = `CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT,
     name VARCHAR(255)  NOT NULL,
     lastname VARCHAR(255) NOT NULL,
-    id_number VARCHAR(255)  NOT NULL,
+    phone_number VARCHAR(255)  NOT NULL,
     role VARCHAR(255) DEFAULT 'user' ,
     password VARCHAR(255) NOT NULL,
     is_active VARCHAR(256) DEFAULT true,
     createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    UNIQUE KEY (id_number)
+    UNIQUE KEY (phone_number)
 )`;
 
 let userInfO=`CREATE TABLE IF NOT EXISTS userinfo(
@@ -57,9 +57,8 @@ user_info_id int auto_increment,
 userid int not null,
 batch int not null,
 department varchar(256) not null,
-block_number varchar(256) not null,
+block_number varchar(256),
 dorm_number int not null,
-phone VARCHAR(255) NOT NULL,
 emergency_phone VARCHAR(255),
 PRIMARY KEY(user_info_id),
 FOREIGN KEY(userid) REFERENCES user(id)
@@ -86,14 +85,7 @@ let umumaebedMembers = `CREATE TABLE IF NOT EXISTS umumaebedmembers(
     FOREIGN KEY (user_id) REFERENCES user(id) ON UPDATE CASCADE,
     FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 )`;
-// name VARCHAR(256) NOT NULL,
-//     lastname VARCHAR(256) NOT NULL,
-//     id_number VARCHAR(255) NOT NULL,
-//     phone VARCHAR(256) NOT NULL,
-//     batch INT,
-//     monthlypayment INT NOT NULL,
-//     status VARCHAR(256) DEFAULT 'active',
-//     PRIMARY KEY(id)
+
 let acadamiFiles = `CREATE TABLE IF NOT EXISTS acadamifiles(
     id INT AUTO_INCREMENT,
     file_url VARCHAR(256) NOT NULL,
@@ -238,14 +230,14 @@ pool.query(Leaders, (err, results) => {
 // insert admin ?
 const adminname="mensur";
 const adminLastName="Seid"
-const adminIdNumber="admin123";
+const adminphoneNumber="admin123";
 const adminRole ="Admin";
 const adminPassword="123456";
 
 const seedAdmin = async () => {
     try {
         // Check if admin user already exists
-        pool.query(`SELECT * FROM user WHERE id_number = ?`, [adminIdNumber], async (err, results) => {
+        pool.query(`SELECT * FROM user WHERE phone_number = ?`, [adminphoneNumber], async (err, results) => {
             if (err) {
                 console.error('Error checking for admin user:', err);
                 return;
@@ -255,8 +247,8 @@ const seedAdmin = async () => {
                 // Admin user does not exist, insert admin
                 const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
-                pool.query(`INSERT INTO user (name, lastname, id_number, role, password) VALUES (?, ?, ?, ?, ?)`, 
-                    [adminname, adminLastName, adminIdNumber, adminRole, hashedPassword], (err, results) => {
+                pool.query(`INSERT INTO user (name, lastname, phone_number, role, password) VALUES (?, ?, ?, ?, ?)`, 
+                    [adminname, adminLastName, adminphoneNumber, adminRole, hashedPassword], (err, results) => {
                     if (err) {
                         console.error('Error inserting admin user:', err);
                         return;
