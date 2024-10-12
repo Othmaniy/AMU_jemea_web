@@ -198,7 +198,7 @@ const getOpenCourse=(req,res)=>{
 }
 const registerForNewCourse =(req,res)=>{
     // console.log(req); 
-    console.log("from enroll controller id_number"+req.id_number);
+    console.log("from enroll controller phonenumber"+req.phoneNumber);
     console.log("from enroll controller userid "+req.userId);
     console.log(typeof(req.userId));
     // const {courseID}=req.body
@@ -232,7 +232,7 @@ const getEnrolledUsers=(req,res)=>{
             .json({message:"error in count query"})
         }
         count = countresults[0].total
-        let  sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.id_number,i.phone FROM course_enrollment as c join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) join userinfo as i on (u.id=i.userid)WHERE b.course_name=?`;
+        let  sql =`SELECT c.*,b.course_name,b.course_unique_id,u.name,u.lastname,u.phone_number FROM course_enrollment as c left join courses as b on(c.course_id=b.course_id) join user as u on (c.user_id=u.id) left join userinfo as i on (u.id=i.userid)WHERE b.course_name=?`;
         const {courseName,page,limit}=req.query
         // console.log(courseName);
         sql+=` LIMIT ${(page-1)*limit},${limit}`

@@ -1,6 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const { getuserbyid, getbyid } = require("../service/auth.service");
+const { getuserbyid, getbyphone } = require("../service/auth.service");
 const pool = require("../../db.config");
 
 const verifytoken = async (req, res, next) => {
@@ -21,7 +21,7 @@ const verifytoken = async (req, res, next) => {
 		}
 		console.log("decode");
 		console.log(decode);
-		req.id_number = decode.id_number;
+		req.phoneNumber = decode.phoneNumber;
 		req.userId=decode.id
 		console.log("inside verify");
 		// console.log(object);
@@ -30,9 +30,9 @@ const verifytoken = async (req, res, next) => {
 	});
 };
 const userrole = async (req, res, next) => {
-	const id_number = req.id_number;
+	const phoneNumber= req.phoneNumber;
 	console.log("userrole");
-	console.log(id_number);
+	console.log(phoneNumber);
 	try {
 		console.log("inside");
 		//   const sql = "SELECT * FROM usertable WHERE id_number=?"
@@ -43,7 +43,7 @@ const userrole = async (req, res, next) => {
 		//     }
 		//     return results;
 		//    })
-		const user = await getbyid(id_number);
+		const user = await getbyphone(phoneNumber);
 		console.log("user");
 		console.log(user);
 		console.log("verify");

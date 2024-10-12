@@ -7,21 +7,41 @@ const OwnMemberregister = (req,res)=>{
 	const amount=req.body.amount;
 	console.log(typeof(amount));
 	console.log(req.userId);
-	OwnMemberregisterService(amount,req.userId,(err,results)=>{
+	const sql=`SELECT * FROM umumaebedmembers WHERE user_id=?`
+	console.log(req.body)
+	pool.query(sql,[req.userId],(err,results)=>{
 		if(err){
 			return res
 			.status(500)
 			.json({
 				error:err,
-				message:"db connection error"
+				message:"error in selecting user"
 			})
 		}
-		return res
-		.status(200)
-		.json({
-			message:"sucessfully registered"
+		if(results.length>0){
+			return res
+			.status(403)
+			.json({
+				message:"you are already registered"
+			})
+		}
+		OwnMemberregisterService(amount,req.userId,(err,results)=>{
+			if(err){
+				return res
+				.status(500)
+				.json({
+					error:err,
+					message:"db connection error"
+				})
+			}
+			return res
+			.status(200)
+			.json({
+				message:"sucessfully registered"
+			})
 		})
 	})
+	
 
 
 }
@@ -47,7 +67,45 @@ const registerMember = (req, res) => {
 	});
 };
 const getMembers = (req, res) => {
-	const sql = "SELECT m.*,u.name,lastname,id_number,i.phone,department,batch FROM umumaebedmembers as m join user as u on (m.user_id=u.id) left join userinfo as i on(u.id=i.userid) ";
+	const {page=1,limit=10,name,batch,department,phoneNumber}=req.query
+	let countQuery = `SELECT COUNT(*) AS total FROM umumaebedmembers AS m 
+	JOIN user AS u ON (m.user_id = u.id) 
+	LEFT JOIN userinfo AS i ON (u.id = i.userid)`;
+	
+	let sql = "SELECT m.*,u.name,lastname,phone_number,i.department,batch FROM umumaebedmembers as m join user as u on (m.user_id=u.id) left join userinfo as i on(u.id=i.userid)";
+		let conditions=[];
+		if(name){
+			conditions.push(`u.name=${pool.escape(name)}`)
+		}
+		if(department){
+			conditions.push(`i.department=${pool.escape(department)}`)
+		}
+		if(batch){
+			conditions.push(`i.batch=${pool.escape(batch)}`)
+		}
+		if(phoneNumber){
+			conditions.push(`u.phone=${pool.escape(phoneNumber)}`)
+		}
+		if(conditions.length>0){
+			sql+=" AND "+conditions.join(' AND ')
+		}
+	 if (conditions.length > 0) {
+        countQuery += ` WHERE ${conditions.join(' AND ')}`;
+        sql += ` WHERE ${conditions.join(' AND ')}`;
+    }
+		sql += ` LIMIT ${(page - 1) * limit}, ${parseInt(limit)}`;
+	pool.query(countQuery,(err,countresults)=>{
+		if(err){
+			console.log(err);
+			return res
+			.status(500)
+			.json({
+				error:err,
+				message:"error in counting total members"})
+		}
+		const count=countresults[0].total;
+		
+		
 	pool.query(sql, (err, results) => {
 		if (err) {
 			return res.status(500).json({ 
@@ -56,57 +114,40 @@ const getMembers = (req, res) => {
 		}
 		return res.status(200).json({
 			data: results,
+			totalCount:count
+		});
+	});
+	})
+	
+};
+
+const updateAmount = (req, res) => {
+	const memberId = parseInt(req.params.id);
+	console.log(req.body);
+	const amount = req.body.amount
+	const sql = `UPDATE umumaebedmembers SET amount=? WHERE id =?`;
+	pool.query(sql, [amount,memberId], (err, results) => {
+		if (err) {
+			return res.status(500).json({
+				error: err,
+				message: "db connection error",
+			});
+		}
+		return res.status(200).json({
+			message: "updated sucessfully",
+			data: results,
 		});
 	});
 };
-
-// const updateMember = (req, res) => {
-// 	const memberId = parseInt(req.params.id);
-// 	const fieldsToUpdate = [];
-// 	const values = [];
-// 	if (req.body.name) {
-// 		fieldsToUpdate.push("name=?");
-// 		values.push(req.body.name);
-// 	}
-// 	if (req.body.lastname) {
-// 		fieldsToUpdate.push("lastname=?");
-// 		values.push(req.body.lastname);
-// 	}
-// 	if (req.body.idnumber) {
-// 		fieldsToUpdate.push("id_number");
-// 		values.push(req.body.idnumber);
-// 	}
-// 	if (req.body.phone) {
-// 		fieldsToUpdate.push("phone");
-// 		values.push(req.body.phone);
-// 	}
-// 	if (req.body.monthlyPayment) {
-// 		fieldsToUpdate.push("monthlypayment");
-// 		values.push(req.body.monthlyPayment);
-// 	}
-// 	const sql = `UPDATE umumaebed SET ${fieldsToUpdate.join(", ")} WHERE id = ?`;
-// 	values.push(memberId);
-// 	pool.query(sql, values, (err, results) => {
-// 		if (err) {
-// 			return res.status(500).json({
-// 				error: err,
-// 				message: "db connection error",
-// 			});
-// 		}
-// 		return res.status(200).json({
-// 			message: "member updated sucessfully",
-// 			data: results,
-// 		});
-// 	});
-// };
 const deleteMember=(req,res)=>{
 	const memberId =parseInt(req.params.id);
 	const sql =`DELETE FROM umumaebedmembers WHERE id =?`
-	pool.query(sql,(err,results)=>{
+	pool.query(sql,[memberId],(err,results)=>{
 		if(err){
 			return res
 			.status(500)
 			.json({
+				error:err,
 				message:"db connection error"
 			})
 		}
@@ -117,4 +158,4 @@ const deleteMember=(req,res)=>{
 	})
 
 }
-module.exports = { registerMember, getMembers,OwnMemberregister };
+module.exports = { registerMember, getMembers,OwnMemberregister,updateAmount ,deleteMember};
