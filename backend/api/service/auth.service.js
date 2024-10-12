@@ -7,8 +7,8 @@ const createTempAccountService=(data,callback)=>{
 	const salt = bcrypt.genSaltSync(saltRounds);
 	const hashedPassword=bcrypt.hashSync(data.password,salt);
 	const isActive =data.alumni==true?false:true
-	const sql =`INSERT INTO tempaccounts (name,lastname,id_number,password,password_init,batch,department,block_number,dorm_number,phone,emergency_phone,is_active) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
-	pool.query(sql,[data.name,data.lastname,data.id_number,hashedPassword,data.password,data.batch,data.department,data.blockNumber,data.dormNumber,data.phone,data.emergencyPhone,isActive],(err,results)=>{
+	const sql =`INSERT INTO tempaccounts (name,lastname,phone_number,password,password_init,batch,department,block_number,dorm_number,emergency_phone,is_active) VALUES (?,?,?,?,?,?,?,?,?,?,?)`
+	pool.query(sql,[data.name,data.lastname,data.phoneNumber,hashedPassword,data.password,data.batch,data.department,data.blockNumber,data.dormNumber,data.emergencyPhone,isActive],(err,results)=>{
 		if(err){
 			return callback(err)
 		}
@@ -16,22 +16,14 @@ const createTempAccountService=(data,callback)=>{
 	})
 }
 const createaccountservice = (data, callback) => {
-	// console.log("services");
-	// console.log(data);
-	// console.log(data.body.password);
-	// const saltRounds = 10;
-
-	// const salt = bcrypt.genSaltSync(saltRounds);
-
-	// const hashedpassword = bcrypt.hashSync(data.password, salt);
 	const sql1 =
-		"INSERT INTO user (name,lastname,id_number,password,is_active) VALUES (?,?,?,?,?)";
+		"INSERT INTO user (name,lastname,phone_number,password,is_active) VALUES (?,?,?,?,?)";
 	pool.query(
 		sql1,
 		[
 			data.name,
 			data.lastname,
-			data.id_number,
+			data.phoneNumber,
 	        data.password,
 			data.isActive
 		],
@@ -40,8 +32,8 @@ const createaccountservice = (data, callback) => {
 			console.log(err);
 		   }
 		   const userid =results.insertId;
-	const sql2 =`INSERT INTO userinfo(userid,batch,department,block_number,dorm_number,phone,emergency_phone) VALUES(?,?,?,?,?,?,?)`
-		pool.query(sql2,[userid,data.batch,data.department,data.blockNumber,data.dormNumber,data.phone,data.emergencyPhone],(err,results)=>{
+	const sql2 =`INSERT INTO userinfo(userid,batch,department,block_number,dorm_number,emergency_phone) VALUES(?,?,?,?,?,?)`
+		pool.query(sql2,[userid,data.batch,data.department,data.blockNumber,data.dormNumber,data.emergencyPhone],(err,results)=>{
 			if(err){
 				return callback(err)
 			}
@@ -53,14 +45,11 @@ const createaccountservice = (data, callback) => {
 		
 	
 	);
-//check if result is returned 
-
-	
 };
 
-const getuserbyid = (id, callback) => {
-	const sql = `SELECT * FROM user WHERE id_number=?`;
-	pool.query(sql, [id], (err, results) => {
+const getuserbyPhoneNumber = (phoneNumber, callback) => {
+	const sql = `SELECT * FROM user WHERE phone_number=?`;
+	pool.query(sql, [phoneNumber], (err, results) => {
 		if (err) {
 			return callback(err);
 		}
@@ -68,10 +57,10 @@ const getuserbyid = (id, callback) => {
 	});
 };
 
-const getbyid = (id) => {
+const getbyphone = (phone) => {
 	return new Promise((resolve, reject) => {
-		const sql = "SELECT * FROM user where id_number =? ";
-		pool.query(sql, [id], (err, results) => {
+		const sql = "SELECT * FROM user where phone_number =? ";
+		pool.query(sql, [phone], (err, results) => {
 			if (err) {
 				return reject(err);
 			}
@@ -80,7 +69,7 @@ const getbyid = (id) => {
 	});
 };
 
-module.exports = { createaccountservice, getuserbyid, getbyid ,createTempAccountService};
+module.exports = { createaccountservice, getuserbyPhoneNumber, getbyphone ,createTempAccountService};
 
 
 
