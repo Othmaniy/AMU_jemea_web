@@ -8,23 +8,21 @@ import Sectors from "../components/sectors/Sectors";
 import Message from "../components/message/Message";
 import Testimonial from "../components/testimonial/Testimonial";
 import Team from "../components/team/Team";
-import Gallery from "../components/gallery/Gallery";
+import Campuses from "../components/Campuse/Campuses";
+// import Gallery from "../components/gallery/Gallery";
 
 function Home() {
 	return (
-		<div className="page-wrapper">
+		<div className="page-content mb-0">
 			{/* <Header /> */}
-			<Banner />
-			<div className="page-content metetam">
-				{/* <Description className="" /> */}
-				<Aboutus />
-				<Counter />
-				<Sectors />
-				<Message />
-				<Testimonial />
-				<Team />
-				<Gallery />
-			</div>
+			<Banner className="m-0 pb-0" />
+			<Aboutus className="mt-0 pt-0" />
+			<Counter />
+			<Sectors />
+			<Message />
+			<Testimonial />
+			<Campuses />
+			<Team />
 		</div>
 	);
 }

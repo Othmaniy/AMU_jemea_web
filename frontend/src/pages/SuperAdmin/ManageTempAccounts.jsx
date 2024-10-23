@@ -12,7 +12,7 @@ function ManageTempAccounts() {
 	const user = useAuth();
 	const [searchParams, setSearchParams] = useState({
 		name: "",
-		id_number: "",
+		phoneNumber: "",
 		batch: "",
 		department: "",
 	});
@@ -34,7 +34,7 @@ function ManageTempAccounts() {
 
 	const fetchTempUsers = async (page = 1) => {
 		try {
-			const { name, batch, department, id_number } = searchParams;
+			const { name, batch, department, phoneNumber } = searchParams;
 			const response = await basepath.get("/auth/gettempaccounts", {
 				params: {
 					page,
@@ -42,7 +42,7 @@ function ManageTempAccounts() {
 					name,
 					batch,
 					department,
-					id_number,
+					phoneNumber,
 				},
 			});
 			setTempAccounts(response.data.data);
@@ -82,13 +82,12 @@ function ManageTempAccounts() {
 		const data = {
 			name: user.name,
 			lastname: user.lastname,
-			id_number: user.id_number,
+			phoneNumber: user.phone_number,
 			password: user.password,
 			batch: user.batch,
 			department: user.department,
 			blockNumber: user.block_number,
 			dormNumber: user.dorm_number,
-			phone: user.phone,
 			emergencyPhone: user.emergency_phone,
 			isActive:user.is_active
 
@@ -134,12 +133,20 @@ function ManageTempAccounts() {
 		}
 	};
 
-	const isUserApproved = (id_number) => {
-		return users.some((user) => user.id_number === id_number);
+	const isUserApproved = (phone_number) => {
+		return users.some((user) => user.phone_number === phone_number);
 	};
+	const handleDelete=async(user)=>{
+		console.log(user.temp_account_id);
+		const deleteResponse = await basepath.delete(`/auth/deletetempuser/${user.temp_account_id}`)
+		if(deleteResponse.status==200){
+			setTempAccounts(tempAccounts.filter(t=>t.temp_account_id!==user.temp_account_id))
+		}
+
+	}
 	return (
 		<section className="table-page-wrapper">
-			<h5 className="p-0 text-center text-danger mb-3">Temporary accounts</h5>
+			<h2 className="title">Temporary accounts</h2>
 			<div className="search-container d-flex justify-content-center gap-4">
 				<input
 					type="text"
@@ -167,9 +174,9 @@ function ManageTempAccounts() {
 				/>
 				<input
 					type="text"
-					name="id_number"
-					placeholder="search by idnumber"
-					value={searchParams.id_number}
+					name="phoneNumber"
+					placeholder="search by phonenumber"
+					value={searchParams.phoneNumber}
 					onChange={handleSearchChange}
 					className="search-input"
 				/>
@@ -183,14 +190,13 @@ function ManageTempAccounts() {
 						<tr>
 							<th scope="col">studentname</th>
 							<th scope="col">last name</th>
-							<th scope="col">id_number</th>
 							<th scope="col">phone_number</th>
 							<th scope="col">emergencyphone</th>
 							<th scope="col">batch</th>
 							<th scope="col">department</th>
-							<th scope="col">isActive</th>
+							{/* <th scope="col">isActive</th> */}
 							<th scope="col">block</th>
-							<th scope="col">dorm</th>
+							{/* <th scope="col">dorm</th> */}
 							<th scope="col">approve</th>
 							<th scope="col">delete</th>
 						</tr>
@@ -202,32 +208,31 @@ function ManageTempAccounts() {
 									{user.name}
 								</th>
 								<td className="p-3">{user.lastname}</td>
-								<td className="p-3">{user.id_number}</td>
-								<td className="p-3">{user.phone}</td>
+								<td className="p-3">{user.phone_number}</td>
 								<td className="p-3">{user.emergency_phone}</td>
 								<td className="p-3">{user.batch}</td>
 								<td className="p-3">{user.department}</td>
-								<td className="p-3">{user.is_active==0?"no":"yes"}</td>
+								{/* <td className="p-3">{user.is_active==0?"no":"yes"}</td> */}
 								<td className="p-3">{user.block_number}</td>
-								<td className="p-3">{user.dorm_number}</td>
+								{/* <td className="p-3">{user.dorm_number}</td> */}
 								
 								<td className="">
 									{" "}
 									<button
 										className={`btn rounded-pill ${
-											isUserApproved(user.id_number)
+											isUserApproved(user.phone_number)
 												? "btn-secondary"
 												: "btn-success"
 										}`}
-										disabled={isUserApproved(user.id_number)}
+										disabled={isUserApproved(user.phone_number)}
 										onClick={() => handleClick(user)}
 									>
-										{isUserApproved(user.id_number) ? "Approved" : "Approve"}
+										{isUserApproved(user.phone_number) ? "Approved" : "Approve"}
 									</button>
 								</td>
 								<td className="">
 									{" "}
-									<button className="btn btn-danger rounded-pill">
+									<button className="btn btn-danger rounded-pill" onClick={()=>handleDelete(user)}>
 										delete
 									</button>
 								</td>

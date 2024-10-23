@@ -25,7 +25,7 @@ import FileDashboard from "./pages/Acadamy/user/FileDashboard";
 import ExamsAndFiles from "./pages/Acadamy/user/ExamsAndFiles";
 import Managefiles from "./pages/Acadamy/admin/Managefiles";
 import AcademiFiles from "./pages/Acadamy/user/AcademiFiles";
-import Admindashboard from "./pages/Acadamy/admin/Admindashboard";
+import Admindashboard from "./pages/Acadamy/admin/AcademiAdmindashboard";
 import DeawaAndIrshadDashboard from "./pages/daewaandirshad/admin/DeawaAndIrshadDashboard";
 import Addcourses from "./pages/daewaandirshad/admin/Addcourses";
 import Managecourses from "./pages/daewaandirshad/admin/Managecourses";
@@ -46,6 +46,17 @@ import DaewaAndIshadGetFiles from "./pages/daewaandirshad/user/DaewaAndIshadGetF
 import AdminDashboard from "./pages/SuperAdmin/AdminDashboard";
 import Adminhome from "./pages/SuperAdmin/Adminhome";
 import Alumnis from "./pages/SuperAdmin/Alumnis";
+import Kulfo from "./pages/campusedescription/Kulfo";
+import LibraryAdminDashboard from "./pages/LibraryPages/admin/LibraryAdminDashboard";
+import Libraryhome from "./pages/LibraryPages/admin/Libraryhome";
+import LibraryManagefiles from "./pages/LibraryPages/admin/LibraryManagefiles";
+import DaewaAndIrsahdDashboard from "./pages/daewaandirshad/admin/DaewaAndIrsahdDashboard";
+import AdminSelectCourse from "./pages/daewaandirshad/admin/AdminSelectCourse";
+import UmumaebedDashboard from "./pages/umumaebed/admin/UmumaebedDashboard";
+import Registerleaders from "./pages/SuperAdmin/Registerleaders";
+import GetLeaders from "./pages/SuperAdmin/GetLeaders";
+import AcademiAdmindashboard from "./pages/Acadamy/admin/AcademiAdmindashboard";
+import AcademiAdminHome from "./pages/Acadamy/admin/AcademiAdminHome";
 
 // import { AuthContext } from './components/auth/auth.context';
 //import template css files
@@ -58,6 +69,43 @@ function App() {
 			<div className="layout-wrapper">
 				<div className="admin-menu">
 				<AdminDashboard/>
+				</div>
+				<div className="outlet-wrapper">
+					<Outlet/>
+				</div>
+			</div>
+		)
+	}
+	const LibraryLayout=()=>{
+		return(
+			<div className="layout-wrapper">
+				<div className="admin-menu">
+				<LibraryAdminDashboard/>
+				</div>
+				<div className="outlet-wrapper">
+					<Outlet/>
+				</div>
+			</div>
+		)
+
+	}
+	const DaewaAndIrshadLayout=()=>{
+		return(
+			<div className="layout-wrapper">
+				<div className="admin-menu">
+				<DaewaAndIrsahdDashboard/>
+				</div>
+				<div className="outlet-wrapper">
+					<Outlet/>
+				</div>
+			</div>
+		)
+	}
+	const AcademiLayout=()=>{
+		return(
+			<div className="layout-wrapper">
+				<div className="admin-menu">
+				<AcademiAdmindashboard/>
 				</div>
 				<div className="outlet-wrapper">
 					<Outlet/>
@@ -80,6 +128,8 @@ function App() {
 						<Route path="/admin/courses" element={<Managecourses />}/>
 						<Route path="/admin/enrolledusers" element={<GetEnrolledUsers />}/>
 						<Route path="/admin/alumnis" element={<Alumnis />}/>
+						<Route path="/admin/registerleaders" element={<Registerleaders />}/>
+						<Route path="/admin/getleaders" element={<GetLeaders />}/>
 					</Route>
 					{/* <Route path="/admin/tempaccounts" element={<ManageTempAccounts />} />
 					<Route path="/admin/users" element={<Getusers />} />
@@ -87,27 +137,38 @@ function App() {
 					
 
 					{/* library routes */}
-					<Route path="/addbook" element={<AddBooks />} />
-					<Route path="/books" element={<Books />} />
-					<Route path="/managebooks" element={<Controlbooks />} />
+					{/* admin */}
+					<Route path="/library/admin" element={<LibraryLayout/>}>
+					<Route path="/library/admin" element={<Libraryhome />} />
+					<Route path="/library/admin/addbooks" element={<AddBooks />} />
+					<Route path="/library/admin/managebooks" element={<Controlbooks />} />
 					<Route path="/library/admin/addfiles" element={<LibraryAddfiles />} />
-					<Route path="/library/user/getlibraryfiles" element={<LibrarFiles />} />
+					<Route path="/library/admin/managefiles" element={<LibraryManagefiles />} />
 
+					</Route>
+					{/* user*/}
+					<Route path="/library/user/books" element={<Books />} />
+					<Route path="/library/getfiles" element={<LibrarFiles />} />
 					<Route
-						path="/registeruser"
+						path="/register"
 						element={
-							<ProtectedRoute role={["Admin"]}>
+							
 								<Registeruser />
-							</ProtectedRoute>
+							
 						}
 					/>
 					<Route path="/unautherized" element={<Unautherized />} />
-					<Route path="/updatebook" element={<UpdateBook />} />
+					
 					{/* <Route path="/academi/files" element={<AcademiFiles />} /> */}
-					<Route path="/academi/files" element={<FileDashboard />} />
+
+					{/* academi routers */}
+					<Route path="/academi/admin" element={<AcademiLayout />}>
+					<Route path="/academi/admin" element={<AcademiAdminHome />} />
 					<Route path="/academi/admin/managefiles" element={<Managefiles />} />
-					<Route path="/academi/admin" element={<Admindashboard />} />
 					<Route path="/academi/admin/addfile" element={<AddFiles />} />
+
+					</Route>
+					<Route path="/academi/files" element={<FileDashboard />} />
 					<Route
 						path="/files/choosefiles/:department"
 						element={<ExamsAndFiles />}
@@ -117,7 +178,32 @@ function App() {
 					<Route path="/assignment/:department" element={<AcademiFiles />} />
 
 					{/* daewa and irshad */}
+					<Route path="/daewaandirshad/admin" element={<DaewaAndIrshadLayout/>}>
 					<Route
+						path="/daewaandirshad/admin/addfiles"
+						element={<DaewaAndIrshadAddFiles />}
+					/>
+					<Route
+						path="/daewaandirshad/admin/addcourse"
+						element={<Addcourses />}
+					/>
+						<Route
+						path="/daewaandirshad/admin/managecourse"
+						element={<Managecourses />}
+					/>
+					<Route
+						path="/daewaandirshad/admin/enrolledusers"
+						element={<AdminSelectCourse/>}
+					/>
+					<Route
+						path="/daewaandirshad/admin/enrolledusers/:coursename"
+						element={<GetEnrolledUsers/>}
+					/>
+
+{/* element={<GetEnrolledUsers />} */}
+					{/* / */}
+					</Route>
+					{/* <Route
 						path="/daewaandirshad/admin"
 						element={<DeawaAndIrshadDashboard />}
 					/>
@@ -136,13 +222,13 @@ function App() {
 					<Route
 						path="/daewaandirshad/admin/manageusers"
 						element={<GetEnrolledUsers />}
-					/>
+					/> */}
 					<Route
 						path="/daewaandirshad/user/enroll"
 						element={<EnrollCourse />}
 					/>
 					<Route
-						path="/daewaandirshad/user/getfiles"
+						path="/daewaandirshad/getfiles"
 						element={<DaewaAndIshadGetFiles />}
 					/>
 					{/* umumaebed routes */}
@@ -151,11 +237,16 @@ function App() {
 						element={<MembershipRegister />}
 					/>
 					<Route
+						path="/umumaebed/admin"
+						element={<UmumaebedDashboard />}
+					/>
+					<Route
 						path="/umumaebed/admin/managemembers"
 						element={<ManageMembers />}
 					/>
 					{/* campus routes */}
 					<Route path="/campuses/maincampus" element={<Maincampus />} />
+					<Route path="/campuses/kulfo" element={<Kulfo />} />
 				</Routes>
 				<Footer />
 			</>

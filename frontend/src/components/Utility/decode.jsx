@@ -1,5 +1,6 @@
 const getuser = async () => {
 	const token = await JSON.parse(localStorage.getItem("user"));
+	console.log("get user component");
 	console.log("User from localStorage:", token);
 
 	if (token) {

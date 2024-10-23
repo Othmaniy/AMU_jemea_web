@@ -17,6 +17,10 @@ function AdminDashboard() {
 					<hr />
 					<a href="/admin/enrolledusers" >Enrolled users</a>
 					<hr />
+					<a href="/admin/registerleaders" >register leaders</a>
+					<hr />
+					<a href="/admin/getleaders">get leaders</a>
+					<hr />
 					
 				</div>
 			</div>

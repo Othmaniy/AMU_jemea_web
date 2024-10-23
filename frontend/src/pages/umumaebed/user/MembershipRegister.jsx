@@ -3,9 +3,9 @@ import "./membershipregister.css";
 import { useAuth } from "../../../components/Context/Authcontext";
 function MembershipRegister() {
 	// const [amount,setAmount]=useState("")
-
 	// console.log(amount);
 	const { currentuser, loading } = useAuth();
+	const [responseMessage,setResponsemessage]=useState("")
 	const [formAmount, setFormAmount] = useState("");
 	console.log(formAmount);
 	const handleFormregistration = async (e) => {
@@ -24,10 +24,11 @@ function MembershipRegister() {
 				requestOptions,
 			);
 			const data = await response.json();
-
+			
 			console.log(data);
 			console.log(data.message);
-
+			setResponsemessage(data.message)
+			alert(responseMessage)
 			// if (response.ok) {
 			//     setEnrollResponseMessage(data.message);
 			// } else {
@@ -60,7 +61,8 @@ function MembershipRegister() {
 
 			console.log(data);
 			console.log(data.message);
-
+			setResponsemessage(data.message)
+			alert(data.message)
 			// if (response.ok) {
 			//     setEnrollResponseMessage(data.message);
 			// } else {
@@ -74,7 +76,9 @@ function MembershipRegister() {
 		<>
 			<section className="mb-0 ">
 				<div className="container">
+				
 					<div className="row">
+						
 						<div className="col-lg-4 col-md-12">
 							<div className="price-table">
 								<div className="price-header">

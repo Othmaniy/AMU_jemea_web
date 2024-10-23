@@ -3,6 +3,7 @@ import basepath from "../../../components/url/url";
 
 function Managefiles() {
 	const [filedetails, SetFiledetails] = useState([]);
+	const [search,setSearch]=useState("")
 	const [deleteResponseMessage, SetDeleteResponseMessage] = useState("");
 	useEffect(() => {
 		const fetchData = async () => {
@@ -17,27 +18,45 @@ function Managefiles() {
 	}, []);
 	const handleDeleteClick = async (file) => {
 		const response = await basepath.delete(`/academi/deletefile${file.id}`);
-		console.log(response.data.message);
+		if(response.status==200){
+			SetFiledetails(filedetails.filter(f=>f.id!==file.id))
+		}
 		SetDeleteResponseMessage(response.data.message);
-		console.log(deleteResponseMessage);
+	
+		
 	};
 	return (
-		<>
+		<section className="table-page-wrapper px-5 z-3 position-relative">
+			 <div className="search-container d-flex justify-content-center gap-4 z-3 position-relative">
+        <input
+            type="text"
+            name="batch"
+            placeholder="search"
+            onChange={(e)=>setSearch(e.target.value)}
+            className="search-input"
+        />
+        {/* <button onClick={handleSearch} className="btn btn-danger">
+            Search
+        </button> */}
+    </div>
 			<table className="table table-hover z-3 position-relative mt-2">
 				<thead>
 					<tr>
 						<th scope="col" className="p-4">
 							file name
 						</th>
-						<th scope="col">description</th>
-						<th scope="col">department</th>
+						<th scope="col" className="p-4">description</th>
+						<th scope="col" className="p-4">department</th>
 						{/* <th scope="col">publishedYear</th> */}
-						<th scope="col">Teacher name</th>
-						<th scope="col">status</th>
+						<th scope="col" className="p-4">Teacher name</th>
+						<th scope="col" className="p-4">status</th>
 					</tr>
 				</thead>
 				<tbody>
-					{filedetails.map((file) => (
+					{filedetails.filter((file)=>{
+						return search.toLowerCase()===""?file:file.file_url.toLowerCase().includes(search)
+					})
+					.map((file) => (
 						<tr key={file.id}>
 							{/* todo published year */}
 							<th scope="row" className="p-4">
@@ -77,7 +96,7 @@ function Managefiles() {
 					))}
 				</tbody>
 			</table>
-		</>
+		</section>
 	);
 }
 

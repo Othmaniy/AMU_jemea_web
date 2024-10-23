@@ -27,10 +27,13 @@ function Managecourses() {
 			const response = await basepath.delete(
 				`/daewaandirshad/deletecourse/${course.course_id}`,
 			);
-			console.log(response);
+			
 			setDeleteCourseMessage(response.data.message);
 			console.log(deleteCourseMessage);
-			alert("deleted sucessfully");
+			if(response.status==200){
+				setCourses(courses.filter(c=>c.course_id!==course.course_id))
+			}
+			
 		} catch (err) {
 			console.log(err);
 		}
@@ -60,8 +63,11 @@ function Managecourses() {
 	};
 	return (
 		<>
-			<section className="grey-bg pattern position-relative">
-				<div className="container">
+			<section className="grey-bg pattern table-page-wrapper position-relative px-5">
+			<div className="col-sm-4 position-relative">
+        <h2 className="title position-relative ">courses <span></span></h2>
+      </div>
+				<div className="container position-relative ">
 					<div className="row g-4 ">
 						{courses.map((course) => (
 							<div key={course.course_id} className="col-lg-4 col-md-6 ">
@@ -157,6 +163,7 @@ function Managecourses() {
 										/>
 									)}
 							</div>
+							
 						))}
 					</div>
 				</div>

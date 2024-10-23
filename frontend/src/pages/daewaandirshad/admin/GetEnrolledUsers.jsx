@@ -18,6 +18,7 @@ function GetEnrolledUsers() {
 					page,
 					limit:10
 				}});
+				console.log(response);
 				setEnroledUsers(response.data.data);
 				console.log(enrolledusers);
 				setCurrentPage(page)
@@ -51,12 +52,15 @@ function GetEnrolledUsers() {
 		}
 	};
 	return (
-		<section className="table-page-wrapper p-0 mt-4">
+		<section className="table-page-wrapper px-5 mt-4">
+				<div className="col-sm-4">
+        <h2 className="title">enrolled <span>users</span></h2>
+      </div>
 			<div className="search-container d-flex justify-content-center gap-4">
 				<input
 					type="text"
 					name="batch"
-					placeholder="search by batch"
+					placeholder="search by name"
 					onChange={(e)=>setSearch(e.target.value)}
 					className="search-input"
 				/>

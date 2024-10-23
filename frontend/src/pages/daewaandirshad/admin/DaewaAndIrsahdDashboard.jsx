@@ -5,7 +5,7 @@ function DaewaAndIrsahdDashboard() {
     <>
      <div className="lft-side m-0 p-0" >
 				<div className="links-wrapper">
-					<a href="/daewaandirshad/admin" className="pt-3">Daewa and irshad Admin Dashboard</a>
+					<a  className="pt-3" style={{fontWeight:"bold",fontSize:"24px"}}>Daewa and irshad Admin Dashboard</a>
 					<hr />
 					<a href="/daewaandirshad/admin/addfiles">Add files</a>
 					<hr />

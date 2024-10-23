@@ -12,14 +12,51 @@ function Sectors() {
 						<div className="col-lg-4 col-md-12">
 							<div className="price-table">
 								<div className="price-header">
-									<h4 className="price-title">sector</h4>
 									<div className="price-value">
-										<h2>UmuMaebed</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
+										<h2>Amir</h2>
+									</div>
 								</div>
-								<div className="price-list">
-									<ul className="list-unstyled">
+								<div className="price-list mt-0 pt-0">
+									<ul className="list-unstyled ">
+										<li>
+											<i className="fas fa-check"></i> ስራ አስፈጻሚውን በበላይነት ይመራል
+										</li>
+										<li>
+											<i className="fas fa-check"></i> ግቢውን የሚመለክቱ ኢስላማዊ ጉስዳዮችን
+											ይቆጣጠራል
+										</li>
+										<li>
+											<i className="fas fa-check"></i> ጀመአውን ወክሎ ከተለያዩ አካላት ጋር
+											ግንኙነት ያደርጋል
+										</li>
+										<li>
+											<i className="fas fa-check"></i> ግቢ ዉስጥ ያሉ ስራወችን አካሄድ በ
+											ግልጽ ለ ተማሪወች ያሳውቃል አስተያየቶችን ያስተናግዳል{" "}
+										</li>
+										<li>
+											<i className="fas fa-check"></i> ከሹራ አባላት ጋር በ መሆን ዉሳኔውችን
+											ይወስናል{" "}
+										</li>
+									</ul>
+								</div>
+								<a
+									className="btn btn-border btn-circle mt-4"
+									href="description/amir"
+								>
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+						<div className="col-lg-4 col-md-12">
+							<div className="price-table">
+								<div className="price-header">
+									<div className="price-value">
+										<h2>Vice Amir</h2>
+									</div>
+								</div>
+								<div className="price-list mt-0 pt-0">
+									<ul className="list-unstyled ">
 										<li>
 											<i className="fas fa-check"></i> Charity Sector
 										</li>
@@ -43,101 +80,66 @@ function Sectors() {
 										</li>
 									</ul>
 								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span>
-          </a> */}
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
 							</div>
 						</div>
-						<div className="col-lg-4 col-md-12 mt-5 mt-lg-0">
+						<div className="col-lg-4 col-md-12">
 							<div className="price-table">
 								<div className="price-header">
-									<h4 className="price-title">sector</h4>
 									<div className="price-value">
-										<h2>supportive</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
+										<h2>Secretary</h2>
+									</div>
 								</div>
-								<div className="price-list">
-									<ul className="list-unstyled">
+								<div className="price-list mt-0 pt-0">
+									<ul className="list-unstyled ">
 										<li>
-											<i className="fas fa-check"></i> Free Consultation
+											<i className="fas fa-check"></i> Charity Sector
 										</li>
 										<li>
-											<i className="fas fa-check"></i> Unlimited Site licenses
+											<i className="fas fa-check"></i>የተቸገሩ ተማሪወችን ያግዛል{" "}
 										</li>
 										<li>
-											<i className="fas fa-check"></i> 1 Database
+											<i className="fas fa-check"></i>በ አርባ ምንጭ ከተማ የሚኖሩ ሙስሊሞችን
+											ያግዛል{" "}
 										</li>
 										<li>
-											<i className="fas fa-check"></i> 50gb Web Storage
+											<i className="fas fa-check"></i>በ አርባ ምንጭ ከተማ የሚኖሩ ሙስሊሞችን
+											ዝያራ ያደርጋል{" "}
 										</li>
 										<li>
-											<i className="fas fa-check"></i> Html + Css Lorem ipsum
-											dolor sit amet consectetur adipisicing elit. Itaque,
-											inventore?
+											<i className="fas fa-check"></i>በ አካባቢው ካለው ከፍተኛ የ አክፍሮት
+											ሃይላት እንቅስቃሴ አንጻር ሙስሊሙ በዘይት እንዳይደለል የተችሃለውን ያግዛል{" "}
 										</li>
 										<li>
 											<i className="fas fa-check"></i> 24/7 Customer Support
 										</li>
 									</ul>
 								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span> */}
-								{/* </a> */}
-							</div>
-						</div>
-						<div className="col-lg-4 col-md-12 mt-5 mt-lg-0">
-							<div className="price-table">
-								<div className="price-header">
-									<h4 className="price-title">Leader</h4>
-									<div className="price-value">
-										<h2>Amir</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
-								</div>
-								<div className="price-list">
-									<ul className="list-unstyled">
-										<li>
-											<i className="fas fa-check"></i> Free Consultation
-										</li>
-										<li>
-											<i className="fas fa-check"></i> Unlimited Site licenses
-										</li>
-										<li>
-											<i className="fas fa-check"></i> 1 Database
-										</li>
-										<li>
-											<i className="fas fa-check"></i> 50gb Web Storage
-										</li>
-										<li>
-											<i className="fas fa-check"></i> Html + Css
-										</li>
-										<li>
-											<i className="fas fa-check"></i> 24/7 Customer Support
-											Lorem ipsum dolor, sit amet consectetur adipisicing .
-										</li>
-									</ul>
-								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span> */}
-								{/* </a> */}
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			{/* white sectors start here */}
+			{/* white colors sectors start here */}
 			<section className="grey-bg">
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-4 col-md-12">
 							<div className="price-table style-2">
 								<div className="price-header theme-bg">
-									<h4 className="price-title">Leader</h4>
 									<div className="price-value">
-										<h2>vice Amir</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
+										<h2>Daewa and irshad</h2>
+									</div>
 								</div>
-								<div className="price-list text-center">
+								<div className="price-list text-center mt-0 pt-0">
 									<ul className="list-unstyled">
 										<li>Free Consultation</li>
 										<li>Unlimited Site licenses</li>
@@ -147,20 +149,20 @@ function Sectors() {
 										<li>24/7 Customer Support</li>
 									</ul>
 								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span> */}
-								{/* </a> */}
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
 							</div>
 						</div>
 						<div className="col-lg-4 col-md-12 mt-5 mt-lg-0">
 							<div className="price-table style-2">
 								<div className="price-header dark-bg">
-									<h4 className="price-title">sectro</h4>
 									<div className="price-value">
-										<h2 className="text-white">secretary</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
+										<h2 className="text-white">Women affairs</h2>
+									</div>
 								</div>
-								<div className="price-list text-center">
+								<div className="price-list text-center mt-0 pt-0">
 									<ul className="list-unstyled">
 										<li>Free Consultation</li>
 										<li>Unlimited Site licenses</li>
@@ -170,20 +172,73 @@ function Sectors() {
 										<li>24/7 Customer Support</li>
 									</ul>
 								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span> */}
-								{/* </a> */}
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+						<div className="col-lg-4 col-md-12">
+							<div className="price-table style-2">
+								<div className="price-header theme-bg">
+									<div className="price-value">
+										<h2>supportive</h2>
+									</div>
+								</div>
+								<div className="price-list text-center mt-0 pt-0">
+									<ul className="list-unstyled">
+										<li>Free Consultation</li>
+										<li>Unlimited Site licenses</li>
+										<li>1 Database</li>
+										<li>50gb Web Storage</li>
+										<li>Html + Css</li>
+										<li>24/7 Customer Support</li>
+									</ul>
+								</div>
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* section 3 */}
+			<section className="grey-bg mt-2 pt-5">
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-4 col-md-12">
+							<div className="price-table style-2">
+								<div className="price-header theme-bg">
+									<div className="price-value">
+										<h2>Finance</h2>
+									</div>
+								</div>
+								<div className="price-list text-center mt-0 pt-0">
+									<ul className="list-unstyled">
+										<li>Free Consultation</li>
+										<li>Unlimited Site licenses</li>
+										<li>1 Database</li>
+										<li>50gb Web Storage</li>
+										<li>Html + Css</li>
+										<li>24/7 Customer Support</li>
+									</ul>
+								</div>
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
 							</div>
 						</div>
 						<div className="col-lg-4 col-md-12 mt-5 mt-lg-0">
 							<div className="price-table style-2">
-								<div className="price-header theme-bg">
-									<h4 className="price-title">sector</h4>
+								<div className="price-header dark-bg">
 									<div className="price-value">
-										<h2>women affairs</h2>
-									</div>{" "}
-									<span className="price-month">see more</span>
+										<h2 className="text-white">Academi</h2>
+									</div>
 								</div>
-								<div className="price-list text-center">
+								<div className="price-list text-center mt-0 pt-0">
 									<ul className="list-unstyled">
 										<li>Free Consultation</li>
 										<li>Unlimited Site licenses</li>
@@ -193,8 +248,93 @@ function Sectors() {
 										<li>24/7 Customer Support</li>
 									</ul>
 								</div>
-								{/* <a className="btn btn-border btn-circle mt-4" href="#"> <span>Buy Now</span> */}
-								{/* </a> */}
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+						<div className="col-lg-4 col-md-12">
+							<div className="price-table style-2">
+								<div className="price-header theme-bg">
+									<div className="price-value">
+										<h2>Advisor</h2>
+									</div>
+								</div>
+								<div className="price-list text-center mt-0 pt-0">
+									<ul className="list-unstyled">
+										<li>Free Consultation</li>
+										<li>Unlimited Site licenses</li>
+										<li>1 Database</li>
+										<li>50gb Web Storage</li>
+										<li>Html + Css</li>
+										<li>24/7 Customer Support</li>
+									</ul>
+								</div>
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* section4 */}
+			<section className="grey-bg mt-2 pt-5 ">
+				<div className="container">
+					<div
+						className="row"
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+						}}
+					>
+						<div className="col-lg-4 col-md-12">
+							<div className="price-table style-2">
+								<div className="price-header theme-bg">
+									<div className="price-value">
+										<h2>Ziara</h2>
+									</div>
+								</div>
+								<div className="price-list text-center mt-0 pt-0">
+									<ul className="list-unstyled">
+										<li>Free Consultation</li>
+										<li>Unlimited Site licenses</li>
+										<li>1 Database</li>
+										<li>50gb Web Storage</li>
+										<li>Html + Css</li>
+										<li>24/7 Customer Support</li>
+									</ul>
+								</div>
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
+							</div>
+						</div>
+						<div className="col-lg-4 col-md-12 mt-5 mt-lg-0">
+							<div className="price-table style-2">
+								<div className="price-header dark-bg">
+									<div className="price-value">
+										<h2 className="text-white">Umumaebed</h2>
+									</div>
+								</div>
+								<div className="price-list text-center mt-0 pt-0">
+									<ul className="list-unstyled">
+										<li>Free Consultation</li>
+										<li>Unlimited Site licenses</li>
+										<li>1 Database</li>
+										<li>50gb Web Storage</li>
+										<li>Html + Css</li>
+										<li>24/7 Customer Support</li>
+									</ul>
+								</div>
+								<a className="btn btn-border btn-circle mt-4" href="#">
+									{" "}
+									<span>see more</span>
+								</a>
 							</div>
 						</div>
 					</div>

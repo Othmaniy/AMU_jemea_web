@@ -1,0 +1,28 @@
+/* Top Bar */
+.top-bar {
+  background-color: #f8f9fa; /* Light background for top bar */
+  padding: 10px 0;
+}
+
+/* Sticky Header */
+.sticky-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Ensure no overflow issues */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+/* Container overflow visibility */
+.container {
+  overflow: visible;
+}

@@ -31,7 +31,7 @@ function UpdateCourse({ setOpenUpdateCourse, course }) {
 	};
 	return (
 		<>
-			<div className="updatecourse col-lg-6 col-md-12 flex align-items-center mx-auto">
+			<div className="updateBook col-lg-6 col-md-12 flex align-items-center mx-auto">
 				<div className="contact-main white-bg p-5  ">
 					<div className="d-flex justify-content-between">
 						<h2 className="title mb-4">

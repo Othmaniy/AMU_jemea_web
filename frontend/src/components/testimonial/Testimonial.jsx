@@ -1,9 +1,9 @@
 import React from "react";
-import thumbnail1 from "../../assets/template_assets/images/thumbnail/01.png";
-import thumbnail2 from "../../assets/template_assets/images/thumbnail/02.png";
+import thumbnail1 from "/template_assets/images/thumbnail/01.png";
+import thumbnail2 from "/template_assets/images/thumbnail/02.png";
 
 // import thumbnail3 from "../../template_assets/images/thumbnail/03.png"
-import thumbnail3 from "../../assets/template_assets/images/thumbnail/03.png";
+import thumbnail3 from "/template_assets/images/thumbnail/03.png";
 function Testimonial() {
 	return (
 		<>

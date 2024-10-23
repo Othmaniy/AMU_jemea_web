@@ -1,0 +1,195 @@
+/* ------------------------------------------------
+  Project:   Misto - Factory and Industrial HTML5 Template
+  Author:    ThemeHt
+
+  NOTE: This is Color customizer stylesheet of template.
+------------------------------------------------ */
+
+/* ------------------------
+    General
+------------------------*/
+::-moz-selection { background: #3358ff; color: #fff; text-shadow: none; }
+::-moz-selection { background: #3358ff; color: #fff; text-shadow: none; }
+::selection { background: #3358ff; color: #fff; text-shadow: none; }
+
+ 
+/* ------------------------
+    Background Color
+------------------------*/
+.theme-bg,
+div.color-customizer a.opener,
+.btn::after,
+.btn.btn-theme,
+.nav-item.dropdown .dropdown-menu a:hover,
+.navbar-nav .nav-link::before,
+.gallery-item a.popup,
+.feuture-main .featured-item:hover, .feuture-main .featured-item.active,
+.featured-item.bottom-icon:hover,
+.service-flip-desc,
+.service-icon i,
+.title::after,
+.team-member:hover .team-description,
+.team-member .team-social-icon ul li a,
+.tab.style-2 .nav-tabs .nav-link.active, .tab.style-2 .nav-tabs .nav-link.active:hover, .tab.style-2 .nav-tabs .nav-link.active:focus, .tab.style-2 .nav-tabs .nav-link:hover,
+.post-date,
+.post-meta ul li::before,
+.sidebar-links li.active a, .sidebar-links li a:hover,
+.brochure,
+.form-btn,
+.scroll-top a,
+.accordion .card-header a span,
+.counter.style-3,
+.counter i,
+.ht-progress-bar .progress .progress-bar,
+.ht-progress-bar .progress-parcent,
+.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
+.owl-carousel.owl-theme .owl-dots .owl-dot:hover span,
+.tab .nav-tabs .nav-link.active, .tab .nav-tabs .nav-link:hover, .tab .nav-tabs.active > a:focus, .tab .nav-tabs > a:hover,
+.counter label::before,
+.tab.style-3 .nav-tabs .nav-link.active, .tab.style-3 .nav-tabs .nav-link:hover, .tab.style-3 .nav-tabs.active > a:focus, .tab.style-3 .nav-tabs > a:hover,
+.team-member.style-3 .team-social-icon ul li:hover,
+.pagination > li.active .page-link, .page-link:hover, .page-link:focus,
+.widget .widget-tags li a:hover,
+.video-btn .btn-play,
+a.popup,
+.price-title,
+.portfolio-item a.popup,
+.nav-dots span.nav-dot-current,
+.contact-btn:hover .contact-bg,
+.close-btn,
+.footer-list li a::before,
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.nav-arrows span i,
+.header-4 .top-bar,
+.service-item:hover .service-description
+{ background-color: #3358ff;}
+
+
+/* ------------------------
+    Color
+------------------------*/
+h1,
+a, button, input, 
+a:focus, a:hover,
+.text-theme,
+.topbar-link li a:hover,
+.navbar-form[role="search"] button:hover,
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link:focus, .navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-link.highlighted,
+h1 span,
+.title span,
+.title::after,
+.btn-simple:hover,
+.btn.btn-white:hover,
+.btn:focus, .btn.focus,
+.service-description a,
+.dark-bg .service-description a,
+.dark-bg .service-description a:hover i,
+.flip-icon i,
+.play-btn,
+.theme-bg .video-btn .btn-play,
+.dark-bg .video-btn .btn-play,
+.feuture-main .featured-item .featured-icon,
+.featured-item.bottom-icon .featured-icon i,
+.accordion-button:not(.collapsed),
+.price-table.style-2.active .price-value h2,
+.team-member .team-social-icon ul li a:hover,
+.team-member .team-description h5,
+.team-member.style-2 .team-title h5,
+.team-member.style-3 .team-description span,
+.team-member.style-3 h5 a:hover,
+.testimonial.style-2 .testimonial-content::before,
+.testimonial h6,
+.testimonial .testimonial-content span,
+.btn.btn-white.btn-border:hover,
+.tab.style-2 .nav-tabs .nav-link,
+.media-icon li i,
+.media-icon li a:hover,
+.contact-info li a:hover,
+.scroll-top a:hover,
+.copyright .footer-list li a:hover,
+.widget .recent-post-desc a:hover,
+.breadcrumb-item.active, .breadcrumb-item a:hover,
+.portfolio-filter button.is-checked, .portfolio-filter button:hover,
+.portfolio-hover span,
+.dark-bg .accordion .card.active a, .dark-bg .accordion .card a:hover,
+.featured-item.style-3 .featured-icon i,
+.pagination > li > a, .pagination > li > span,
+.widget-searchbox .search-btn,
+.widget .widget-categories li a:hover,
+.widget .recent-post-desk a:hover,
+.media-body h5,
+.comment-date,
+.reply a:hover,
+.brochure i,
+.counter.style-3 i,
+.contact-info li i,
+.breadcrumb-3 .breadcrumb-item a:hover, .breadcrumb-4 .breadcrumb-item a:hover,
+.post .post-desc h5 a:hover,
+.contact-bg,
+.price-value h2 span.price-dollar,
+.price-header .price-month,
+.price-list li i,
+.price-table.style-2 .price-header.theme-bg .price-title,
+.footer-2 .media-icon.style-2 li.white-bg span,
+.theme-bg .owl-carousel .owl-nav button.owl-prev,
+.theme-bg .owl-carousel .owl-nav button.owl-next,
+.dark-bg .owl-carousel .owl-nav button.owl-prev:hover,
+.dark-bg .owl-carousel .owl-nav button.owl-next:hover,
+.nav-arrows span i:hover,
+.portfolio-meta li span,
+.team-desc .media-icon li a:hover,
+.countdown > li p,
+footer .widget .recent-post-desc span,
+.dark-bg .service-description h4,
+.dark-bg .service-item:hover .service-description h4,
+.section-title h6
+{color: #3358ff;}
+
+
+/* ------------------------
+    Border Color
+------------------------*/
+.btn.btn-border,
+.btn.btn-theme:hover,
+.owl-carousel.owl-theme .owl-dots .owl-dot span::before,
+.portfolio-filter button.is-checked, .portfolio-filter button:hover,
+.dark-bg .price-table:hover,
+.sidebar-links li a,
+.widget-title,
+.form-control:focus,
+.reply a:hover,
+.nav-dots span::before
+{border-color: #3358ff;}
+
+.contact-main
+{border-bottom-color: #3358ff}
+
+
+/* ------------------------
+    Gradient Background
+------------------------*/
+.ht-progress-bar.style-2 .progress .progress-bar{background: #3358ff; /* Old browsers */
+background: -moz-linear-gradient(left, #3358ff 0%, #2989d8 50%, #207cca 50%, #7db9e8 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #3358ff 0%,#2989d8 50%,#207cca 50%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #3358ff 0%,#2989d8 50%,#207cca 50%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3358ff', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 */}
+
+
+@media (max-width: 992px){
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active,
+#header-wrap.fixed-header .navbar-nav .nav-link:hover,
+#header-wrap.fixed-header .navbar-nav .nav-link.active{
+  background: #3358ff;
+}
+
+/* ------------------------
+    Color
+------------------------*/
+.navbar-toggler-icon::before
+{color: #3358ff !important;}
+
+}

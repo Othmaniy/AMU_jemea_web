@@ -12,7 +12,7 @@ function FileDashboard() {
 		navigate("/login");
 	}
 	return (
-		<>
+		<section className="p-3">
 		<div className="grey-bg pattern">
 		
 				<div className="container my-3">
@@ -27,19 +27,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Software</h5>
+										<h3 className="text-center">Software</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									<div className="featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-code" ></i>
+
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-code "></i>
 									</span>
 								</div>
 								</Link>
@@ -52,19 +48,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>electrical</h5>
+										<h3 className="text-center">electrical</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									
+									<div className="featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-plug"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-plug"></i>
 									</span>
 								</div>
 								</Link>
@@ -75,19 +67,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Civil</h5>
+										<h3 className="text-center">Civil</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-hammer"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-hammer"></i>
 									</span>
 								</div>
 								</Link>
@@ -99,19 +87,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Mechanical</h5>
+										<h3 className="text-center">Mechanical</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-cogs"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-cogs"></i>
 									</span>
 								</div>
 								</Link>
@@ -122,19 +106,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Information technology(IT)</h5>
+										<h3 className="text-center">Information technology(IT)</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-laptop"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-laptop"></i>
 									</span>
 								</div>
 								</Link>
@@ -145,19 +125,15 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Hydraulics</h5>
+										<h3 className="text-center">Hydraulics</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-tint"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-tint"></i>
 									</span>
 								</div>
 								</Link>
@@ -168,19 +144,14 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Water Suply</h5>
+										<h3 className="text-center">Water Suply</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-faucet"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-faucet"></i>
 									</span>
 								</div>
 								</Link>
@@ -191,19 +162,14 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Metrology</h5>
+										<h3 className="text-center">Metrology</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-thermometer-half"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-thermometer-half"></i>
 									</span>
 								</div>
 								</Link>
@@ -214,19 +180,14 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Computer sciencse</h5>
+										<h3 className="text-center">Computer sciencse</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-server"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-server"></i>
 									</span>
 								</div>
 								</Link>
@@ -237,19 +198,32 @@ function FileDashboard() {
 						>
 								<div className="featured-item bottom-icon">
 									<div className="featured-title text-uppercase">
-										<h5>Irrigation</h5>
+										<h3 className="text-center">Irrigation</h3>
 									</div>
-									<div className="featured-desc">
-										<h3>
-											200
-										</h3>
-									</div>
-									<div className="featured-icon">
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
 										{" "}
-										<i className="flaticon-chat-bubble"></i>
+										<i className="fa fa-tractor"></i>
 									</div>{" "}
 									<span style={{fontSize:"10px"}}>
-										<i className="flaticon-chat-bubble"></i>
+									<i className="fa fa-tractor"></i>
+									</span>
+								</div>
+								</Link>
+						</div>
+						<div className="col-lg-4 col-md-6">
+						<Link to={"/files/choosefiles/architecture"}
+						style={{textDecoration:"none",color:"inherit"}}
+						>
+								<div className="featured-item bottom-icon">
+									<div className="featured-title text-uppercase">
+										<h3 className="text-center">Architecture</h3>
+									</div>
+									<div className="featured-icon featured-icon d-flex justify-content-center align-items-center">
+										{" "}
+										<i className="fa fa-drafting-compass"></i>
+									</div>{" "}
+									<span style={{fontSize:"10px"}}>
+									<i className="fa fa-drafting-compass"></i>
 									</span>
 								</div>
 								</Link>
@@ -259,233 +233,7 @@ function FileDashboard() {
 					
 				</div>
 			</div>
-			{/* <section className="feuture-main">
-				<div className="container">
-					<div className="row  p-2">
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/software"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-industrial-robot"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>software engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/mechanical"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-maintenance"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Mechanical engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/computerscience"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-fuel-station"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>computer science</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/it"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-growth"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Information technology</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/electrical"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-settings"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Electrical engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/civil"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-worker"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Civil Engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/hydraulic"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-fuel-station"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Hydraulic and water resource engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/irrigation"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-fuel-station"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Irrigation Engineering</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/metro"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-fuel-station"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Metrology</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-						<div className="col-lg-4 col-md-6">
-							<Link
-								to={"/files/choosefiles/supply"}
-								style={{ textDecoration: "none", color: "inherit" }}
-							>
-								<div className="featured-item text-center">
-									<div className="featured-icon">
-										{" "}
-										<i className="flaticon-fuel-station"></i>
-									</div>
-									<div className="featured-title text-uppercase">
-										<h5>Water supply</h5>
-									</div>
-									<div className="featured-desc">
-										<p className="mb-3">
-											Fringilla augue at maximus vestibulum. Nam pulvinar vitae
-											neque et porttitor. Praesent sed nisi eleifend.
-										</p>
-									</div>
-								</div>
-							</Link>
-						</div>
-					</div>
-				</div>
-			</section> */}
-		</>
+		</section>
 	);
 }
 

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import basepath from "../../components/url/url";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../components/Context/Authcontext";
 function Login1() {
+	const {islogged,setIslogged,currentuser}=useAuth()
 	const [loginform, setLoginForm] = useState({});
 	const [LoginResponse, setLoginResponse] = useState("");
 	const navigate = useNavigate();
@@ -25,6 +27,7 @@ function Login1() {
 				if (response.data.token) {
 					localStorage.setItem("user", JSON.stringify(response.data.token));
 				}
+				setIslogged(true)
 				navigate("/");
 			}
 		} catch (error) {
@@ -49,9 +52,9 @@ function Login1() {
 									<div className="form-group">
 										<input
 											type="text"
-											name="id_number"
+											name="phoneNumber"
 											className="form-control"
-											placeholder="id_number"
+											placeholder="phone number"
 											required="required"
 											onChange={handleChange}
 										/>
@@ -72,6 +75,7 @@ function Login1() {
 									<button type="submit" className="btn btn-border btn-radius">
 										<span>Login</span>
 									</button>
+									<p className="mt-3" style={{fontSize:"17px"}}> donot have an account ? <span><a href="register" style={{color:"orangered"}}>register</a></span></p>
 									<p style={{ color: "red" }}>{LoginResponse}</p>
 								</form>
 							</div>

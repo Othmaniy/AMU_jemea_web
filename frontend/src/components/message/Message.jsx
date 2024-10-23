@@ -1,11 +1,11 @@
 import React from "react";
-import leaderimage from "../../assets/template_assets/images/thumbnail/01.png";
+import leaderimage from "/template_assets/images/thumbnail/01.png";
 
 import "./message.css";
 function Message() {
 	return (
 		<>
-			<div className="item mt-5 dark-bg">
+			<div className="item dark-bg">
 				<div className="row messagerow">
 					<div className="col-lg-10">
 						<div className="testimonial position-relative">

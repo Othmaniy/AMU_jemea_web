@@ -13,7 +13,7 @@ function Getusers() {
 	const [searchParams, setSearchParams] = useState({
 		batch: "",
 		department: "",
-		id_number: "",
+		phoneNumber: "",
 	});
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
@@ -22,14 +22,14 @@ function Getusers() {
 
 	const fetchUsers = async (page = 1) => {
 		try {
-			const { batch, department, id_number } = searchParams;
+			const { batch, department, phoneNumber } = searchParams;
 			const response = await basepath.get("/auth/getusers", {
 				params: {
 					page,
 					limit: 10,
 					batch,
 					department,
-					id_number,
+					phoneNumber,
 					userType
 				},
 			});
@@ -44,19 +44,6 @@ function Getusers() {
 			console.log(err);
 		}
 	};
-	//   useEffect(() => {
-	//     const fetchUsers = async () => {
-	//       try {
-	//         const response = await basepath.get("/auth/getusers");
-	//         setApprovedUsers(response.data.data);
-	//         console.log(response);
-	//         console.log(approvedusers);
-	//       } catch (err) {
-	//         console.log(err);
-	//       }
-	//     };
-	//     fetchUsers();
-	//   }, []);
 	useEffect(() => {
 		fetchUsers(currentPage);
 	}, [currentPage]);
@@ -80,6 +67,7 @@ function Getusers() {
 	console.log(currentPage);
 	return (
 		<section className="table-page-wrapper p-0 mt-4">
+			<h2 className="title mx-3">Active users</h2>
 			<div className="search-container d-flex justify-content-center gap-4">
 				<input
 					type="text"
@@ -99,9 +87,9 @@ function Getusers() {
 				/>
 				<input
 					type="text"
-					name="id_number"
-					placeholder="search by idnumber"
-					value={searchParams.id_number}
+					name="phoneNumber"
+					placeholder="search by phonenumber"
+					value={searchParams.phoneNumber}
 					onChange={handleSearchChange}
 					className="search-input"
 				/>
@@ -115,18 +103,17 @@ function Getusers() {
 						<tr>
 							<th scope="col">First name</th>
 							<th scope="col">Last name</th>
-							<th scope="col">id_number</th>
+							<th scope="col">phone number</th>
 							{/* <th scope="col">publishedYear</th> */}
 							<th scope="col">Batch</th>
 							<th scope="col">Department</th>
 							<th scope="col">Role</th>
 							<th scope="col">Block </th>
 							<th scope="col">Dorm</th>
-							<th scope="col">Phone</th>
 							<th scope="col">Emergency phone</th>
-							<th scope="col">Active</th>
 							<th scope="col">Assign</th>
-							<th scope="col">Delete</th>
+							<th scope="col">update</th>
+							<th scope="col">delete</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -136,15 +123,13 @@ function Getusers() {
 									{user.name}
 								</td>
 								<td className="p-3">{user.lastname}</td>
-								<td className="p-3">{user.id_number}</td>
+								<td className="p-3">{user.phone_number}</td>
 								<td className="p-3">{user.batch}</td>
 								<td className="p-3">{user.department}</td>
 								<td className="p-3">{user.role}</td>
 								<td className="p-3">{user.block_number}</td>
 								<td className="p-3">{user.dorm_number}</td>
-								<td className="p-3">{user.phone}</td>
 								<td className="p-3">{user.emergency_phone}</td>
-								<td className="p-3">{user.is_active}</td>
 								<td>
 									<button
 										className="btn btn-outline-danger"
@@ -165,6 +150,11 @@ function Getusers() {
 										}}
 									>
 										Update
+									</button>
+								</td>
+								<td>
+									<button className="btn btn-danger">
+										delete
 									</button>
 								</td>
 								{/* <td><button className='btn btn-danger' onClick={()=>handleUserDelete()}>Delete</button></td> */}

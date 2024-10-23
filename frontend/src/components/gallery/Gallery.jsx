@@ -67,6 +67,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -96,6 +97,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -125,6 +127,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -154,6 +157,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -183,6 +187,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -212,6 +217,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -241,6 +247,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -267,6 +274,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -296,6 +304,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>
@@ -325,6 +334,7 @@ function Gallery() {
 													className="popup portfolio-link"
 													target="_blank"
 													href="project-details.html"
+													rel="noreferrer"
 												>
 													{" "}
 													<i className="flaticon-broken-link-1"></i>

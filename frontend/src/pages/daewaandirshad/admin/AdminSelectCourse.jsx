@@ -13,7 +13,10 @@ function AdminSelectCourse() {
         fetchOpenCourses()
     },[])
   return (
-    <section className="grey-bg pattern position-relative">
+    <section className="grey-bg pattern position-relative px-4">
+        <div className="col-sm-4">
+        <h4 className="title">select <span>course</span></h4>
+      </div>
     <div className="container">
         <div className="row g-4">
            

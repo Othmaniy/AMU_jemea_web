@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 function Alumnis() {
   const [alumnis,setAlumnis]=useState([])
-  const [searchParams,setSearchParams]=useState({batch:"",department:"",id_number:""});
+  const [searchParams,setSearchParams]=useState({batch:"",department:"",phoneNumber:""});
   const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
   const userType= useLocation().pathname.split('/')[2];
@@ -12,13 +12,13 @@ function Alumnis() {
 
     const fetchAlumnis=async(page=1)=>{
       try{
-		const { batch, department, id_number } = searchParams;
+		const { batch, department, phoneNumber} = searchParams;
         const response = await basepath.get("/auth/getusers",{params:{
 			page,
 			limit:10,
 			batch,
 			department,
-			id_number,
+			phoneNumber,
 			userType
 		}});
         setAlumnis(response.data.data)
@@ -70,9 +70,9 @@ const handlePageChange = (page) => {
 				/>
 				<input
 					type="text"
-					name="id_number"
-					placeholder="search by idnumber"
-					value={searchParams.id_number}
+					name="phoneNumber"
+					placeholder="search phonenumber"
+					value={searchParams.phoneNumber}
 					onChange={handleSearchChange}
 					className="search-input"
 				/>
@@ -86,12 +86,10 @@ const handlePageChange = (page) => {
 					<tr>
 						<th scope="col">Name</th>
 						<th scope="col">Last Name</th>
-						<th scope="col">id_number</th>
+						<th scope="col">phone number</th>
 						<th scope="col">batch</th>
 						{/* <th scope="col">publishedYear</th> */}
 						<th scope="col">Department</th>
-		
-						<th scope="col">Phone</th>
 						<th scope="col">Emergency phone</th>
 						<th scope="col">Active</th>
 						<th scope="col">Delete</th>
@@ -105,10 +103,9 @@ const handlePageChange = (page) => {
 								{user.name}
 							</th>
 							<td className="p-3">{user.lastname}</td>
-							<td className="p-3">{user.id_number}</td>
+							<td className="p-3">{user.phone_number}</td>
 							<td className="p-3">{user.batch}</td>
 							<td className="p-3">{user.department}</td>
-							<td className="p-3">{user.phone}</td>
 							<td className="p-3">{user.emergency_phone}</td>
 							<td className="p-3">{user.is_active}</td>
 							<td>
